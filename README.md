@@ -1,4 +1,4 @@
-Nara Hack, teamD-山岳部の作品
+Nara Hack, teamD-山岳部の作品, 
 tourist board of Nara
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
