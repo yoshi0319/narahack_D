@@ -3,7 +3,7 @@ import { useState } from "react";
 import SendIcon from '@mui/icons-material/Send';
 import styles from '../styles/createPost_css.module.css';
 import Header from './header';
-import Hooter from "./Hooter";
+import Hooter from './Hooter';
 
 
 // import defaultImage from '../images/defaultImage.png';
@@ -244,7 +244,6 @@ export default function CreatePost() {
                     送信
                 </Button>
             </div>
-
             <br></br>
             <Hooter />
         </>
