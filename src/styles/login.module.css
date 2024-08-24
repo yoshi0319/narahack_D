@@ -1,0 +1,86 @@
+/* styles/login.module.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Changed to space-between */
+    min-height: 100vh;
+    background-color: #fff9f5;
+  }
+  
+  .header {
+    width: 100%;
+    background-color: #d3f0d0;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative; /* Add this line */
+  }
+  
+  .backButton {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #333;
+  }
+  
+  .titlename {
+    margin: 0 auto; /* Center the title */
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+    flex-grow: 1; /* Add this line to make it take available space */
+  }
+  
+  .headerPlaceholder {
+    width: 50px; /* Adjust this width if necessary */
+  }
+  
+  .loginBox {
+    background-color: #fff;
+    border: 2px solid #000;
+    padding: 30px; /* Increase padding for a larger box */
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 50px; /* Move the box down */
+    width: 80%; /* Increase the width for a larger box */
+    max-width: 500px; /* Ensure it doesn't get too large */
+  }
+  
+  .sentence {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  
+  .loginButton {
+    background-color: #e0e0e0;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #000;
+  }
+  
+  .footer {
+    margin-top: auto;
+    background-color: #d3f0d0;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.9rem;
+    color: #333;
+  }
+  
