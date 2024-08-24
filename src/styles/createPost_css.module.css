@@ -1,6 +1,6 @@
 .titleField {
   width: 60rem;
-  margin-top: 10rem;
+  margin-top: 5rem;
 }
 
 .titleFieldContainer {
@@ -26,8 +26,9 @@ width: 60rem;
 .explanationContainer {
 display: flex;
 justify-content: center;
-margin-top: 20px;
+margin-top: 3rem;
 margin-bottom: 20px;
+
 }
 
 /* 画像とファイル入力を包むコンテナのスタイル */
@@ -36,7 +37,7 @@ width: 100%;            /* 親要素の幅を画面幅いっぱいに設定 */
 height: 30vh;          /* 親要素の高さをビューポートの高さに設定（必要に応じて調整） */
 display: flex;         /* Flexboxを有効にする */
 justify-content: center; /* 横方向の中央に配置 */
-align-items: center;   /* 縦方向の中央に配置 */
+margin-top: 0;
 background-color: rgb(199, 199, 199); /* 画像が選択されていない場合の背景色 */
 }
 
@@ -65,4 +66,16 @@ border-radius: 8px; /* 角を丸くする（オプション） */
 margin-bottom: 10px;    /* ボタンとの間にスペースを追加 */
 font-size: 16px;        /* テキストのサイズ */
 color: #333;            /* テキストの色（必要に応じて変更） */
+}
+
+.line {
+  border: none; /* デフォルトのボーダーを削除 */
+  border-top: 2px solid #D48300; /* 横線の色を設定 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* 影をつける */
+  margin: 20px 0; /* 上下のマージンを設定 */
+}
+
+.slideContainer {
+display: flex;
+justify-content: center;
 }

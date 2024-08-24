@@ -21,8 +21,14 @@ export default function CreatePost() {
     const [explanation, setExplanation] = useState({
         explanation_name: '説明(５００文字以内）'
     });
-    const [mainImage, setMainImage] = useState(defaultImage); // 初期値をdefaultImageに設定
-    const [imageSelected, setImageSelected] = useState(false); // 画像選択の状態管理
+    const [mainImage, setMainImage] = useState(defaultImage);
+    const [imageSelectedMain, setImageSelectedMain] = useState(false);
+
+    const [subImage1, setSubImage1] = useState(defaultImage);
+    const [imageSelectedSub1, setImageSelectedSub1] = useState(false);
+
+    const [subImage2, setSubImage2] = useState(defaultImage);
+    const [imageSelectedSub2, setImageSelectedSub2] = useState(false);
 
     const handleTitle = e => {
         setTitle({
@@ -48,12 +54,34 @@ export default function CreatePost() {
     const onFileInputChange = e => {
         if (!e.target.files || e.target.files.length === 0) {
             setMainImage(defaultImage);
-            setImageSelected(false);
+            setImageSelectedMain(false);
             return;
         }
         const fileObject = e.target.files[0];
         setMainImage(URL.createObjectURL(fileObject));
-        setImageSelected(true);
+        setImageSelectedMain(true);
+    };
+
+    const onFileInputChangeSub1 = e => {
+        if (!e.target.files || e.target.files.length === 0) {
+            setSubImage1(defaultImage);
+            setImageSelectedSub1(false);
+            return;
+        }
+        const fileObject = e.target.files[0];
+        setSubImage1(URL.createObjectURL(fileObject));
+        setImageSelectedSub1(true);
+    };
+
+    const onFileInputChangeSub2 = e => {
+        if (!e.target.files || e.target.files.length === 0) {
+            setSubImage2(defaultImage);
+            setImageSelectedSub2(false);
+            return;
+        }
+        const fileObject = e.target.files[0];
+        setSubImage2(URL.createObjectURL(fileObject));
+        setImageSelectedSub2(true);
     };
 
     const Show = () => {
@@ -61,6 +89,8 @@ export default function CreatePost() {
         console.log(`category: ${category.category_name}`);
         console.log(`explanation: ${explanation.explanation_name}`);
         console.log(`mainImage: ${mainImage}`);
+        console.log(`mainImage: ${subImage1}`);
+        console.log(`mainImage: ${subImage2}`);
     };
 
     return (
@@ -68,11 +98,14 @@ export default function CreatePost() {
             <br></br>
             <br></br>
             <br></br>
-            <div className={styles.default}>
-                {!imageSelected ? (
-                    <div className={styles.inputImageContainer}>
-                        <p className={styles.labelText}>画像ファイルを選択してください</p>
-                        <input type="file" accept="image/*" onChange={onFileInputChange} className="pl-4" />
+
+            <div>
+                {!imageSelectedMain ? (
+                    <div className={styles.default}>
+                        <div className={styles.inputImageContainer}>
+                            <p className={styles.labelText}>画像ファイルを選択してください</p>
+                            <input type="file" accept="image/*" onChange={onFileInputChange} className="pl-4" />
+                        </div>
                     </div>
                 ) : (
                     <div className={styles.imageDisplayContainer}>
@@ -122,6 +155,7 @@ export default function CreatePost() {
                     </Select>
                 </FormControl>
             </div>
+            <hr className={styles.line}></hr>
             <div className={styles.explanationContainer}>
                 <TextField
                     id="explanation"
@@ -133,6 +167,62 @@ export default function CreatePost() {
                     className={styles.explanationField}
                     rows={10}
                 />
+            </div>
+            <div className={styles.slideContainer}>
+                <div>
+                    {!imageSelectedSub1 ? (
+                        <div className={styles.default}>
+                            <div className={styles.inputImageContainer}>
+                                <p className={styles.labelText}>画像ファイルを選択してください</p>
+                                <input type="file" accept="image/*" onChange={onFileInputChangeSub1} className="pl-4" />
+                            </div>
+                        </div>
+                    ) : (
+                        <div className={styles.imageDisplayContainer}>
+                            <img
+                                src={subImage1}
+                                alt="選択された画像"
+                                className={styles.selectedImage}
+                            />
+                        </div>
+                    )}
+                </div>
+                <div>
+                {!imageSelectedMain ? (
+                    <div className={styles.default}>
+                        <div className={styles.inputImageContainer}>
+                            <p className={styles.labelText}>画像ファイルを選択してください</p>
+                            <input type="file" accept="image/*" onChange={onFileInputChange} className="pl-4" />
+                        </div>
+                    </div>
+                ) : (
+                    <div className={styles.imageDisplayContainer}>
+                        <img
+                            src={mainImage}
+                            alt="選択された画像"
+                            className={styles.selectedImage}
+                        />
+                    </div>
+                )}
+            </div>
+                <div>
+                    {!imageSelectedSub2 ? (
+                        <div className={styles.default}>
+                            <div className={styles.inputImageContainer}>
+                                <p className={styles.labelText}>画像ファイルを選択してください</p>
+                                <input type="file" accept="image/*" onChange={onFileInputChangeSub2} className="pl-4" />
+                            </div>
+                        </div>
+                    ) : (
+                        <div className={styles.imageDisplayContainer}>
+                            <img
+                                src={subImage2}
+                                alt="選択された画像"
+                                className={styles.selectedImage}
+                            />
+                        </div>
+                    )}
+                </div>
             </div>
             <div className={styles.sendButtonContainer}>
                 <Button
