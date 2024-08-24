@@ -84,8 +84,8 @@ color: #333;            /* テキストの色（必要に応じて変更） */
 }
 
 .imageWrapper {
-  width: 50rem; 
-  height: 30rem;
+  width: 30rem; 
+  height: 20rem;
   background-color: #FFF9F5;
   padding: 10px;
   border-radius: 8px;
