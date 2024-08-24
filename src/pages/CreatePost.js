@@ -41,23 +41,23 @@ export default function CreatePost() {
     const handleExplanation = e => {
         setExplanation({
             ...explanation,
-            explanation_name: e.target.value // 正しい属性名を設定
+            explanation_name: e.target.value
         });
     };
 
     const onFileInputChange = e => {
         if (!e.target.files || e.target.files.length === 0) {
             setMainImage(defaultImage);
-            setImageSelected(false); // 画像が選択されていない状態
+            setImageSelected(false);
             return;
         }
         const fileObject = e.target.files[0];
         setMainImage(URL.createObjectURL(fileObject));
-        setImageSelected(true); // 画像が選択された状態
+        setImageSelected(true);
     };
 
     const Show = () => {
-        console.log(`postTitle: ${title.name}`);
+        console.log(`postTitle: ${title.title_name}`);
         console.log(`category: ${category.category_name}`);
         console.log(`explanation: ${explanation.explanation_name}`);
         console.log(`mainImage: ${mainImage}`);
@@ -65,6 +65,9 @@ export default function CreatePost() {
 
     return (
         <>
+            <br></br>
+            <br></br>
+            <br></br>
             <div className={styles.default}>
                 {!imageSelected ? (
                     <div className={styles.inputImageContainer}>
@@ -85,16 +88,16 @@ export default function CreatePost() {
                 <form>
                     <TextField
                         id="title"
-                        name = "title"
-                        value = {title.title_name}
-                        onChange = {handleTitle}
-                        label = "タイトルを入力してください"
+                        name="title_name"
+                        value={title.title_name}
+                        onChange={handleTitle}
+                        label="タイトルを入力してください"
                         multiline
-                        rows = {1}
-                        className = {styles.titleField}
+                        rows={1}
+                        className={styles.titleField}
                     />
                 </form>
-            </div>        
+            </div>
 
             <div className={styles.categoryContainer}>
                 <FormControl sx={{ m: 1, minWidth: 120 }} className={styles.categoryField}>
@@ -102,7 +105,7 @@ export default function CreatePost() {
                     <Select
                         labelId="category-label"
                         id="category"
-                        name="category_name" // name 属性を追加
+                        name="category_name"
                         value={category.category_name}
                         label="カテゴリー"
                         onChange={handleCategory}
@@ -122,7 +125,7 @@ export default function CreatePost() {
             <div className={styles.explanationContainer}>
                 <TextField
                     id="explanation"
-                    name="explanation_name" // 正しい属性名を設定
+                    name="explanation_name"
                     value={explanation.explanation_name}
                     onChange={handleExplanation}
                     label="説明欄"

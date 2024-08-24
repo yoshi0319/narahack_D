@@ -1,67 +1,68 @@
 .titleField {
-    width: 70rem;
-    margin-top: 30px;
+  width: 60rem;
+  margin-top: 10rem;
 }
 
 .titleFieldContainer {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
+display: flex;
+justify-content: center;
+margin-bottom: 20px;
 }
 
 .sendButtonContainer {
-  display: flex;
-  justify-content: center;
+display: flex;
+justify-content: center;
 }
 
 .categoryContainer {
-  display: flex;
-  justify-content: center;
+display: flex;
+justify-content: center;
 }
 
 .explanationField {
-  width: 70rem;
+width: 60rem;
 }
 
 .explanationContainer {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
+display: flex;
+justify-content: center;
+margin-top: 20px;
+margin-bottom: 20px;
 }
 
 /* 画像とファイル入力を包むコンテナのスタイル */
 .default {
-  width: 100%;            /* 親要素の幅を画面幅いっぱいに設定 */
-  height: 50vh;         /* 親要素の高さをビューポートの高さに設定（必要に応じて調整） */
-  display: flex;         /* Flexboxを有効にする */
-  justify-content: center; /* 横方向の中央に配置 */
-  align-items: center;   /* 縦方向の中央に配置 */
-  background-color: rgb(199, 199, 199); /* 背景色 */
+width: 100%;            /* 親要素の幅を画面幅いっぱいに設定 */
+height: 30vh;          /* 親要素の高さをビューポートの高さに設定（必要に応じて調整） */
+display: flex;         /* Flexboxを有効にする */
+justify-content: center; /* 横方向の中央に配置 */
+align-items: center;   /* 縦方向の中央に配置 */
+background-color: rgb(199, 199, 199); /* 画像が選択されていない場合の背景色 */
 }
 
 .inputImageContainer {
-  display: flex;          /* Flexboxを有効にする */
-  flex-direction: column; /* 子要素を縦に並べる */
-  justify-content: center; /* 横方向の中央に配置 */
-  align-items: center;    /* 縦方向の中央に配置 */
+display: flex;          /* Flexboxを有効にする */
+flex-direction: column; /* 子要素を縦に並べる */
+justify-content: center; /* 横方向の中央に配置 */
+align-items: center;    /* 縦方向の中央に配置 */
 }
 
 .imageDisplayContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: #FFF9F5; /* 画像が選択されているときの背景色 */
 }
 
 .selectedImage {
-  width: 1287px; /* 必要に応じて幅を設定 */
-  height: 577px; /* 必要に応じて高さを設定 */
-  object-fit: cover; /* 画像の切り抜き方を調整 */
-  border-radius: 8px; /* 角を丸くする（オプション） */
+width: 50%; /* 横幅を親要素に合わせて調整 */
+height: auto; /* 高さを自動調整 */
+object-fit: cover; /* 画像の切り抜き方を調整 */
+border-radius: 8px; /* 角を丸くする（オプション） */
 }
 
 .labelText {
-  margin-bottom: 10px;    /* ボタンとの間にスペースを追加 */
-  font-size: 16px;        /* テキストのサイズ */
-  color: #333;            /* テキストの色（必要に応じて変更） */
+margin-bottom: 10px;    /* ボタンとの間にスペースを追加 */
+font-size: 16px;        /* テキストのサイズ */
+color: #333;            /* テキストの色（必要に応じて変更） */
 }
