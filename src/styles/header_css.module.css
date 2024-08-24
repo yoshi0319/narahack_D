@@ -1,0 +1,16 @@
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    background-color: #D2FADC;
+    height: 5rem;
+    align-items: center;
+}
+
+.backButton {
+    display: flex;
+}
+
+.appTitle {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: 100;
+}

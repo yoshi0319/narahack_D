@@ -2,6 +2,8 @@ import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@m
 import { useState } from "react";
 import SendIcon from '@mui/icons-material/Send';
 import styles from '../styles/createPost_css.module.css';
+import Header from "./header";
+
 // import defaultImage from '../images/defaultImage.png';
 
 const temples = 'temples';
@@ -29,6 +31,7 @@ export default function CreatePost() {
 
     const [subImage2, setSubImage2] = useState(null);
     const [imageSelectedSub2, setImageSelectedSub2] = useState(false);
+
 
     const handleTitle = e => {
         setTitle({
@@ -95,10 +98,10 @@ export default function CreatePost() {
 
     return (
         <>
+            <Header />
             <br></br>
             <br></br>
             <br></br>
-
             <div>
                 {!imageSelectedMain ? (
                     <div className={styles.default}>
