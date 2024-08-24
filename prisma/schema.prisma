@@ -17,4 +17,5 @@ model Users {
   id Int @default(autoincrement()) @id
   name String
   password String
+  image String?
 }

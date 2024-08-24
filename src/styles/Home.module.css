@@ -1,7 +1,7 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
@@ -161,10 +161,6 @@
 
   .description a {
     padding: 1rem;
-  }
-
-  .image {
-    margin: 0.3rem;
   }
 
   .description p,
