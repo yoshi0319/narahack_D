@@ -76,6 +76,27 @@ color: #333;            /* テキストの色（必要に応じて変更） */
 }
 
 .slideContainer {
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+}
+
+.imageWrapper {
+  width: 50rem; /* 画像コンテナの固定幅 */
+  height: 30rem; /* 画像コンテナの固定高さ */
+  background-color: #FFF9F5;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 画像がコンテナにフィットするようにトリミング */
+  border-radius: 8px;
 }

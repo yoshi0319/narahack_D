@@ -2,7 +2,7 @@ import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@m
 import { useState } from "react";
 import SendIcon from '@mui/icons-material/Send';
 import styles from '../styles/createPost_css.module.css';
-import defaultImage from '../images/defaultImage.png';
+// import defaultImage from '../images/defaultImage.png';
 
 const temples = 'temples';
 const shrines = 'shrines';
@@ -21,13 +21,13 @@ export default function CreatePost() {
     const [explanation, setExplanation] = useState({
         explanation_name: '説明(５００文字以内）'
     });
-    const [mainImage, setMainImage] = useState(defaultImage);
+    const [mainImage, setMainImage] = useState(null);
     const [imageSelectedMain, setImageSelectedMain] = useState(false);
 
-    const [subImage1, setSubImage1] = useState(defaultImage);
+    const [subImage1, setSubImage1] = useState(null);
     const [imageSelectedSub1, setImageSelectedSub1] = useState(false);
 
-    const [subImage2, setSubImage2] = useState(defaultImage);
+    const [subImage2, setSubImage2] = useState(null);
     const [imageSelectedSub2, setImageSelectedSub2] = useState(false);
 
     const handleTitle = e => {
@@ -178,7 +178,7 @@ export default function CreatePost() {
                             </div>
                         </div>
                     ) : (
-                        <div className={styles.imageDisplayContainer}>
+                        <div className={`${styles.imageDisplayContainer} ${styles.imageWrapper}`}>
                             <img
                                 src={subImage1}
                                 alt="選択された画像"
@@ -196,7 +196,7 @@ export default function CreatePost() {
                         </div>
                     </div>
                 ) : (
-                    <div className={styles.imageDisplayContainer}>
+                    <div className={`${styles.imageDisplayContainer} ${styles.imageWrapper}`}>
                         <img
                             src={mainImage}
                             alt="選択された画像"
@@ -214,7 +214,7 @@ export default function CreatePost() {
                             </div>
                         </div>
                     ) : (
-                        <div className={styles.imageDisplayContainer}>
+                        <div className={`${styles.imageDisplayContainer} ${styles.imageWrapper}`}>
                             <img
                                 src={subImage2}
                                 alt="選択された画像"
