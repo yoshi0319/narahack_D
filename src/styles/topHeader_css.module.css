@@ -1,0 +1,60 @@
+.overContainer {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    padding-top: 1rem;
+}
+
+.createButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+    font-family: 'Klee One', sans-serif;
+}
+
+.searchFieldContainer {
+    display: flex;
+} 
+
+.searchField {
+    width: 30rem;
+}
+
+.appTitle h1 {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Klee One', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    opacity: 0.8;
+}
+
+.menu p {
+    font-size: 10px;
+    text-align: center;
+    font-family: 'Klee One', sans-serif;
+}
+
+.menuContainer {
+    display: flex;
+    align-items: center;
+    gap: 4px; 
+ }
+
+.underContainer {
+    background-color: #D2FADC;
+}
+
+.navMenu {
+    display: flex;
+    font-size: 2rem;
+    justify-content: space-between;
+    padding-left: 12rem;
+    padding-right: 12rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-family: 'Klee One', sans-serif;
+    opacity: 0.6;
+}

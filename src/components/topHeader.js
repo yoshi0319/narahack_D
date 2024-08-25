@@ -1,19 +1,95 @@
-import { useState } from "react";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import styles from '@/styles/topHeader_css.module.css';
+import { Button, MenuItem, TextField, InputAdornment } from '@mui/material';
+import { useState } from 'react';
+import MenuIcon from '@mui/icons-material/Menu';
+import SearchIcon from '@mui/icons-material/Search';
 
-export default function topHeader () {
-    return (
+export default function topHeader() {
+
+    const [search, setSearch] = useState({
+        search_word: ''
+    });
+
+    const handleSearch = e => {
+        setSearch({
+            ...title,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const Show = () => {
+        console.log(`search: ${search.search_word}`);
+    }
+
+    return(
         <>
-            <div>
-                <div className={styles.backButton}>
-                        <ArrowBackIcon />
-                        <a className={styles.backButtonLink}>戻る</a>
+            <div className={styles.overContainer}>
+                <div className={styles.createButton}>
+                    <Button
+                        variant="contained"
+                        color="grey"
+                        onClick={Show}
+                        sx={{
+                            backgroundColor: '#B0B0B0', // 灰色に変更
+                            color: '#000',
+                            opacity: 0.9,
+                            '&:hover': {
+                                backgroundColor: '#A0A0A0', // ホバー時も灰色に変更
+                            }
+                        }}>
+                        ページ作成
+                    </Button>
                 </div>
-                <div className={styles.topHeaderTitle}>
+                <div className={styles.appTitle}>
                     <h1>Tourist Board of Nara</h1>
                 </div>
-                <div>
+                <div className={styles.searchFieldContainer}>
+                    <div>
+                        <form>
+                            <TextField
+                                id="search"
+                                name="search"
+                                value={search.search_word}
+                                onChange={handleSearch}
+                                label="検索"
+                                multiline
+                                rows={1}
+                                className={styles.searchField}
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <SearchIcon />
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            />
+                        </form>
+                    </div>
                 </div>
+                    <div menuContainer>
+                        <div className={styles.menu}>
+                            <p>メニュー</p>
+                        </div>
+                        <div>
+                            <MenuIcon style={{ fontSize: 50, color: 'rgba(0, 0, 0, 0.5)' }}/>
+                        </div>
+                    </div>
+            </div>
+                                
+            <div className={styles.underContainer}>
+                <nav className={styles.navMenu}>
+                    <ul>寺院</ul>
+                    <ul>|</ul>
+                    <ul>神社</ul>
+                    <ul>|</ul>
+                    <ul>飲食店</ul>
+                    <ul>|</ul>
+                    <ul>お土産</ul>
+                    <ul>|</ul>
+                    <ul>資料館</ul>
+                    <ul>|</ul>
+                    <ul>その他</ul>
+                </nav>     
             </div>
         </>
     )
