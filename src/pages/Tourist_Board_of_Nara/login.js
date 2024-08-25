@@ -5,6 +5,12 @@ import Footer from '../../components/Footer';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 
+const Login_user = async (code) => {
+  try{
+    console.log(code);
+  }
+}
+
 const Login = () => {
   const [code, setCode] = useState("");  // 入力されたコードを保持
   const [error, setError] = useState(false);  // エラーステートを追加
@@ -18,8 +24,10 @@ const Login = () => {
     if (code.trim() === "") {  // 入力が空欄の場合
       setError(true);  // エラーを表示
     } else {
-      console.log(code);
+      
     }
+
+    Login_user(code);
   };
 
   return (
