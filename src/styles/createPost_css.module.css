@@ -80,11 +80,12 @@ color: #333;            /* テキストの色（必要に応じて変更） */
   justify-content: space-around;
   align-items: center;
   gap: 20px;
+  margin-bottom: 3rem;
 }
 
 .imageWrapper {
-  width: 50rem; /* 画像コンテナの固定幅 */
-  height: 30rem; /* 画像コンテナの固定高さ */
+  width: 30rem; 
+  height: 20rem;
   background-color: #FFF9F5;
   padding: 10px;
   border-radius: 8px;
@@ -92,11 +93,12 @@ color: #333;            /* テキストの色（必要に応じて変更） */
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} 
 
 .imageWrapper img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* 画像がコンテナにフィットするようにトリミング */
+  object-fit: cover;
   border-radius: 8px;
 }
+
