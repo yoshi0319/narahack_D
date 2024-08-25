@@ -15,5 +15,5 @@ datasource db {
 
 model User {
   id Int @default(autoincrement()) @id
-  code String
+  code String @unique
 }

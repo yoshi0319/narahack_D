@@ -8,8 +8,26 @@ import { useState } from 'react';
 const Login_user = async (code) => {
   try{
     console.log(code);
+    const response = await fetch('/api/login_user', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ code }),  // body に code を含める
+    });
+
+    const result = await response.json();
+    if (response.ok) {
+      console.log('ログイン成功したわよ:', result);
+      // 成功時の処理（リダイレクトなど）
+    } else {
+      console.error('ログイン失敗したわよ。なんで失敗したか明日までに考えてきなさいよね!', result.error);
+      // 失敗時の処理（エラーメッセージの表示など）
+    }
+  } catch (error) {
+    console.error('Error:', error);
   }
-}
+};
 
 const Login = () => {
   const [code, setCode] = useState("");  // 入力されたコードを保持
@@ -21,6 +39,7 @@ const Login = () => {
   };
 
   const handleLoginClick = (e) => {
+    e.preventDefault()
     if (code.trim() === "") {  // 入力が空欄の場合
       setError(true);  // エラーを表示
     } else {

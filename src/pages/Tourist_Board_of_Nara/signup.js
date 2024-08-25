@@ -32,6 +32,7 @@ const Signup = () => {
     };
   
     const handleSignupClick = (e) => {
+      e.preventDefault()
       if (code.trim() === "") {  // 入力が空欄の場合
         setError(true);  // エラーを表示
       } else {
