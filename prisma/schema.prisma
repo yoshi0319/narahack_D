@@ -15,7 +15,19 @@ datasource db {
 
 model Users {
   id Int @default(autoincrement()) @id
-  name String
-  password String
-  image String?
+  password String @unique
+  create_time DateTime @default(now())
+}
+
+model Post {
+  id Int @default(autoincrement()) @id
+  link_User_id Int
+  main_image Bytes?
+  sub1_image Bytes?
+  sub2_image Bytes?
+  title String
+  categori String
+  explain String
+  address String
+  create_time DateTime @default(now())
 }

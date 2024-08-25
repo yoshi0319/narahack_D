@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import styles from '../styles/hooter_css.module.css';
 
 export default function Hooter () {

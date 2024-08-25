@@ -1,12 +1,11 @@
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { useState } from "react";
-import SendIcon from '@mui/icons-material/Send';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 import styles from '../styles/createPost_css.module.css';
 import Header from './header';
-import Hooter from "./Hooter";
+import Hooter from './Hooter';
 
 
-// import defaultImage from '../images/defaultImage.png';
 
 const temples = 'temples';
 const shrines = 'shrines';
@@ -25,6 +24,9 @@ export default function CreatePost() {
     const [explanation, setExplanation] = useState({
         explanation_name: '説明(５００文字以内）'
     });
+    const [place, setPlace] = useState({
+        place_name: '住所'
+    })
     const [mainImage, setMainImage] = useState(null);
     const [imageSelectedMain, setImageSelectedMain] = useState(false);
 
@@ -53,6 +55,13 @@ export default function CreatePost() {
         setExplanation({
             ...explanation,
             explanation_name: e.target.value
+        });
+    };
+
+    const handlePlace = e => {
+        setPlace({
+            ...place,
+            [e.target.name]: e.target.value
         });
     };
 
@@ -94,8 +103,9 @@ export default function CreatePost() {
         console.log(`category: ${category.category_name}`);
         console.log(`explanation: ${explanation.explanation_name}`);
         console.log(`mainImage: ${mainImage}`);
-        console.log(`mainImage: ${subImage1}`);
-        console.log(`mainImage: ${subImage2}`);
+        console.log(`subImage1: ${subImage1}`);
+        console.log(`subImage2: ${subImage2}`);
+        console.log(`place: ${place.place_name}`);
     };
 
     return (
@@ -109,7 +119,12 @@ export default function CreatePost() {
                     <div className={styles.default}>
                         <div className={styles.inputImageContainer}>
                             <p className={styles.labelText}>画像ファイルを選択してください</p>
-                            <input type="file" accept="image/*" onChange={onFileInputChange} className="pl-4" />
+                            <input type="file"
+                                accept="image/*"
+                                id="mainImage"
+                                name="mainImage"
+                                onChange={onFileInputChange}
+                                className="pl-4" />
                         </div>
                     </div>
                 ) : (
@@ -138,7 +153,9 @@ export default function CreatePost() {
             </div>
 
             <div className={styles.categoryContainer}>
-                <FormControl sx={{ m: 1, minWidth: 120 }} className={styles.categoryField}>
+                <FormControl
+                    sx={{ m: 1, minWidth: 120 }}
+                    className={styles.categoryField}>
                     <InputLabel id="category-label">カテゴリー</InputLabel>
                     <Select
                         labelId="category-label"
@@ -179,7 +196,12 @@ export default function CreatePost() {
                         <div className={styles.default}>
                             <div className={styles.inputImageContainer}>
                                 <p className={styles.labelText}>画像ファイルを選択してください</p>
-                                <input type="file" accept="image/*" onChange={onFileInputChangeSub1} className="pl-4" />
+                                <input type="file"
+                                    accept="image/*"
+                                    id="subImage1"
+                                    name="subImage1"
+                                    onChange={onFileInputChangeSub1}
+                                    className="pl-4" />
                             </div>
                         </div>
                     ) : (
@@ -197,7 +219,12 @@ export default function CreatePost() {
                     <div className={styles.default}>
                         <div className={styles.inputImageContainer}>
                             <p className={styles.labelText}>画像ファイルを選択してください</p>
-                            <input type="file" accept="image/*" onChange={onFileInputChange} className="pl-4" />
+                            <input type="file"
+                                accept="image/*"
+                                id="mainImage2"
+                                name="mainImage2"
+                                onChange={onFileInputChange}
+                                className="pl-4" />
                         </div>
                     </div>
                 ) : (
@@ -215,7 +242,12 @@ export default function CreatePost() {
                         <div className={styles.default}>
                             <div className={styles.inputImageContainer}>
                                 <p className={styles.labelText}>画像ファイルを選択してください</p>
-                                <input type="file" accept="image/*" onChange={onFileInputChangeSub2} className="pl-4" />
+                                <input type="file"
+                                    accept="image/*"
+                                    id="subImage2"
+                                    name="subImage2"
+                                    onChange={onFileInputChangeSub2}
+                                    className="pl-4" />
                             </div>
                         </div>
                     ) : (
@@ -229,22 +261,39 @@ export default function CreatePost() {
                     )}
                 </div>
             </div>
-            <div className={styles.sendButtonContainer}>
+            <div className={styles.placeContainer}>
+                <LocationOnIcon sx={{ fontSize: 50}}/>
+                <div>
+                <form>
+                    <TextField
+                        id="place"
+                        name="place_name"
+                        value={place.place_name}
+                        onChange={handlePlace}
+                        label="住所を入力してください"
+                        multiline
+                        rows={1}
+                        className={styles.placeField}
+                    />
+                </form>
+                </div>
+            </div>
+            <div className={styles.buttonContainer}>
                 <Button
                     variant="contained"
+                    color="success"
                     onClick={Show}
-                    endIcon={<SendIcon />}
-                    sx={{
-                        backgroundColor: '#B1FFDA',
-                        '&:hover': {
-                            backgroundColor: '#9FEFCC',
-                        }
-                    }}
-                >
-                    送信
+                        sx={{
+                            backgroundColor: '#9CD8AB',
+                            color: '#000',
+                            opacity: 0.9,
+                            '&:hover': {
+                                backgroundColor: '#86C499',
+                            }
+                        }}>
+                    確定へ
                 </Button>
             </div>
-
             <br></br>
             <Hooter />
         </>
