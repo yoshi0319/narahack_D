@@ -1,7 +1,7 @@
 // pages/login.js
 import styles from '../../styles/login.module.css';
 import Login_header from '../../components/Login_header';
-import Footer from '../../components/Footer';
+import Footer from '../../components/Login_footer';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 
