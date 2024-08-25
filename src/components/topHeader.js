@@ -12,7 +12,7 @@ export default function topHeader() {
 
     const handleSearch = e => {
         setSearch({
-            ...title,
+            ...search,
             [e.target.name]: e.target.value
         });
     };
@@ -48,7 +48,7 @@ export default function topHeader() {
                         <form>
                             <TextField
                                 id="search"
-                                name="search"
+                                name="search_word"
                                 value={search.search_word}
                                 onChange={handleSearch}
                                 label="検索"
@@ -78,17 +78,17 @@ export default function topHeader() {
                                 
             <div className={styles.underContainer}>
                 <nav className={styles.navMenu}>
-                    <ul>寺院</ul>
+                    <ul className={styles.hover}>寺院</ul>
                     <ul>|</ul>
-                    <ul>神社</ul>
+                    <ul className={styles.hover}>神社</ul>
                     <ul>|</ul>
-                    <ul>飲食店</ul>
+                    <ul className={styles.hover}>飲食店</ul>
                     <ul>|</ul>
-                    <ul>お土産</ul>
+                    <ul className={styles.hover}>お土産</ul>
                     <ul>|</ul>
-                    <ul>資料館</ul>
+                    <ul className={styles.hover}>資料館</ul>
                     <ul>|</ul>
-                    <ul>その他</ul>
+                    <ul className={styles.hover}>その他</ul>
                 </nav>     
             </div>
         </>

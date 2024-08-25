@@ -59,3 +59,11 @@
     opacity: 0.6;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
 }
+
+.hover {
+    cursor: pointer; /* カーソルをポインタに変更 */
+}
+
+.hover:hover {
+    color: #007bff; /* ホバー時の文字色を変更 */
+}
