@@ -1,11 +1,9 @@
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { useState } from "react";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import styles from '../styles/createPost_css.module.css';
-import Header from './header';
-import Hooter from './Hooter';
-
-
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import styles from '@/styles/createPost_css.module.css';
 
 const temples = 'temples';
 const shrines = 'shrines';
@@ -35,6 +33,37 @@ export default function CreatePost() {
 
     const [subImage2, setSubImage2] = useState(null);
     const [imageSelectedSub2, setImageSelectedSub2] = useState(false);
+
+    const [mainImage_post, setMainImage_post] = useState(null);
+    const [sub1Image_post, setsub1Image_post] = useState(null);
+    const [sub2Image_post, setsub2Image_post] = useState(null);
+
+    ///////////////
+    const postData = async () => {
+        try {
+            const formData = new FormData();
+            // formData.append('link_User_id', '1');
+            formData.append('title', title);
+            formData.append('category', category);
+            formData.append('explanation', explanation);
+            formData.append('place', place);
+
+            if (mainImage_post) formData.append('mainImage_post', mainImage_post);
+            if (sub1Image_post) formData.append('sub1Image_post', sub1Image_post);
+            if (sub2Image_post) formData.append('sub2Image_post', sub2Image_post);
+
+            
+            const response = await fetch('/api/create-post', {
+                method: 'POST',
+                body: formData,
+            });
+
+            const result = await response.json();
+            console.log(result);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
 
 
     const handleTitle = e => {
@@ -68,33 +97,39 @@ export default function CreatePost() {
     const onFileInputChange = e => {
         if (!e.target.files || e.target.files.length === 0) {
             setMainImage(defaultImage);
+            setMainImage_post(null); //仮追加
             setImageSelectedMain(false);
             return;
         }
         const fileObject = e.target.files[0];
         setMainImage(URL.createObjectURL(fileObject));
+        setMainImage_post(fileObject); //仮追加
         setImageSelectedMain(true);
     };
 
     const onFileInputChangeSub1 = e => {
         if (!e.target.files || e.target.files.length === 0) {
             setSubImage1(defaultImage);
+            setsub1Image_post(null); //仮追加
             setImageSelectedSub1(false);
             return;
         }
         const fileObject = e.target.files[0];
         setSubImage1(URL.createObjectURL(fileObject));
+        setsub1Image_post(fileObject); //仮追加
         setImageSelectedSub1(true);
     };
 
     const onFileInputChangeSub2 = e => {
         if (!e.target.files || e.target.files.length === 0) {
             setSubImage2(defaultImage);
+            setsub2Image_post(null); //仮追加
             setImageSelectedSub2(false);
             return;
         }
         const fileObject = e.target.files[0];
         setSubImage2(URL.createObjectURL(fileObject));
+        setsub2Image_post(fileObject); //仮追加
         setImageSelectedSub2(true);
     };
 
@@ -105,7 +140,13 @@ export default function CreatePost() {
         console.log(`mainImage: ${mainImage}`);
         console.log(`subImage1: ${subImage1}`);
         console.log(`subImage2: ${subImage2}`);
+        console.log('--------------------');
+        console.log(`mainImage_post: ${mainImage_post}`); //仮追加
+        console.log(`sub1Image_post: ${sub1Image_post}`); //仮追加
+        console.log(`sub2Image_post: ${sub2Image_post}`); //仮追加
         console.log(`place: ${place.place_name}`);
+
+        postData(); //仮追加
     };
 
     return (
@@ -295,7 +336,7 @@ export default function CreatePost() {
                 </Button>
             </div>
             <br></br>
-            <Hooter />
+            <Footer />
         </>
     );
 }
