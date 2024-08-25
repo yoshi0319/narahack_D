@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
-import CreatePost from "./CreatePost";
+import CreatePost from "../Tourist_Board_of_Nara/CreatePost";
 
 const inter = Inter({ subsets: ["latin"] });
 
