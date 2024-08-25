@@ -2,9 +2,8 @@ import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@m
 import { useState } from "react";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import styles from '../styles/createPost_css.module.css';
-import Header from './header';
-import Hooter from './Hooter';
-
+import Header from './Header';
+import Footer from './Footer';
 
 
 const temples = 'temples';
@@ -295,7 +294,7 @@ export default function CreatePost() {
                 </Button>
             </div>
             <br></br>
-            <Hooter />
+            <Footer />
         </>
     );
 }
