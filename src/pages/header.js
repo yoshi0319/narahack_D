@@ -1,4 +1,5 @@
 //import { useState } from "react";
+import Head from 'next/head';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MenuIcon from '@mui/icons-material/Menu';
 import styles from '../styles/header_css.module.css'; // スタイルのパスを適宜調整
