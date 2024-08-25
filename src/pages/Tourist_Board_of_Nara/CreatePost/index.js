@@ -1,9 +1,9 @@
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { useState } from "react";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import styles from '../../styles/createPost_css.module.css'
+import Header from '../../../components/Header';
+import Footer from '../../../components/Footer';
+import styles from '../../../styles/createPost_css.module.css';
 
 const temples = 'temples';
 const shrines = 'shrines';
