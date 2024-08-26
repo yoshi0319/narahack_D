@@ -17,9 +17,14 @@ export default function topHeader() {
         });
     };
 
-    const Show = () => {
-        console.log(`search: ${search.search_word}`);
-    }
+    // const Show = () => {
+    //     console.log(`search: ${search.search_word}`);
+    // }
+
+    const handleSubmit = (e) => {
+        e.preventDefault(); // フォーム送信時にページリロードを防ぐ
+        console.log(`search_word: ${search.search_word}`);
+    };
 
     return(
         <>
@@ -28,7 +33,6 @@ export default function topHeader() {
                     <Button
                         variant="contained"
                         color="grey"
-                        onClick={Show}
                         sx={{
                             backgroundColor: '#B0B0B0', // 灰色に変更
                             color: '#000',
@@ -45,14 +49,14 @@ export default function topHeader() {
                 </div>
                 <div className={styles.searchFieldContainer}>
                     <div>
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <TextField
                                 id="search"
                                 name="search_word"
                                 value={search.search_word}
                                 onChange={handleSearch}
                                 label="検索"
-                                multiline
+                                
                                 rows={1}
                                 className={styles.searchField}
                                 InputProps={{
@@ -66,7 +70,7 @@ export default function topHeader() {
                         </form>
                     </div>
                 </div>
-                    <div menuContainer>
+                    <div>
                         <div className={styles.menu}>
                             <p>メニュー</p>
                         </div>
