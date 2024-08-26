@@ -118,3 +118,9 @@ color: #333;
 .placeField {
   width: 60rem;
 }
+
+.errorText {
+  color: rgb(255, 84, 84);
+  font-size: 0.875rem; /* オプションでフォントサイズを調整 */
+  margin-top: 4px; /* エラーメッセージとフィールドの間隔を調整 */
+}

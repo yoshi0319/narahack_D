@@ -17,5 +17,6 @@ model Posts {
   id Int @default(autoincrement()) @id
   title String
   category String
-  description String
+  explanation String
+  place String
 }
