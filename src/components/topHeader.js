@@ -15,6 +15,7 @@ export default function topHeader() {
         {title: 'ページ制作', href: 'pegeCreate', icon: CreateIcon},
         {title: 'ログイン', href: 'login', icon: LoginIcon},
         // ユーザー状態に応じてログアウトボタンに変化
+        //{title: 'ログアウト'. href: 'logout', icon: LogoutIcon},
     ];
 
     const [show, setShow] = useState(false);
