@@ -1,4 +1,5 @@
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { Button, FormControl, InputLabel, MenuItem, Select, TextField, Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
 import { useState } from "react";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Header from '@/components/Header';
@@ -66,6 +67,8 @@ export default function CreatePost() {
     subImage1: '',
     subImage2: ''
   });
+
+  const [openPopup, setOpenPopup] = useState(true);
 
   const validateForm = () => {
     let hasErrors = false;
@@ -164,7 +167,41 @@ export default function CreatePost() {
 
     return (
         <>
-            <Header />
+        <Header />
+        <Dialog open={openPopup} onClose={() => setOpenPopup(false)}>
+          <DialogTitle>ホームページ作成上の注意事項
+            <IconButton
+              aria-label="close"
+              onClick={() => setOpenPopup(false)}
+              sx={{
+                position: 'absolute',
+                right: 8,
+                top: 8,
+                color: (theme) => theme.palette.grey[500],
+              }}>
+              <CloseIcon />
+            </IconButton>
+          </DialogTitle>
+        <DialogContent>
+          <p>以下の注意事項をよく読んで、御投稿ください。</p>
+          <p>・投稿は、投稿者自身の責任において行ってください。</p>
+          <p>・投稿内容に係る苦情・異議申し立て、並びに、トラブルや損失、損害があった場合は、すべて投稿者の責任において対応してください。</p>
+          <p>・人物が明確に映っている写真を投稿する場合は、事前にその方の了承を得てください。人物が明確に写っている場合は、被写体の了解が得られているものとみなします。</p>
+          <p>・投稿にあたっては、次の事項を遵守してください。</p>
+          <p>　-他人が不快になる内容でないこと。</p>
+          <p>　-他人の財産、プライバシー等を侵害するものでないこと。</p>
+          <p>　-犯罪に結びつく、または助長させるものでないこと。</p>
+          <p>　-暴言、卑猥な表現等、公序良俗に反するものでないこと。</p>
+          <p>　-他人の名誉を毀損し、または他人を誹謗中傷するものでないこと。</p>
+          <p>　-著作権など知的財産権を侵害しないこと。</p>
+          <p>　-法令等に反するものでないこと。</p>
+          <p>・投稿内容を管理者が確認するため、掲載されるまでに時間がかかる場合があります。</p>
+          <p>・投稿された情報は、奈良県内の観光魅力の広報活動に活用させていただくため、二次利用（複製・編集・上映・頒布）させていただく場合があります。</p>
+          <p>・投稿時に記載された個人情報は、本システム処理においてのみ利用し、本人の同意なくその他の目的で利用し、開示・公表することはありません。</p>
+          <p>・投稿者は、上記注意事項を承諾のうえ、投稿いただいたものとみなします。</p>
+          <p>・管理者は、上記注意事項に反していると判断したときは、投稿を掲載しない、又は投稿を削除する場合があります。</p>
+        </DialogContent>
+      </Dialog>
             <br></br>
             <br></br>
             <br></br>
