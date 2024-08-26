@@ -67,7 +67,7 @@ export default function CheckPost() {
                                     backgroundColor: '#A0A0A0',
                                 }
                             }}>
-                            ページ作成
+                            編集に戻る
                         </Button>
                     </div>
                     <div className={styles.createButton}>

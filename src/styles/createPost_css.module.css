@@ -94,7 +94,7 @@ color: #333;
   align-items: center;
 } 
 
-.imageWrapper{
+.imageWrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
