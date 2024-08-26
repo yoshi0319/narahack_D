@@ -17,12 +17,8 @@ export default function topHeader() {
         });
     };
 
-    // const Show = () => {
-    //     console.log(`search: ${search.search_word}`);
-    // }
-
     const handleSubmit = (e) => {
-        e.preventDefault(); // フォーム送信時にページリロードを防ぐ
+        e.preventDefault();
         console.log(`search_word: ${search.search_word}`);
     };
 
@@ -34,11 +30,12 @@ export default function topHeader() {
                         variant="contained"
                         color="grey"
                         sx={{
-                            backgroundColor: '#B0B0B0', // 灰色に変更
+                            backgroundColor: '#B0B0B0', 
                             color: '#000',
                             opacity: 0.9,
+                            fontFamily: "'Klee One', sans-serif",
                             '&:hover': {
-                                backgroundColor: '#A0A0A0', // ホバー時も灰色に変更
+                                backgroundColor: '#A0A0A0',
                             }
                         }}>
                         ページ作成
@@ -70,7 +67,7 @@ export default function topHeader() {
                         </form>
                     </div>
                 </div>
-                    <div>
+                    <div className={styles.menuContainer}>
                         <div className={styles.menu}>
                             <p>メニュー</p>
                         </div>
