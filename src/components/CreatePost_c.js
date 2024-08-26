@@ -174,23 +174,24 @@
     //   };
     // };
 
-    const submitPost = () => {
-      if (!validateForm()) {
-        return;
-      } else {
-      // テキストデータと画像データをlocalStorageに保存
-      localStorage.setItem('postTitle', title.title_name);
-      localStorage.setItem('postCategory', category.category_name);
-      localStorage.setItem('postExplanation', explanation.explanation_name);
-      localStorage.setItem('postPlace', place.place_name);
-      localStorage.setItem('mainImage', mainImage);
-      localStorage.setItem('subImage1', subImage1);
-      localStorage.setItem('subImage2', subImage2);
+  const submitPost = () => {
+    if (!validateForm()) {
+      return;
+    } else {
+    // テキストデータと画像データをlocalStorageに保存
+    localStorage.setItem('postTitle', title); // title_nameではなく、titleをそのまま保存
+    localStorage.setItem('postCategory', category); // category_nameではなく、categoryをそのまま保存
+    localStorage.setItem('postExplanation', explanation); // explanation_nameではなく、explanationをそのまま保存
+    localStorage.setItem('postPlace', place); // place_nameではなく、placeをそのまま保存
+    localStorage.setItem('mainImage', mainImage);
+    localStorage.setItem('subImage1', subImage1);
+    localStorage.setItem('subImage2', subImage2);
 
-      // ページ遷移
-      router.push("/Tourist_Board_of_Nara/CreatePost/checkPost");
-      }
+    // ページ遷移
+    router.push("/Tourist_Board_of_Nara/CreatePost/checkPost");
+    }
   };
+
 
       return (
           <>
