@@ -1,10 +1,25 @@
 import styles from '@/styles/topHeader_css.module.css';
-import { Button, MenuItem, TextField, InputAdornment } from '@mui/material';
+import { Button, TextField, InputAdornment, ListItemButton, ListItemIcon, ListItemText, ListItem, Drawer, Box, List } from '@mui/material';
 import { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import CreateIcon from '@mui/icons-material/Create';
+import HomeIcon from '@mui/icons-material/Home';
+import LoginIcon from '@mui/icons-material/Login';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export default function topHeader() {
+
+    const menu = [
+        {title: 'ホーム', href: 'home', icon: HomeIcon},
+        {title: 'ページ制作', href: 'pegeCreate', icon: CreateIcon},
+        {title: 'ログイン', href: 'login', icon: LoginIcon},
+        // ユーザー状態に応じてログアウトボタンに変化
+    ];
+
+    const [show, setShow] = useState(false);
+
+    const handleDraw = () => setShow(!show);
 
     const [search, setSearch] = useState({
         search_word: ''
@@ -24,6 +39,32 @@ export default function topHeader() {
 
     return(
         <>
+            <div className={styles.drawerMenu}>
+                <Drawer acchor="left" open={show}>
+                    <Box sx={{ height: '100vh'}} onClick={handleDraw}>
+                        <List>
+                            {menu.map(obj => {
+                                const Icon = obj.icon;
+                                return (
+                                    <ListItem key={obj.title}>
+                                        <ListItemButton href={obj.href}>
+                                            <ListItemIcon><Icon /></ListItemIcon>
+                                            <ListItemText primary={obj.title} />
+                                        </ListItemButton>
+                                    </ListItem>
+                                );
+                            })}
+                            <div className={styles.parentContainer}>
+                                <Button className={styles.backButton}>
+                                    <ArrowBackIcon />
+                                    <a className={styles.backButtonLink}>戻る</a>
+                                </Button>
+                            </div>
+                        </List>
+                    </Box>
+                </Drawer>
+            </div>
+
             <div className={styles.overContainer}>
                 <div className={styles.createButton}>
                     <Button
@@ -72,7 +113,9 @@ export default function topHeader() {
                             <p>メニュー</p>
                         </div>
                         <div>
-                            <MenuIcon style={{ fontSize: 50, color: 'rgba(0, 0, 0, 0.5)' }}/>
+                            <Button onClick={handleDraw}>
+                                <MenuIcon style={{ fontSize: 50, color: 'rgba(0, 0, 0, 0.5)' }}/>
+                            </Button>
                         </div>
                     </div>
             </div>

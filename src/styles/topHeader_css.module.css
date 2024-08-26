@@ -55,9 +55,35 @@
 }
 
 .hover {
-    cursor: pointer; /* カーソルをポインタに変更 */
+    cursor: pointer;
 }
 
 .hover:hover {
-    color: #007bff; /* ホバー時の文字色を変更 */
+    color: #007bff;
+}
+
+
+.parentContainer {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.backButton {
+    display: flex;
+    font-family: 'Klee One', sans-serif;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    font-size: large;
+    color: #000;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.backButton:hover {
+    background-color: #d5d5d5;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.5);
 }
