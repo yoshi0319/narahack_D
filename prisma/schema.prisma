@@ -16,4 +16,14 @@ datasource db {
 model User {
   id Int @default(autoincrement()) @id
   code String @unique
+  create_user_time DateTime @default(now())
+}
+
+model Post {
+  id Int @default(autoincrement()) @id
+  title String
+  category String
+  explanation String
+  place String
+  create_post_time DateTime @default(now())
 }

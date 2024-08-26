@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "User" ADD COLUMN     "create_user_time" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;
