@@ -332,7 +332,7 @@ export default function CreatePost() {
                             backgroundColor: '#86C499',
                         }
                     }}>
-                    確定へ
+                    確認へ
                 </Button>
             </div>
             <br></br>
