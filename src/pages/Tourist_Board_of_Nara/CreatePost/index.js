@@ -28,7 +28,7 @@ const postData_user = async (title, category, explanation, place) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(postData),
-      });
+      });      
       
       console.log('Post data:', postData);
 
@@ -36,8 +36,9 @@ const postData_user = async (title, category, explanation, place) => {
         const result = await response.json();
         console.log('Post created successfully:', result);
       } else {
-        console.error('Failed to create post');
-      }
+        const errorData = await response.json(); // エラーメッセージを取得
+        console.error('Failed to create post:', errorData.error); // エラーメッセージを出力
+      }      
     } catch (error) {
       console.error('Error submitting post:', error);
     }
