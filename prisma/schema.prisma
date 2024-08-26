@@ -25,5 +25,8 @@ model Post {
   category String
   explanation String
   place String
+  mainImage Bytes?
+  sub1Image Bytes?
+  sub2Image Bytes?
   create_post_time DateTime @default(now())
 }

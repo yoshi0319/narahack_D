@@ -1,8 +1,10 @@
 import { PrismaClient } from '@prisma/client';
+import fs from 'fs';
+import path from 'path';
 
 const formidable = require("formidable");
 
-const prisma = new PrismaClient() 
+const prisma = new PrismaClient()
 
 export const config = {
     api: {
@@ -19,13 +21,7 @@ export default async function handler(req, res) {
 
     form.parse(req, async function (err, fields, files) {
         if (err) {
-            res.statusCode = 500;
-            res.json({
-                method: req.method,
-                error: err
-            })
-            res.end();
-            return;
+            return res.status(500).json({ method: req.method, error: err });
         }
 
         const title = fields.title[0];
@@ -33,68 +29,43 @@ export default async function handler(req, res) {
         const explanation = fields.explanation[0];
         const place = fields.place[0];
 
-        console.log({title});
-        console.log({category});
-        console.log({explanation});
-        console.log({place});
+        const mainImage_post = files.mainImage_post ? (Array.isArray(files.mainImage_post) ? files.mainImage_post[0] : files.mainImage_post) : null;
+        const sub1Image_post = files.sub1Image_post ? (Array.isArray(files.sub1Image_post) ? files.sub1Image_post[0] : files.sub1Image_post) : null;
+        const sub2Image_post = files.sub2Image_post ? (Array.isArray(files.sub2Image_post) ? files.sub2Image_post[0] : files.sub2Image_post) : null;
 
         try {
+            const mainImageBuffer = mainImage_post ? fs.readFileSync(path.resolve(mainImage_post.filepath)) : null;
+            const sub1ImageBuffer = sub1Image_post ? fs.readFileSync(path.resolve(sub1Image_post.filepath)) : null;
+            const sub2ImageBuffer = sub2Image_post ? fs.readFileSync(path.resolve(sub2Image_post.filepath)) : null;
+            
+            console.log({title});
+            console.log({category});
+            console.log({explanation});
+            console.log({place});
+
+            console.log({mainImageBuffer});
+            console.log({sub1ImageBuffer});
+            console.log({sub2ImageBuffer});
+
+            console.log('いくわよ');
             const post = await prisma.post.create({
                 data: {
                     title: title,
                     category: category,
                     explanation: explanation,
                     place: place,
+
+                    ...mainImage_post && { mainImage: mainImageBuffer },
+                    ...sub1Image_post && { sub1Image: sub1ImageBuffer },
+                    ...sub2Image_post && { sub2Image: sub2ImageBuffer },
                 }
             })
+            console.log('終わったわよ');
+            return res.status(200).json({ message: 'データが正常に保存されました' });
         } catch (error) {
+            console.error('Error:', error.message);
             res.status(500).json({ error: 'データベースに保存できなかった、Internal Server Error' });
+            return; // 追加: 処理の終了を明示する
         }
-
-        res.statusCode = 200;
-        res.json({
-            method: req.method,
-            error: 'できたよ'
-        })
-        res.end();
-        return;
-    })    
+    }); 
 }
-    //     try {
-    //         const { title, category, explanation, place } = req.body;
-    //         // console.log({ req });
-    //         // Prisma を使用してデータを保存
-    //         console.log({title});
-    //         console.log(category);
-    //         console.log(explanation);
-    //         console.log(place);
-    //         console.log("なんや？");
-    //         const post = await prisma.post.create({
-    //             data: {
-    //                 title: title.title_name,
-    //                 category: category.category_name,
-    //                 explanation: explanation.category_name,
-    //                 place: place.place_name,
-    //             }
-    //         });
-
-    //         res.status(200).json(post);
-    //     } catch (error) {
-    //         res.status(500).json({ error: 'データベースに保存できなかった、Internal Server Error' });
-    //     }
-    // } else {
-    //     res.setHeader('Allow', ['POST']);
-    //     res.status(405).end(`なんかまず、tryすらさせてもらえなかったよ。Method ${req.method} Not Allowed`);
-    // }
-
-
-
-// 画像のバイナリデータを処理
-            // .bufferで画像情報の中の画像データだけを取るようにする
-            // const mainImage_post = req.body.mainImage_post ? req.body.mainImage_post[0].buffer : null;
-            // const sub1Image_post = req.body.sub1Image_post ? req.body.sub1Image_post[0].buffer : null;
-            // const sub2Image_post = req.body.sub2Image_post ? req.body.sub2Image_post[0].buffer : null;
-
-            // main_image: mainImage_post,
-            // sub1_image: sub1Image_post,
-            // sub2_image: sub2Image_post

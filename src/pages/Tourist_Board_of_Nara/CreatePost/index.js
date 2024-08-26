@@ -54,9 +54,9 @@ export default function CreatePost() {
             formData.append('explanation', explanation.explanation_name);
             formData.append('place', place.place_name);
 
-            // if (mainImage_post) formData.append('mainImage_post', mainImage_post);
-            // if (sub1Image_post) formData.append('sub1Image_post', sub1Image_post);
-            // if (sub2Image_post) formData.append('sub2Image_post', sub2Image_post);
+            if (mainImage_post) formData.append('mainImage_post', mainImage_post);
+            if (sub1Image_post) formData.append('sub1Image_post', sub1Image_post);
+            if (sub2Image_post) formData.append('sub2Image_post', sub2Image_post);
 
             for (let [key, value] of formData.entries()) {
                 console.log(`${key}: ${value}`);
@@ -143,17 +143,19 @@ export default function CreatePost() {
     };
 
     const Show = () => {
-        console.log(`postTitle: ${title.title_name}`);
-        console.log(`category: ${category.category_name}`);
-        console.log(`explanation: ${explanation.explanation_name}`);
-        console.log(`mainImage: ${mainImage}`);
-        console.log(`subImage1: ${subImage1}`);
-        console.log(`subImage2: ${subImage2}`);
-        console.log('--------------------');
-        console.log(`mainImage_post: ${mainImage_post}`); //仮追加
-        console.log(`sub1Image_post: ${sub1Image_post}`); //仮追加
-        console.log(`sub2Image_post: ${sub2Image_post}`); //仮追加
-        console.log(`place: ${place.place_name}`);
+        // console.log(`postTitle: ${title.title_name}`);
+        // console.log(`category: ${category.category_name}`);
+        // console.log(`explanation: ${explanation.explanation_name}`);
+        // console.log(`place: ${place.place_name}`);
+        // console.log('--------------------');
+        // console.log(`mainImage: ${mainImage}`);
+        // console.log(`subImage1: ${subImage1}`);
+        // console.log(`subImage2: ${subImage2}`);
+        // console.log('--------------------');
+        // console.log(`mainImage_post: ${mainImage_post}`); //仮追加
+        // console.log(`sub1Image_post: ${sub1Image_post}`); //仮追加
+        // console.log(`sub2Image_post: ${sub2Image_post}`); //仮追加
+        
 
         postData(); //仮追加
     };
