@@ -12,134 +12,154 @@ const souvenirs = 'souvenirs';
 const museums = 'museums';
 const others = 'others';
 
+const postData_user = async (title, category, explanation, place) => {
+  const postData = {
+    data: {
+      title,
+      category,
+      explanation,
+      place,
+    },
+  };
+    try {
+      const response = await fetch('/api/createPost', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(postData),
+      });
+      
+      console.log('Post data:', postData);
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log('Post created successfully:', result);
+      } else {
+        console.error('Failed to create post');
+      }
+    } catch (error) {
+      console.error('Error submitting post:', error);
+    }
+  };
+
 export default function CreatePost() {
-    const [title, setTitle] = useState('');
-    const [category, setCategory] = useState(temples);
-    const [explanation, setExplanation] = useState('');
-    const [place, setPlace] = useState('');
-    
-    const [mainImage, setMainImage] = useState(null);  
-    const [imageSelectedMain, setImageSelectedMain] = useState(false);  
+  const [title, setTitle] = useState('');
+  const [category, setCategory] = useState(temples);
+  const [explanation, setExplanation] = useState('');
+  const [place, setPlace] = useState('');
+  
+  const [mainImage, setMainImage] = useState(null);  
+  const [imageSelectedMain, setImageSelectedMain] = useState(false);  
+  const [subImage1, setSubImage1] = useState(null);  
+  const [imageSelectedSub1, setImageSelectedSub1] = useState(false);  
+  const [subImage2, setSubImage2] = useState(null);  
+  const [imageSelectedSub2, setImageSelectedSub2] = useState(false);  
 
-    const [subImage1, setSubImage1] = useState(null);  
-    const [imageSelectedSub1, setImageSelectedSub1] = useState(false);  
+  const [errors, setErrors] = useState({
+    title: '',
+    category: '',
+    explanation: '',
+    place: '',
+    mainImage: '',
+    subImage1: '',
+    subImage2: ''
+  });
 
-    const [subImage2, setSubImage2] = useState(null);  
-    const [imageSelectedSub2, setImageSelectedSub2] = useState(false);  
-
-    const [errors, setErrors] = useState({
-        title: '',
-        category: '',
-        explanation: '',
-        place: '',
-        mainImage: ''
-    });
-
-    const validateForm = () => {
-        let hasErrors = false;
-        const newErrors = {
-            title: '',
-            category: '',
-            explanation: '',
-            place: '',
-            mainImage: '',
-            subImage1: '',
-            subImage2: ''
-        };
-
-        if (!title) {
-            newErrors.title = 'タイトルは必須です';
-            hasErrors = true;
-        }
-        if (!category) {
-            newErrors.category = 'カテゴリーは必須です';
-            hasErrors = true;
-        }
-        if (!explanation) {
-            newErrors.explanation = '説明は必須です';
-            hasErrors = true;
-        }
-        if (!place) {
-            newErrors.place = '住所は必須です';
-            hasErrors = true;
-        }
-        if (!imageSelectedMain) {
-            newErrors.mainImage = 'メイン画像は必須です';
-            hasErrors = true;
-        }
-        if (!imageSelectedSub1) {
-            newErrors.subImage1 = 'サブ画像1は必須です';
-            hasErrors = true;
-        }
-        if (!imageSelectedSub2) {
-            newErrors.subImage2 = 'サブ画像2は必須です';
-            hasErrors = true;
-        }
-
-        setErrors(newErrors);
-        return !hasErrors;
+  const validateForm = () => {
+    let hasErrors = false;
+    const newErrors = {
+      title: '',
+      category: '',
+      explanation: '',
+      place: '',
+      mainImage: '',
+      subImage1: '',
+      subImage2: ''
     };
 
-    const handleTitle = e => {
-        setTitle(e.target.value);
-    };
+    if (!title) {
+      newErrors.title = 'タイトルは必須です';
+      hasErrors = true;
+    }
+    if (!category) {
+      newErrors.category = 'カテゴリーは必須です';
+      hasErrors = true;
+    }
+    if (!explanation) {
+      newErrors.explanation = '説明は必須です';
+      hasErrors = true;
+    }
+    if (!place) {
+      newErrors.place = '住所は必須です';
+      hasErrors = true;
+    }
+    if (!imageSelectedMain) {
+      newErrors.mainImage = 'メイン画像は必須です';
+      hasErrors = true;
+    }
+    if (!imageSelectedSub1) {
+      newErrors.subImage1 = 'サブ画像1は必須です';
+      hasErrors = true;
+    }
+    if (!imageSelectedSub2) {
+      newErrors.subImage2 = 'サブ画像2は必須です';
+      hasErrors = true;
+    }
 
-    const handleCategory = e => {
-        setCategory(e.target.value);
-    };
+    setErrors(newErrors);
+    return !hasErrors;
+  };
 
-    const handleExplanation = e => {
-        setExplanation(e.target.value);
-    };
+  const handleTitle = e => setTitle(e.target.value);
+  const handleCategory = e => setCategory(e.target.value);
+  const handleExplanation = e => setExplanation(e.target.value);
+  const handlePlace = e => setPlace(e.target.value);
 
-    const handlePlace = e => {
-        setPlace(e.target.value);
-    };
+  const onFileInputChange = e => {
+    if (!e.target.files || e.target.files.length === 0) {
+      setMainImage(null);
+      setImageSelectedMain(false);
+      return;
+    }
+    const fileObject = e.target.files[0];
+    setMainImage(URL.createObjectURL(fileObject));
+    setImageSelectedMain(true);
+  };
 
-    const onFileInputChange = e => {
-        if (!e.target.files || e.target.files.length === 0) {
-            setMainImage(null);
-            setImageSelectedMain(false);
-            return;
-        }
-        const fileObject = e.target.files[0];
-        setMainImage(URL.createObjectURL(fileObject));
-        setImageSelectedMain(true);
-    };
+  const onFileInputChangeSub1 = e => {
+    if (!e.target.files || e.target.files.length === 0) {
+      setSubImage1(null);
+      setImageSelectedSub1(false);
+      return;
+    }
+    const fileObject = e.target.files[0];
+    setSubImage1(URL.createObjectURL(fileObject));
+    setImageSelectedSub1(true);
+  };
 
-    const onFileInputChangeSub1 = e => {
-        if (!e.target.files || e.target.files.length === 0) {
-            setSubImage1(null);
-            setImageSelectedSub1(false);
-            return;
-        }
-        const fileObject = e.target.files[0];
-        setSubImage1(URL.createObjectURL(fileObject));
-        setImageSelectedSub1(true);
-    };
+  const onFileInputChangeSub2 = e => {
+    if (!e.target.files || e.target.files.length === 0) {
+      setSubImage2(null);
+      setImageSelectedSub2(false);
+      return;
+    }
+    const fileObject = e.target.files[0];
+    setSubImage2(URL.createObjectURL(fileObject));
+    setImageSelectedSub2(true);
+  };
 
-    const onFileInputChangeSub2 = e => {
-        if (!e.target.files || e.target.files.length === 0) {
-            setSubImage2(null);
-            setImageSelectedSub2(false);
-            return;
-        }
-        const fileObject = e.target.files[0];
-        setSubImage2(URL.createObjectURL(fileObject));
-        setImageSelectedSub2(true);
-    };
+  const submitPost = (e) => {
+    e.preventDefault();
 
-    const Show = () => {
-        if (validateForm()) {
-            console.log(`postTitle: ${title}`);
-            console.log(`category: ${category}`);
-            console.log(`explanation: ${explanation}`);
-            console.log(`mainImage: ${mainImage}`);
-            console.log(`subImage1: ${subImage1}`);
-            console.log(`subImage2: ${subImage2}`);
-            console.log(`place: ${place}`);
-        }
+    if (!validateForm()) {
+      return;
+
+    } else {
+      postData_user(title, category, explanation, place);
+      console.log("submitted");
     };
+  };
 
     return (
         <>
@@ -323,7 +343,7 @@ export default function CreatePost() {
                 <Button
                     variant="contained"
                     color="success"
-                    onClick={Show}
+                    onClick={submitPost}
                     sx={{
                         backgroundColor: '#9CD8AB',
                         color: '#000',

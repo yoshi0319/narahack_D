@@ -1,30 +1,31 @@
 import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
+let prisma;
+if (!global.prisma) {
+  global.prisma = new PrismaClient();
+}
+prisma = global.prisma;
 
-// pages/api/createPost.js
 export default async function handler(req, res) {
-    if (req.method !== 'POST') {
-      return res.status(405).json({ message: 'Method Not Allowed' });
-    }
-  
+  if (req.method === 'POST') {
+    const { title, category, explanation, place } = req.body;
+
     try {
-      const { title, category, explanation, place } = req.body;
-  
-      // Example: Perform some server-side logic or database operations
-      // Ensure all required fields are present
-      if (!title || !category || !explanation || !place) {
-        return res.status(400).json({ message: 'Missing required fields' });
-      }
-  
-      // Assume a database function to save the post
-      const result = await savePostToDatabase({ title, category, explanation, place });
-  
-      // If successful
-      return res.status(200).json({ message: 'Post created successfully', result });
+      const post = await prisma.post.create({
+        data: {
+          title,
+          category,
+          explanation,
+          place,
+        },
+      });
+
+      return res.status(201).json(post);
     } catch (error) {
       console.error('Error creating post:', error);
-      return res.status(500).json({ message: 'Internal Server Error', error: error.message });
+      return res.status(500).json({ error: 'Failed to create post', details: error.message }); // エラーメッセージの詳細を追加
     }
+  } else {
+    return res.status(405).json({ error: 'Method not allowed' });
   }
-  
+}
