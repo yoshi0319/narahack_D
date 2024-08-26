@@ -7,6 +7,7 @@ import CreateIcon from '@mui/icons-material/Create';
 import HomeIcon from '@mui/icons-material/Home';
 import LoginIcon from '@mui/icons-material/Login';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Link from 'next/link';
 
 export default function topHeader() {
 
@@ -15,7 +16,7 @@ export default function topHeader() {
         {title: 'ページ制作', href: 'pegeCreate', icon: CreateIcon},
         {title: 'ログイン', href: 'login', icon: LoginIcon},
         // ユーザー状態に応じてログアウトボタンに変化
-        //{title: 'ログアウト'. href: 'logout', icon: LogoutIcon},
+        //{title: 'ログアウト', href: 'logout', icon: LogoutIcon},
     ];
 
     const [show, setShow] = useState(false);
@@ -68,20 +69,22 @@ export default function topHeader() {
 
             <div className={styles.overContainer}>
                 <div className={styles.createButton}>
-                    <Button
-                        variant="contained"
-                        color="grey"
-                        sx={{
-                            backgroundColor: '#B0B0B0', 
-                            color: '#000',
-                            opacity: 0.9,
-                            fontFamily: "'Klee One', sans-serif",
-                            '&:hover': {
-                                backgroundColor: '#A0A0A0',
-                            }
-                        }}>
-                        ページ作成
-                    </Button>
+                    <Link href = "Tourist_Board_of_Nara/CreatePost">
+                        <Button
+                            variant="contained"
+                            color="grey"
+                            sx={{
+                                backgroundColor: '#B0B0B0', 
+                                color: '#000',
+                                opacity: 0.9,
+                                fontFamily: "'Klee One', sans-serif",
+                                '&:hover': {
+                                    backgroundColor: '#A0A0A0',
+                                }
+                            }}>
+                            ページ作成
+                        </Button>
+                    </Link>
                 </div>
                 <div className={styles.appTitle}>
                     <h1>Tourist Board of Nara</h1>

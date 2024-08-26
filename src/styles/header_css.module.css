@@ -10,8 +10,44 @@
 .backButton {
     display: flex;
     font-family: 'Klee One', sans-serif;
+    margin-bottom: 2rem;
 }
 
 .appTitle {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.backButton {
+    display: flex;
+    align-items: center;
+    color: #000;
+    font-size: large;
+}
+
+.backButtonLink {
+    color: #000;
+    text-decoration: none;
+}
+
+.backButtonLink:hover {
+    color: #333;
+}
+
+.parentContainer {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.backButton {
+    display: flex;
+    font-family: 'Klee One', sans-serif;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    font-size: large;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }

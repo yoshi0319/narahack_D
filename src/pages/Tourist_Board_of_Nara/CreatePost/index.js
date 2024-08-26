@@ -25,7 +25,6 @@ export default function CreatePost() {
     const [place, setPlace] = useState({
         place_name: '住所'
     })
-    
     const [mainImage, setMainImage] = useState(null);
     const [imageSelectedMain, setImageSelectedMain] = useState(false);
 
