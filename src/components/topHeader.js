@@ -6,17 +6,34 @@ import SearchIcon from '@mui/icons-material/Search';
 import CreateIcon from '@mui/icons-material/Create';
 import HomeIcon from '@mui/icons-material/Home';
 import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Link from 'next/link';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/router';
 
-export default function topHeader() {
+export default function TopHeader() {
+    const router = useRouter();
+    
+    // Define the logout handler
+    const handleLogout = () => {
+        // Clear the signed-in cookie
+        Cookies.remove("signedIn");
+        // Redirect to the home page or login page
+        router.push('/Tourist_Board_of_Nara');
+    };
 
+    // Check the signed-in status from the cookies
+    const signedIn = Cookies.get("signedIn") === 'true'; 
+    console.log("Signed In Status:", signedIn);
+
+    // Define the menu items based on the sign-in status
     const menu = [
         {title: 'ホーム', href: '/Tourist_Board_of_Nara', icon: HomeIcon},
         {title: 'ページ制作', href: '/Tourist_Board_of_Nara/CreatePost', icon: CreateIcon},
-        {title: 'ログイン', href: '/Tourist_Board_of_Nara/login', icon: LoginIcon},
-        // ユーザー状態に応じてログアウトボタンに変化
-        //{title: 'ログアウト', href: 'logout', icon: LogoutIcon},
+        signedIn
+            ? {title: 'ログアウト', href: '#', icon: LogoutIcon, onClick: handleLogout}
+            : {title: 'ログイン', href: '/Tourist_Board_of_Nara/login', icon: LoginIcon},
     ];
 
     const [show, setShow] = useState(false);
@@ -42,14 +59,17 @@ export default function topHeader() {
     return(
         <>
             <div className={styles.drawerMenu}>
-                <Drawer acchor="left" open={show}>
+                <Drawer anchor="left" open={show}>
                     <Box sx={{ height: '100vh'}} onClick={handleDraw}>
                         <List>
                             {menu.map(obj => {
                                 const Icon = obj.icon;
                                 return (
                                     <ListItem key={obj.title}>
-                                        <ListItemButton href={obj.href}>
+                                        <ListItemButton 
+                                            href={obj.href} 
+                                            onClick={obj.onClick ? (e) => { e.preventDefault(); obj.onClick(); } : undefined}
+                                        >
                                             <ListItemIcon><Icon /></ListItemIcon>
                                             <ListItemText primary={obj.title} />
                                         </ListItemButton>
@@ -69,7 +89,7 @@ export default function topHeader() {
 
             <div className={styles.overContainer}>
                 <div className={styles.createButton}>
-                    <Link href = "Tourist_Board_of_Nara/CreatePost">
+                    <Link href="/Tourist_Board_of_Nara/CreatePost">
                         <Button
                             variant="contained"
                             color="grey"
@@ -111,16 +131,16 @@ export default function topHeader() {
                         </form>
                     </div>
                 </div>
-                    <div className={styles.menuContainer}>
-                        <div className={styles.menu}>
-                            <p>メニュー</p>
-                        </div>
-                        <div>
-                            <Button onClick={handleDraw}>
-                                <MenuIcon style={{ fontSize: 50, color: 'rgba(0, 0, 0, 0.5)' }}/>
-                            </Button>
-                        </div>
+                <div className={styles.menuContainer}>
+                    <div className={styles.menu}>
+                        <p>メニュー</p>
                     </div>
+                    <div>
+                        <Button onClick={handleDraw}>
+                            <MenuIcon style={{ fontSize: 50, color: 'rgba(0, 0, 0, 0.5)' }}/>
+                        </Button>
+                    </div>
+                </div>
             </div>
                                 
             <div className={styles.underContainer}>

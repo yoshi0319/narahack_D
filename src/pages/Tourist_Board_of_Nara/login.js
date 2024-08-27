@@ -4,6 +4,8 @@ import Login_header from '../../components/Login_header';
 import Footer from '../../components/Login_footer';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
+import router from 'next/router';
+import Cookies from 'js-cookie';
 
 const Login = () => {
   const [code, setCode] = useState("");  // 入力されたコードを保持
@@ -18,7 +20,9 @@ const Login = () => {
     if (code.trim() === "") {  // 入力が空欄の場合
       setError(true);  // エラーを表示
     } else {
-      console.log(code);
+      console.log(code, "でログインしました");
+      Cookies.set("signedIn", "true");
+      router.replace("/Tourist_Board_of_Nara");  // ログイン成功時にリダイレクト
     }
   };
 
