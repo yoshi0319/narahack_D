@@ -84,6 +84,7 @@
     justify-content: center; 
     align-items: center; 
     margin-bottom: 2rem;
+    margin-top: 2rem;
 }
 
 .backButton {
@@ -91,16 +92,12 @@
     font-family: 'Klee One', sans-serif;
     justify-content: center;
     align-items: center;
-    margin-top: 4rem;
+    margin-top: 2rem;
     font-size: 2rem;
     color: #000;
-    padding: 10px 20px;
-    border: none;
     border-radius: 5px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.backButton:hover {
-    background-color: #d5d5d5;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.5);
-}
+
+

@@ -44,17 +44,13 @@ export default function Detail() {
                     <p>住所：{address}</p>
                 </div>
             </div>
-            <Link href="/Tourist_Board_of_Nara">
                 <div className={styles.parentContainer}>
-                    <Button
-                        className={styles.backButton}
-                        sx={{ textDecoration: 'none' }}
-                    >
+                    <Button href="/Tourist_Board_of_Nara" className={styles.backButton} >
                         <ArrowBackIcon />
-                            Topへ戻る
+                        Topへ戻る
                     </Button>
+
                 </div>        
-            </Link>
         </>
     );
 }
