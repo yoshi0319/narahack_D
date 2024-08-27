@@ -7,7 +7,6 @@ import { getDetail } from "@/pages/api/detail-post";
 
 
 export async function getServerSideProps(context) {
-    console.log('きてます？');
     const { id } = context.query;
 
     console.log({id});

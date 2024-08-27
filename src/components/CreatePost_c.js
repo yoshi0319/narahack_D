@@ -47,16 +47,16 @@
 
     const [openPopup, setOpenPopup] = useState(true);
 
-    useEffect(() => {
-      // sessionStorageからデータを取得
-      setTitle(sessionStorage.getItem('postTitle'));
-      setCategory(sessionStorage.getItem('postCategory'));
-      setExplanation(sessionStorage.getItem('postExplanation'));
-      setPlace(sessionStorage.getItem('postPlace'));
-      setMainImage(sessionStorage.getItem('mainImage'));
-      setSubImage1(sessionStorage.getItem('subImage1'));
-      setSubImage2(sessionStorage.getItem('subImage2'));
-    }, []);
+    // useEffect(() => {
+    //   // sessionStorageからデータを取得
+    //   setTitle(sessionStorage.getItem('postTitle'));
+    //   setCategory(sessionStorage.getItem('postCategory'));
+    //   setExplanation(sessionStorage.getItem('postExplanation'));
+    //   setPlace(sessionStorage.getItem('postPlace'));
+    //   setMainImage(sessionStorage.getItem('mainImage'));
+    //   setSubImage1(sessionStorage.getItem('subImage1'));
+    //   setSubImage2(sessionStorage.getItem('subImage2'));
+    // }, []);
     
     useEffect(() => {
       // sessionStorageからデータを取得
@@ -219,17 +219,17 @@
     if (!validateForm()) {
       return;
     } else {
-    // テキストデータと画像データをsessionStorageに保存
-    sessionStorage.setItem('postTitle', title); // title_nameではなく、titleをそのまま保存
-    sessionStorage.setItem('postCategory', category); // category_nameではなく、categoryをそのまま保存
-    sessionStorage.setItem('postExplanation', explanation); // explanation_nameではなく、explanationをそのまま保存
-    sessionStorage.setItem('postPlace', place); // place_nameではなく、placeをそのまま保存
-    sessionStorage.setItem('mainImage', mainImage);
-    sessionStorage.setItem('subImage1', subImage1);
-    sessionStorage.setItem('subImage2', subImage2);
+      // テキストデータと画像データをsessionStorageに保存
+      sessionStorage.setItem('postTitle', title); // title_nameではなく、titleをそのまま保存
+      sessionStorage.setItem('postCategory', category); // category_nameではなく、categoryをそのまま保存
+      sessionStorage.setItem('postExplanation', explanation); // explanation_nameではなく、explanationをそのまま保存
+      sessionStorage.setItem('postPlace', place); // place_nameではなく、placeをそのまま保存
+      sessionStorage.setItem('mainImage', mainImage);
+      sessionStorage.setItem('subImage1', subImage1);
+      sessionStorage.setItem('subImage2', subImage2);
 
-    // ページ遷移
-    router.push("/Tourist_Board_of_Nara/CreatePost/checkPost");
+      // ページ遷移
+      router.push("/Tourist_Board_of_Nara/CreatePost/checkPost");
     }
   };
 
