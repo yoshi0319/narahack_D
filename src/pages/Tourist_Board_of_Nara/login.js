@@ -17,12 +17,13 @@ const Login = () => {
   };
 
   const handleLoginClick = (e) => {
-    if (code.trim() === "") {  // 入力が空欄の場合
-      setError(true);  // エラーを表示
+    if (code.trim() === "") {
+      setError(true);
     } else {
       console.log(code, "でログインしました");
       Cookies.set("signedIn", "true");
-      router.replace("/Tourist_Board_of_Nara");  // ログイン成功時にリダイレクト
+      Cookies.set("showLoginSuccess", "true"); // Add this line
+      router.replace("/Tourist_Board_of_Nara");
     }
   };
 

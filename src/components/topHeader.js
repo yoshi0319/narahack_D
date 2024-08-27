@@ -1,6 +1,6 @@
 import styles from '@/styles/topHeader_css.module.css';
 import { Button, TextField, InputAdornment, ListItemButton, ListItemIcon, ListItemText, ListItem, Drawer, Box, List, Dialog, DialogContent, DialogActions } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import CreateIcon from '@mui/icons-material/Create';
@@ -8,17 +8,38 @@ import HomeIcon from '@mui/icons-material/Home';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import Link from 'next/link';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 
 export default function TopHeader() {
     const router = useRouter();
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
 
-    // Define the logout handler
+    useEffect(() => {
+        const showLoginSuccess = Cookies.get("showLoginSuccess");
+        if (showLoginSuccess === 'true') {
+            setSnackbarMessage('ログインに成功しました');
+            setOpenSnackbar(true);
+            Cookies.remove("showLoginSuccess");
+        }
+    }, []);
+
+
     const handleLogout = () => {
         Cookies.remove("signedIn");
+        setSnackbarMessage('ログアウトしました');
+        setOpenSnackbar(true);
         router.push('/Tourist_Board_of_Nara');
+    };
+
+    const handleCloseSnackbar = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpenSnackbar(false);
     };
 
     // Check the signed-in status from the cookies
@@ -76,6 +97,21 @@ export default function TopHeader() {
 
     return (
         <>
+        <Snackbar
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                open={openSnackbar}
+                autoHideDuration={3000}
+                onClose={handleCloseSnackbar}
+            >
+                <MuiAlert 
+                    onClose={handleCloseSnackbar} 
+                    severity="success" 
+                    sx={{ width: '100%', borderRadius: '16px', backgroundColor: '#fff', color: '#000', fontFamily: "'Klee One', sans-serif", fontSize: '1.5rem', fontWeight: 'bold', border: '2px solid #000' }}
+                >
+                    {snackbarMessage}
+                </MuiAlert>
+            </Snackbar>
+
         <Dialog open={openLoginPrompt} onClose={handleCloseLoginPrompt} sx={{ '& .MuiPaper-root': { borderRadius: '16px' } }}>
             <DialogContent className={styles.popuplist}>ページを作成するにはログインが必要です。<br/>ログインページに移動しますか？</DialogContent>
             <DialogActions className={styles.dialogActionsCentered}>
@@ -83,7 +119,7 @@ export default function TopHeader() {
                 <Button className={styles.popupbutton_next} onClick={handleLoginRedirect} color="primary">ログイン</Button>
             </DialogActions>
         </Dialog>
-
+        
         <div className={styles.drawerMenu}>
             <Drawer anchor="left" open={show} onClose={handleDraw}>
                 <Box sx={{ height: '100vh' }} onClick={handleDraw}>
