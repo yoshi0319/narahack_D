@@ -1,7 +1,7 @@
   import { Button, FormControl, InputLabel, MenuItem, Select, TextField, Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
   import CloseIcon from '@mui/icons-material/Close';
   import { styled } from '@mui/material/styles';
-  import { useState } from "react";
+  import { useState, useEffect } from "react";
   import LocationOnIcon from '@mui/icons-material/LocationOn';
   import styles from '@/styles/createPost_css.module.css';
   import { useRouter } from "next/router";
@@ -20,10 +20,11 @@
   }));
 
   export default function CreatePost() {
+
     const router = useRouter();
 
     const [title, setTitle] = useState('');
-    const [category, setCategory] = useState(temples);
+    const [category, setCategory] = useState('');
     const [explanation, setExplanation] = useState('');
     const [place, setPlace] = useState('');
     
@@ -45,6 +46,62 @@
     });
 
     const [openPopup, setOpenPopup] = useState(true);
+
+    useEffect(() => {
+      // localStorageからデータを取得
+      setTitle(localStorage.getItem('postTitle'));
+      setCategory(localStorage.getItem('postCategory'));
+      setExplanation(localStorage.getItem('postExplanation'));
+      setPlace(localStorage.getItem('postPlace'));
+      setMainImage(localStorage.getItem('mainImage'));
+      setSubImage1(localStorage.getItem('subImage1'));
+      setSubImage2(localStorage.getItem('subImage2'));
+    }, []);
+    
+    useEffect(() => {
+      // localStorageからデータを取得
+      const storedTitle = localStorage.getItem('postTitle');
+      const storedCategory = localStorage.getItem('postCategory');
+      const storedExplanation = localStorage.getItem('postExplanation');
+      const storedPlace = localStorage.getItem('postPlace');
+      const storedMainImage = localStorage.getItem('mainImage');
+      const storedSubImage1 = localStorage.getItem('subImage1');
+      const storedSubImage2 = localStorage.getItem('subImage2');
+    
+      setTitle(storedTitle || '');
+      setCategory(storedCategory || temples);
+      setExplanation(storedExplanation || '');
+      setPlace(storedPlace || '');
+      setMainImage(storedMainImage || null);
+      setSubImage1(storedSubImage1 || null);
+      setSubImage2(storedSubImage2 || null);
+    
+      // 画像が存在する場合はそれぞれのフラグをtrueに設定
+      if (storedMainImage) setImageSelectedMain(true);
+      if (storedSubImage1) setImageSelectedSub1(true);
+      if (storedSubImage2) setImageSelectedSub2(true);
+
+      switch (storedCategory) {
+        case '寺院':
+            setCategory('temples');
+            break;
+        case '神社':
+            setCategory('shrines');
+            break;
+        case '飲食店':
+            setCategory('restaurants');
+            break;
+        case 'お土産':
+            setCategory('souvenirs');
+            break;
+        case '資料館':
+            setCategory('museums');
+            break;
+        case 'その他':
+            setCategory('others');
+    }
+    }, []);
+    
 
     const validateForm = () => {
       let hasErrors = false;

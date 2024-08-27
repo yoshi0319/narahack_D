@@ -3,6 +3,7 @@ import styles from '@/styles/checkPost_css.module.css';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { Button } from '@mui/material';
 import Link from 'next/link';
+import { router } from 'next/router';
 
 export default function CheckPost() {
     const [postTitle, setPostTitle] = useState('');
@@ -51,6 +52,20 @@ export default function CheckPost() {
         }
     };
 
+    const submitPost = () => {
+        // テキストデータと画像データをlocalStorageに保存
+        localStorage.setItem('postTitle', postTitle); // title_nameではなく、titleをそのまま保存
+        localStorage.setItem('postCategory', postCategory); // category_nameではなく、categoryをそのまま保存
+        localStorage.setItem('postExplanation', postExplanation); // explanation_nameではなく、explanationをそのまま保存
+        localStorage.setItem('postPlace', postPlace); // place_nameではなく、placeをそのまま保存
+        localStorage.setItem('mainImage', mainImage);
+        localStorage.setItem('subImage1', subImage1);
+        localStorage.setItem('subImage2', subImage2);
+    
+        // ページ遷移
+        router.push("/Tourist_Board_of_Nara/CreatePost");
+      };
+
     return (
         <>
             <div className={styles.mainImage}>
@@ -83,6 +98,7 @@ export default function CheckPost() {
                 <div className={styles.buttonContainer}>
                     <div className={styles.backButton}>
                         <Button
+                            onClick={submitPost}
                             variant="contained"
                             color="grey"
                             sx={{
