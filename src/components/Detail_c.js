@@ -48,17 +48,12 @@ export default function Detail( post ) {
                     <p>住所：{place}</p>
                 </div>
             </div>
-            <Link href="/Tourist_Board_of_Nara">
-                <div className={styles.parentContainer}>
-                    <Button
-                        className={styles.backButton}
-                        sx={{ textDecoration: 'none' }}
-                    >
-                        <ArrowBackIcon />
-                            Topへ戻る
-                    </Button>
-                </div>        
-            </Link>
+            <div className={styles.parentContainer}>
+                <Button href="/Tourist_Board_of_Nara" className={styles.backButton} >
+                    <ArrowBackIcon />
+                    Topへ戻る
+                </Button>
+            </div>        
         </>
     );
 }
