@@ -124,43 +124,65 @@
       return !hasErrors;
     };
 
-    const handleTitle = e => setTitle(e.target.value);
-    const handleCategory = e => setCategory(e.target.value);
-    const handleExplanation = e => setExplanation(e.target.value);
-    const handlePlace = e => setPlace(e.target.value);
-
+    const handleTitle = e => {
+      setTitle(e.target.value);
+      if (errors.title) setErrors(prevErrors => ({ ...prevErrors, title: '' }));
+    };
+    
+    const handleCategory = e => {
+      setCategory(e.target.value);
+      if (errors.category) setErrors(prevErrors => ({ ...prevErrors, category: '' }));
+    };
+    
+    const handleExplanation = e => {
+      setExplanation(e.target.value);
+      if (errors.explanation) setErrors(prevErrors => ({ ...prevErrors, explanation: '' }));
+    };
+    
+    const handlePlace = e => {
+      setPlace(e.target.value);
+      if (errors.place) setErrors(prevErrors => ({ ...prevErrors, place: '' }));
+    };
+    
     const onFileInputChange = e => {
       if (!e.target.files || e.target.files.length === 0) {
         setMainImage(null);
         setImageSelectedMain(false);
+        setErrors(prevErrors => ({ ...prevErrors, mainImage: 'メイン画像は必須です' }));
         return;
       }
       const fileObject = e.target.files[0];
       setMainImage(URL.createObjectURL(fileObject));
       setImageSelectedMain(true);
+      if (errors.mainImage) setErrors(prevErrors => ({ ...prevErrors, mainImage: '' }));
     };
-
+    
     const onFileInputChangeSub1 = e => {
       if (!e.target.files || e.target.files.length === 0) {
         setSubImage1(null);
         setImageSelectedSub1(false);
+        setErrors(prevErrors => ({ ...prevErrors, subImage1: 'サブ画像1は必須です' }));
         return;
       }
       const fileObject = e.target.files[0];
       setSubImage1(URL.createObjectURL(fileObject));
       setImageSelectedSub1(true);
+      if (errors.subImage1) setErrors(prevErrors => ({ ...prevErrors, subImage1: '' }));
     };
-
+    
     const onFileInputChangeSub2 = e => {
       if (!e.target.files || e.target.files.length === 0) {
         setSubImage2(null);
         setImageSelectedSub2(false);
+        setErrors(prevErrors => ({ ...prevErrors, subImage2: 'サブ画像2は必須です' }));
         return;
       }
       const fileObject = e.target.files[0];
       setSubImage2(URL.createObjectURL(fileObject));
       setImageSelectedSub2(true);
+      if (errors.subImage2) setErrors(prevErrors => ({ ...prevErrors, subImage2: '' }));
     };
+    
 
     // const submitPost = (e) => {      // この関数は、フォームの送信ボタンがクリックされたときに呼び出される
     //   e.preventDefault();
