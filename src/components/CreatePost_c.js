@@ -1,7 +1,7 @@
   import { Button, FormControl, InputLabel, MenuItem, Select, TextField, Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
   import CloseIcon from '@mui/icons-material/Close';
   import { styled } from '@mui/material/styles';
-  import { useState } from "react";
+  import { useState, useEffect } from "react";
   import LocationOnIcon from '@mui/icons-material/LocationOn';
   import styles from '@/styles/createPost_css.module.css';
   import { useRouter } from "next/router";
@@ -19,44 +19,12 @@
     },
   }));
 
-
-  // const postData_user = async (title, category, explanation, place) => { // ユーザーが入力したデータを受け取る
-  //   const postData = {
-  //     data: {
-  //       title,
-  //       category,
-  //       explanation,
-  //       place,
-  //     },
-  //   };
-  //     try {
-  //       const response = await fetch('/api/createPost', {
-  //         method: 'POST',
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //         },
-  //         body: JSON.stringify(postData),
-  //       });      
-        
-  //       console.log('Post data:', postData);
-
-  //       if (response.ok) {
-  //         const result = await response.json();
-  //         console.log('Post created successfully:', result);
-  //       } else {
-  //         const errorData = await response.json(); // エラーメッセージを取得
-  //         console.error('Failed to create post:', errorData.error); // エラーメッセージを出力
-  //       }      
-  //     } catch (error) {
-  //       console.error('Error submitting post:', error);
-  //     }
-  //   };
-
   export default function CreatePost() {
+
     const router = useRouter();
 
     const [title, setTitle] = useState('');
-    const [category, setCategory] = useState(temples);
+    const [category, setCategory] = useState('');
     const [explanation, setExplanation] = useState('');
     const [place, setPlace] = useState('');
     
@@ -78,6 +46,62 @@
     });
 
     const [openPopup, setOpenPopup] = useState(true);
+
+    // useEffect(() => {
+    //   // sessionStorageからデータを取得
+    //   setTitle(sessionStorage.getItem('postTitle'));
+    //   setCategory(sessionStorage.getItem('postCategory'));
+    //   setExplanation(sessionStorage.getItem('postExplanation'));
+    //   setPlace(sessionStorage.getItem('postPlace'));
+    //   setMainImage(sessionStorage.getItem('mainImage'));
+    //   setSubImage1(sessionStorage.getItem('subImage1'));
+    //   setSubImage2(sessionStorage.getItem('subImage2'));
+    // }, []);
+    
+    useEffect(() => {
+      // sessionStorageからデータを取得
+      const storedTitle = sessionStorage.getItem('postTitle');
+      const storedCategory = sessionStorage.getItem('postCategory');
+      const storedExplanation = sessionStorage.getItem('postExplanation');
+      const storedPlace = sessionStorage.getItem('postPlace');
+      const storedMainImage = sessionStorage.getItem('mainImage');
+      const storedSubImage1 = sessionStorage.getItem('subImage1');
+      const storedSubImage2 = sessionStorage.getItem('subImage2');
+    
+      setTitle(storedTitle || '');
+      setCategory(storedCategory || temples);
+      setExplanation(storedExplanation || '');
+      setPlace(storedPlace || '');
+      setMainImage(storedMainImage || null);
+      setSubImage1(storedSubImage1 || null);
+      setSubImage2(storedSubImage2 || null);
+    
+      // 画像が存在する場合はそれぞれのフラグをtrueに設定
+      if (storedMainImage) setImageSelectedMain(true);
+      if (storedSubImage1) setImageSelectedSub1(true);
+      if (storedSubImage2) setImageSelectedSub2(true);
+
+      switch (storedCategory) {
+        case '寺院':
+            setCategory('temples');
+            break;
+        case '神社':
+            setCategory('shrines');
+            break;
+        case '飲食店':
+            setCategory('restaurants');
+            break;
+        case 'お土産':
+            setCategory('souvenirs');
+            break;
+        case '資料館':
+            setCategory('museums');
+            break;
+        case 'その他':
+            setCategory('others');
+    }
+    }, []);
+    
 
     const validateForm = () => {
       let hasErrors = false;
@@ -196,21 +220,38 @@
     //   };
     // };
 
+
+    const resetMainImage = () => {
+      setMainImage(null);
+      setImageSelectedMain(false);
+    };
+  
+    const resetSubImage1 = () => {
+      setSubImage1(null);
+      setImageSelectedSub1(false);
+    };
+  
+    const resetSubImage2 = () => {
+      setSubImage2(null);
+      setImageSelectedSub2(false);
+    };
+
+
   const submitPost = () => {
     if (!validateForm()) {
       return;
     } else {
-    // テキストデータと画像データをlocalStorageに保存
-    localStorage.setItem('postTitle', title); // title_nameではなく、titleをそのまま保存
-    localStorage.setItem('postCategory', category); // category_nameではなく、categoryをそのまま保存
-    localStorage.setItem('postExplanation', explanation); // explanation_nameではなく、explanationをそのまま保存
-    localStorage.setItem('postPlace', place); // place_nameではなく、placeをそのまま保存
-    localStorage.setItem('mainImage', mainImage);
-    localStorage.setItem('subImage1', subImage1);
-    localStorage.setItem('subImage2', subImage2);
+      // テキストデータと画像データをsessionStorageに保存
+      sessionStorage.setItem('postTitle', title); // title_nameではなく、titleをそのまま保存
+      sessionStorage.setItem('postCategory', category); // category_nameではなく、categoryをそのまま保存
+      sessionStorage.setItem('postExplanation', explanation); // explanation_nameではなく、explanationをそのまま保存
+      sessionStorage.setItem('postPlace', place); // place_nameではなく、placeをそのまま保存
+      sessionStorage.setItem('mainImage', mainImage);
+      sessionStorage.setItem('subImage1', subImage1);
+      sessionStorage.setItem('subImage2', subImage2);
 
-    // ページ遷移
-    router.push("/Tourist_Board_of_Nara/CreatePost/checkPost");
+      // ページ遷移
+      router.push("/Tourist_Board_of_Nara/CreatePost/checkPost");
     }
   };
 
@@ -272,6 +313,7 @@
                       </div>
                     </div>
                   ) : (
+                    <>
                       <div className={styles.imageDisplayContainer}>
                           <img
                               src={mainImage}
@@ -279,6 +321,10 @@
                               className={styles.selectedImage}
                           />
                       </div>
+                      <div className={styles.resetMainImage}>
+                      <Button onClick={resetMainImage} variant="outlined" color="error">画像を再選択</Button>
+                      </div>
+                    </>
                   )}
               </div>
               <div className={styles.titleFieldContainer}>
@@ -353,13 +399,16 @@
                           </div>
                         </div>
                       ) : (
-                          <div className={`${styles.imageDisplayContainer} ${styles.imageWrapper}`}>
-                              <img
-                                  src={subImage1}
-                                  alt="選択された画像"
-                                  className={styles.selectedImage}
-                              />
-                          </div>
+                          <>
+                            <div className={`${styles.imageDisplayContainer} ${styles.imageWrapper}`}>
+                                <img
+                                    src={subImage1}
+                                    alt="選択された画像"
+                                    className={styles.selectedImage}
+                                />
+                            </div>
+                            <Button onClick={resetSubImage1} variant="outlined" color="error" className={styles.resetButton}>画像を再選択</Button>
+                          </>
                       )}
                   </div>
                   <div>
@@ -377,6 +426,7 @@
                           </div>
                         </div>
                       ) : (
+                        <>
                           <div className={`${styles.imageDisplayContainer} ${styles.imageWrapper}`}>
                               <img
                                   src={mainImage}
@@ -384,6 +434,8 @@
                                   className={styles.selectedImage}
                               />
                           </div>
+                          <Button onClick={resetMainImage} variant="outlined" color="error" className={styles.resetButton}>画像を再選択</Button>
+                        </>
                       )}
                   </div>
                   <div>
@@ -401,6 +453,7 @@
                           </div>
                         </div>
                       ) : (
+                        <>
                           <div className={`${styles.imageDisplayContainer} ${styles.imageWrapper}`}>
                               <img
                                   src={subImage2}
@@ -408,6 +461,8 @@
                                   className={styles.selectedImage}
                               />
                           </div>
+                          <Button onClick={resetSubImage2} variant="outlined" color="error" className={styles.resetButton}>画像を再選択</Button>
+                        </>
                       )}
                   </div>
               </div>

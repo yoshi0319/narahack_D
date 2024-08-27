@@ -3,6 +3,10 @@ import styles from '@/styles/checkPost_css.module.css';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { Button } from '@mui/material';
 
+import Cookies from 'js-cookie';
+import Link from 'next/link';
+import { router } from 'next/router';
+
 export default function CheckPost() {
     const [postTitle, setPostTitle] = useState('');
     const [postCategory, setPostCategory] = useState('');
@@ -12,15 +16,64 @@ export default function CheckPost() {
     const [subImage1, setSubImage1] = useState(null);
     const [subImage2, setSubImage2] = useState(null);
 
+    const Ok_create = async () => {
+        try {
+            const formData = new FormData();
+    
+            console.log({postTitle});
+            console.log({postCategory});
+            console.log({postExplanation});
+            console.log({postPlace});
+
+            console.log({mainImage});
+
+            if (mainImage) {
+                const imageBlob = await fetch(mainImage).then(r => r.blob());
+                console.log('Image Blob:', imageBlob);
+            }
+
+            const userId = Cookies.get("userId");
+            console.log("userId:", userId);
+            
+            // formData.append('link_User_id', '1');
+            formData.append('title', postTitle);
+            formData.append('category', postCategory);
+            formData.append('explanation', postExplanation);
+            formData.append('place', postPlace);
+            formData.append('userId', userId);
+    
+            if (mainImage) formData.append('mainImage_post', await fetch(mainImage).then(r => r.blob()));
+            if (subImage1) formData.append('sub1Image_post', await fetch(subImage1).then(r => r.blob()));
+            if (subImage2) formData.append('sub2Image_post', await fetch(subImage2).then(r => r.blob()));
+            //Blob
+    
+            for (let [key, value] of formData.entries()) {
+                console.log(`${key}: ${value}`);
+            }
+            
+            const response = await fetch('/api/create-post', {
+                method: 'POST',
+                body: formData,
+            });
+    
+            const result = await response.json();
+            console.log(result);
+
+
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
     useEffect(() => {
-        // localStorageからデータを取得
-        setPostTitle(localStorage.getItem('postTitle'));
-        setPostCategory(localStorage.getItem('postCategory'));
-        setPostExplanation(localStorage.getItem('postExplanation'));
-        setPostPlace(localStorage.getItem('postPlace'));
-        setMainImage(localStorage.getItem('mainImage'));
-        setSubImage1(localStorage.getItem('subImage1'));
-        setSubImage2(localStorage.getItem('subImage2'));
+        // sessionStorageからデータを取得
+        setPostTitle(sessionStorage.getItem('postTitle'));
+        setPostCategory(sessionStorage.getItem('postCategory'));
+        setPostExplanation(sessionStorage.getItem('postExplanation'));
+        setPostPlace(sessionStorage.getItem('postPlace'));
+        setMainImage(sessionStorage.getItem('mainImage'));
+        setSubImage1(sessionStorage.getItem('subImage1'));
+        setSubImage2(sessionStorage.getItem('subImage2'));
     }, []);
 
     useEffect(() => {
@@ -49,6 +102,10 @@ export default function CheckPost() {
                 setPostCategory('その他');
         }
     };
+
+    const submitPost = () => {
+        router.push("/Tourist_Board_of_Nara/CreatePost");
+      };
 
     return (
         <>
@@ -82,6 +139,7 @@ export default function CheckPost() {
                 <div className={styles.buttonContainer}>
                     <div className={styles.backButton}>
                         <Button
+                            onClick={submitPost}
                             variant="contained"
                             color="grey"
                             sx={{
@@ -100,6 +158,7 @@ export default function CheckPost() {
                         <Button
                             variant="contained"
                             color="grey"
+                            onClick={Ok_create}
                             sx={{
                                 backgroundColor: '#9CD8AB',
                                 color: '#000',

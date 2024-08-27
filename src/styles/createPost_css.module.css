@@ -1,6 +1,6 @@
 .titleField {
   width: 60rem;
-  margin-top: 5rem;
+  margin-top: 3rem;
 }
 
 .titleFieldContainer {
@@ -127,4 +127,18 @@ color: #333;
 
 .popuplist {
   font-family: "Klee One" , cursive;
+}
+
+.resetButton {
+  display: grid;
+  place-items: center;
+}
+
+.resetButton {
+  margin-left: 35%;
+  margin-right: 35%;
+}
+
+.resetMainImage {
+  text-align: center;
 }

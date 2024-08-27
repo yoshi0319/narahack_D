@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: #000000;
+    gap: 1rem;
+}
+
+.postCard {
+    width: 40vh;
+    height: 50vh;
+    text-align: center;
+    /* margin-top: 2rem; */
+    padding-top: 2rem;
+    /* margin-right: 1rem;
+    margin-left: 1rem; */
+    font-family: 'Klee One', sans-serif;
+    border: 2px solid #FFFFFF;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    color: #000000;
+}
+
+.postCard hr {
+    border: none;
+    border-top: 2px solid #D48300; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    margin: 0.5rem 0;
+}
+
+.postCard img {
+    width: 35vh;
+    height: 24vh;
+    object-fit: cover;
+    width: 100%;
+}
+
+.postCard h2 {
+    margin-top: 0.5rem;
+    font-size: 2rem;
+}
+
+.postCard p {
+    margin-top: 1.3rem;
+    text-align: left;
+    line-height: 1.5em;
+    max-height: 6.0em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+

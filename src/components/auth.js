@@ -1,18 +1,19 @@
-import { useRouter } from "next/router";
-import Cookies from "js-cookie";
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
 
 const Auth = ({ children }) => {
+  const router = useRouter();
 
-    //router
-    const router = useRouter();
-
-    //Cookieのチェック（これをいろいろ認証タイプにより変更）
+  useEffect(() => {
     const signedIn = Cookies.get("signedIn");
-    //signedInがtrueじゃなければ/loginへ
-    if (signedIn !== "true") router.replace("/login");
+    if (signedIn !== "true") {
+      router.replace("/Tourist_Board_of_Nara/login");
+    }
+  }, [router]);
 
-    //何もなければ次へ（そのまま処理）
-    return children;
-}
+  // クライアントサイドでのみレンダリングされる
+  return <>{children}</>;
+};
 
 export default Auth;

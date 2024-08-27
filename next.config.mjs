@@ -5,8 +5,8 @@ const nextConfig = {
     return [
       {
         source: '/',
-        destination: '/Tourist_Board_of_Nara',
-        permanent: true,  // 永続的なリダイレクト（301リダイレクト）
+        destination: '/Tourist_Board_of_Nara/',
+        permanent: true, // 永続的なリダイレクト（301リダイレクト）
       },
     ];
   },
