@@ -1,7 +1,9 @@
-import PostCard from "@/components/PostCard_c";
-import TopHeader from "@/components/topHeader";
-
+import dynamic from "next/dynamic";
+// import PostCard from "@/components/PostCard_c";z
 import { getDetail } from "@/pages/api/getCategory_post";
+
+const TopHeader = dynamic(() => import('@/components/topHeader'),{ssr:false});
+const PostCard = dynamic(() => import('@/components/PostCard_c'));
 
 export async function getServerSideProps(context) {
     const { id } = context.query;
