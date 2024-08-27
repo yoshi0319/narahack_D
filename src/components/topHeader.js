@@ -98,7 +98,6 @@ export default function topHeader() {
                                 value={search.search_word}
                                 onChange={handleSearch}
                                 label="検索"
-                                
                                 rows={1}
                                 className={styles.searchField}
                                 InputProps={{
