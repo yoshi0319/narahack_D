@@ -45,7 +45,7 @@ export default function CheckPost() {
             case 'museums':
                 setPostCategory('資料館');
                 break;
-            default:
+            case 'others':
                 setPostCategory('その他');
         }
     };
