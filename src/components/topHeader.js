@@ -49,7 +49,7 @@ export default function TopHeader() {
         router.push('/Tourist_Board_of_Nara/login');
         handleCloseLoginPrompt();
     };
-    
+
     // Define the menu items based on the sign-in status
     const menu = [
         {title: 'ホーム', href: '/Tourist_Board_of_Nara', icon: HomeIcon},
@@ -77,15 +77,22 @@ export default function TopHeader() {
 
     return (
         <>
-            <div className={styles.drawerMenu}>
-                <Drawer anchor="left" open={show}>
-                    <Box sx={{ height: '100vh' }} onClick={handleDraw}>
-                        <List>
-                            {menu.map((obj) => {
-                                const Icon = obj.icon;
-                                return (
-                                    <ListItem key={obj.title}>
-                                        <ListItemButton
+        <Dialog open={openLoginPrompt} onClose={handleCloseLoginPrompt} sx={{ '& .MuiPaper-root': { borderRadius: '16px' } }}>
+            <DialogContent className={styles.popuplist}>ページを作成するにはログインが必要です。<br/>ログインページに移動しますか？</DialogContent>
+            <DialogActions className={styles.dialogActionsCentered}>
+                <Button className={styles.popupbutton_cancel} onClick={handleCloseLoginPrompt}>キャンセル</Button>
+                <Button className={styles.popupbutton_next} onClick={handleLoginRedirect} color="primary">ログイン</Button>
+            </DialogActions>
+        </Dialog>
+
+        <div className={styles.drawerMenu}>
+            <Drawer anchor="left" open={show}>
+                <Box sx={{ height: '100vh' }} onClick={handleDraw}>                        <List>
+                        {menu.map((obj) => {
+                            const Icon = obj.icon;
+                            return (
+                                <ListItem key={obj.title}>
+                                    <ListItemButton
                                             href={obj.href}
                                             onClick={(e) => {
                                                 e.preventDefault();
@@ -184,19 +191,6 @@ export default function TopHeader() {
                 </nav>     
             </div>
 
-            <Dialog
-                open={openLoginPrompt}
-                onClose={handleCloseLoginPrompt}
-            >
-                <DialogTitle>ログインが必要です</DialogTitle>
-                <DialogContent>
-                    ページを作成するにはログインが必要です。ログインページに移動しますか？
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleCloseLoginPrompt}>キャンセル</Button>
-                    <Button onClick={handleLoginRedirect} color="primary">ログイン</Button>
-                </DialogActions>
-            </Dialog>
         </>
     );
 }
