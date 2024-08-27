@@ -40,11 +40,9 @@
 .postCard p {
     margin-top: 1.3rem;
     text-align: left;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4; /* なんか警告が出ます。 */
-    overflow: hidden; 
-    text-overflow: ellipsis; 
+    line-height: 1.5em; /* 行間を設定 */
+    max-height: 6.0em; /* 3行分の高さ (1.5em * 3行) */
+    overflow: hidden; /* 見えない部分を隠す */
+    text-overflow: ellipsis; /* はみ出したテキストに「…」を表示 */
+    white-space: normal; /* 改行を許可 */
 }
