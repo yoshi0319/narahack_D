@@ -40,6 +40,7 @@ export default async function handler(req, res) {
 
         try {
             //filepathから画像データを抜き出す。そんで、バッファー型に変換←これはデータベースのbytea型に入れられるらしい
+            //Blob => Buffer
             const mainImageBuffer = mainImage_post ? fs.readFileSync(path.resolve(mainImage_post.filepath)) : null;
             const sub1ImageBuffer = sub1Image_post ? fs.readFileSync(path.resolve(sub1Image_post.filepath)) : null;
             const sub2ImageBuffer = sub2Image_post ? fs.readFileSync(path.resolve(sub2Image_post.filepath)) : null;

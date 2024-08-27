@@ -4,6 +4,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { Button } from '@mui/material';
 
 import Cookies from 'js-cookie';
+import Link from 'next/link';
 
 export default function CheckPost() {
     const [postTitle, setPostTitle] = useState('');
@@ -43,6 +44,7 @@ export default function CheckPost() {
             if (mainImage) formData.append('mainImage_post', await fetch(mainImage).then(r => r.blob()));
             if (subImage1) formData.append('sub1Image_post', await fetch(subImage1).then(r => r.blob()));
             if (subImage2) formData.append('sub2Image_post', await fetch(subImage2).then(r => r.blob()));
+            //Blob
     
             for (let [key, value] of formData.entries()) {
                 console.log(`${key}: ${value}`);
