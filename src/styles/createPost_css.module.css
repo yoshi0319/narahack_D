@@ -1,120 +1,130 @@
 .titleField {
-    width: 60rem;
-    margin-top: 5rem;
-  }
-  
-  .titleFieldContainer {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-  }
-  
-  .sendButtonContainer {
-  display: flex;
-  justify-content: center;
-  }
-  
-  .categoryContainer {
-  display: flex;
-  justify-content: center;
-  }
-  
-  .explanationField {
   width: 60rem;
-  }
-  
-  .explanationContainer {
+  margin-top: 5rem;
+}
+
+.titleFieldContainer {
+display: flex;
+justify-content: center;
+margin-bottom: 20px;
+}
+
+.sendButtonContainer {
+display: flex;
+justify-content: center;
+}
+
+.categoryContainer {
+display: flex;
+justify-content: center;
+}
+
+.explanationField {
+width: 60rem;
+}
+
+.explanationContainer {
+display: flex;
+justify-content: center;
+margin-top: 3rem;
+margin-bottom: 20px;
+
+}
+
+.default {
+width: 100%;            
+height: 30vh;          
+display: flex;         
+justify-content: center;
+margin-top: 0;
+background-color: rgb(199, 199, 199);
+}
+
+.inputImageContainer {
+display: flex;          
+flex-direction: column;
+justify-content: center; 
+align-items: center;  
+}
+
+.imageDisplayContainer {
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: #FFF9F5; 
+}
+
+.selectedImage {
+width: 50%; 
+height: auto;
+object-fit: cover; 
+border-radius: 8px; 
+}
+
+.labelText {
+margin-bottom: 10px;
+font-size: 16px;
+color: #333;
+}
+
+.line {
+  border: none;
+  border-top: 2px solid #D48300; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  margin: 20px 0;
+}
+
+.slideContainer {
   display: flex;
-  justify-content: center;
-  margin-top: 3rem;
-  margin-bottom: 20px;
-  
-  }
-  
-  .default {
-  width: 100%;            
-  height: 30vh;          
-  display: flex;         
-  justify-content: center;
-  margin-top: 0;
-  background-color: rgb(199, 199, 199);
-  }
-  
-  .inputImageContainer {
-  display: flex;          
-  flex-direction: column;
-  justify-content: center; 
-  align-items: center;  
-  }
-  
-  .imageDisplayContainer {
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 3rem;
+}
+
+.imageWrapper {
+  width: 25rem; 
+  height: 20rem;
+  background-color: #FFF9F5;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #FFF9F5; 
-  }
-  
-  .selectedImage {
-  width: 50%; 
-  height: auto;
-  object-fit: cover; 
-  border-radius: 8px; 
-  }
-  
-  .labelText {
-  margin-bottom: 10px;
-  font-size: 16px;
-  color: #333;
-  }
-  
-  .line {
-    border: none;
-    border-top: 2px solid #D48300; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-    margin: 20px 0;
-  }
-  
-  .slideContainer {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 3rem;
-  }
-  
-  .imageWrapper {
-    width: 25rem; 
-    height: 20rem;
-    background-color: #FFF9F5;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  } 
-  
-  .imageWrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-  
-  .buttonContainer {
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    height: 100%; 
-    opacity: 0.9,
-  }
-  
-  .placeContainer {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .placeField {
-    width: 60rem;
-  }
+} 
+
+.imageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  height: 100%; 
+  opacity: 0.9,
+}
+
+.placeContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.placeField {
+  width: 60rem;
+}
+
+.errorText {
+  color: rgb(255, 84, 84);
+  font-size: 0.875rem; /* オプションでフォントサイズを調整 */
+  margin-top: 4px; /* エラーメッセージとフィールドの間隔を調整 */
+}
+
+.popuplist {
+  font-family: "Klee One" , cursive;
+}

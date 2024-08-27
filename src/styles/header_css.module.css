@@ -1,24 +1,53 @@
 .headerContainer {
     display: flex;
-    justify-content: center; /* 変更: 中央揃えに設定 */
+    justify-content: space-between;
     background-color: #D2FADC;
     height: 5rem;
-    width: 100%;
     align-items: center;
     opacity: 0.8;
-    position: relative; /* 追加: 戻るボタンを絶対位置で配置するため */
 }
 
 .backButton {
     display: flex;
     font-family: 'Klee One', sans-serif;
-    color: #000;
-    position: absolute; /* 追加: 戻るボタンの絶対位置を指定 */
-    left: 1rem; /* 追加: 左端に配置 */
+    margin-bottom: 2rem;
 }
 
 .appTitle {
-    display: flex;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.backButton {
+    display: flex;
+    align-items: center;
     color: #000;
+    font-size: large;
+}
+
+.backButtonLink {
+    color: #000;
+    text-decoration: none;
+}
+
+.backButtonLink:hover {
+    color: #333;
+}
+
+.parentContainer {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.backButton {
+    display: flex;
+    font-family: 'Klee One', sans-serif;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    font-size: large;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }

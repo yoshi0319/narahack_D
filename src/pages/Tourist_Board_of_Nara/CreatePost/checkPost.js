@@ -1,12 +1,12 @@
-import CreatePost_c from "@/components/CreatePost_c";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import CheckPost_c from "@/components/CheckPost_c";
 
-export default function() {
+export default function check() {
     return(
         <>
             <Header />
-            <CreatePost_c />
+            <CheckPost_c />
             <Footer />
         </>
     );

@@ -19,6 +19,7 @@ export default async function handler(req, res) {
 
     const form = new formidable.IncomingForm();
 
+    //このコードで送られたデータにいろんな情報を付与(今回使うのはfilepath)
     form.parse(req, async function (err, fields, files) {
         if (err) {
             return res.status(500).json({ method: req.method, error: err });
@@ -29,11 +30,15 @@ export default async function handler(req, res) {
         const explanation = fields.explanation[0];
         const place = fields.place[0];
 
+        //配列なら一番最初のものを、単体ならそのまま入れる
         const mainImage_post = files.mainImage_post ? (Array.isArray(files.mainImage_post) ? files.mainImage_post[0] : files.mainImage_post) : null;
         const sub1Image_post = files.sub1Image_post ? (Array.isArray(files.sub1Image_post) ? files.sub1Image_post[0] : files.sub1Image_post) : null;
         const sub2Image_post = files.sub2Image_post ? (Array.isArray(files.sub2Image_post) ? files.sub2Image_post[0] : files.sub2Image_post) : null;
 
+        console.log(mainImage_post);
+
         try {
+            //filepathから画像データを抜き出す。そんで、バッファー型に変換←これはデータベースのbytea型に入れられるらしい
             const mainImageBuffer = mainImage_post ? fs.readFileSync(path.resolve(mainImage_post.filepath)) : null;
             const sub1ImageBuffer = sub1Image_post ? fs.readFileSync(path.resolve(sub1Image_post.filepath)) : null;
             const sub2ImageBuffer = sub2Image_post ? fs.readFileSync(path.resolve(sub2Image_post.filepath)) : null;

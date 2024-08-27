@@ -10,18 +10,21 @@
 } */
 
 /* hooter_css.module.css */
-.Footer {
+.hooter {
     display: flex;
     justify-content: center; /* 水平方向に中央揃え */
     align-items: center; /* 垂直方向に中央揃え */
     height: 60px; /* フッターの高さを指定 */
+    width: 100%; /* 幅を100%に指定 */
     background: rgb(255,255,255);
     background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(156,216,171,1) 54%, rgba(156,216,171,1) 100%);
 }
 
-.Footer p {
+.hooter p {
     margin: 0; /* 不要な余白を削除 */
     font-size: 15px; /* テキストのサイズを調整 */
     font-family: 'Klee One', sans-serif;
+    color: #000;
 }
+
 

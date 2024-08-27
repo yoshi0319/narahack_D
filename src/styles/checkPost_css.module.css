@@ -1,0 +1,81 @@
+
+
+.mainImage img {
+    width: 100%; /* 画像の幅を親コンテナに合わせる */
+    height: auto; /* 画像のアスペクト比を維持する */
+    object-fit: cover; /* 必要に応じて、画像の表示方法を調整 */
+}
+
+.title {
+    font-size: 3rem;
+    font-family: 'Klee One', sans-serif;
+}
+
+.category {
+    font-size: 1rem;
+    margin-top: 2rem;
+}
+
+.titleContainer {
+    text-align: center;
+    margin-top: 0.8rem;
+    margin-bottom: 0.9rem;
+}
+
+.line {
+    border: none;
+    border-top: 2px solid #D48300; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    margin: 20px 0;
+}
+
+.explanation {
+    padding-top: 1.5rem;
+    padding-left: 15rem;
+    padding-right: 15rem;
+    font-size: large;
+    padding-bottom: 4rem;
+    font-family: 'Klee One', sans-serif;
+}
+
+.slideContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 3rem;
+  }
+
+.imageWrapper img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.imageWrapper {
+    width: 25rem; 
+    height: 20rem;
+    background-color: #FFF9F5;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.placeContainer {
+    display: flex;
+    justify-content: center;
+    font-family: 'Klee One', sans-serif;
+}
+
+.buttonContainer {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+

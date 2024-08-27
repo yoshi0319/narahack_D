@@ -1,0 +1,89 @@
+.overContainer {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    align-items: center;
+}
+
+.createButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchFieldContainer {
+    display: flex;
+} 
+
+.searchField {
+    width: 30rem;
+}
+
+.appTitle h1 {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Klee One', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    opacity: 0.8;
+}
+
+.menu p {
+    font-size: 0.8rem;
+    text-align: center;
+    font-family: 'Klee One', sans-serif;
+}
+
+.underContainer {
+    background-color: #D2FADC;
+}
+
+.navMenu {
+    display: flex;
+    font-size: 2rem;
+    justify-content: space-between;
+    padding-left: 12rem;
+    padding-right: 12rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-family: 'Klee One', sans-serif;
+    opacity: 0.6;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.hover {
+    cursor: pointer;
+}
+
+.hover:hover {
+    color: #007bff;
+}
+
+
+.parentContainer {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.backButton {
+    display: flex;
+    font-family: 'Klee One', sans-serif;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    font-size: large;
+    color: #000;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.backButton:hover {
+    background-color: #d5d5d5;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.5);
+}
