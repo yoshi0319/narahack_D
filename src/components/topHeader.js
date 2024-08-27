@@ -14,12 +14,10 @@ import { useRouter } from 'next/router';
 
 export default function TopHeader() {
     const router = useRouter();
-    
+
     // Define the logout handler
     const handleLogout = () => {
-        // Clear the signed-in cookie
         Cookies.remove("signedIn");
-        // Redirect to the home page or login page
         router.push('/Tourist_Board_of_Nara');
     };
 
@@ -27,30 +25,7 @@ export default function TopHeader() {
     const signedIn = Cookies.get("signedIn") === 'true'; 
     console.log("Signed In Status:", signedIn);
 
-    // Define the menu items based on the sign-in status
-    const menu = [
-        {title: 'ホーム', href: '/Tourist_Board_of_Nara', icon: HomeIcon},
-        {title: 'ページ制作', href: '/Tourist_Board_of_Nara/CreatePost', icon: CreateIcon},
-        signedIn
-            ? {title: 'ログアウト', href: '#', icon: LogoutIcon, onClick: handleLogout}
-            : {title: 'ログイン', href: '/Tourist_Board_of_Nara/login', icon: LoginIcon},
-    ];
-
-    const [show, setShow] = useState(false);
     const [openLoginPrompt, setOpenLoginPrompt] = useState(false);
-
-    const handleDraw = () => setShow(!show);
-
-    const [search, setSearch] = useState({
-        search_word: ''
-    });
-
-    const handleSearch = e => {
-        setSearch({
-            ...search,
-            [e.target.name]: e.target.value
-        });
-    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -74,20 +49,52 @@ export default function TopHeader() {
         router.push('/Tourist_Board_of_Nara/login');
         handleCloseLoginPrompt();
     };
+    
+    // Define the menu items based on the sign-in status
+    const menu = [
+        {title: 'ホーム', href: '/Tourist_Board_of_Nara', icon: HomeIcon},
+        {title: 'ページ制作', href: '/Tourist_Board_of_Nara/CreatePost', icon: CreateIcon, onClick: handleCreatePageClick}, // Updated this line
+        signedIn
+            ? {title: 'ログアウト', href: '#', icon: LogoutIcon, onClick: handleLogout}
+            : {title: 'ログイン', href: '/Tourist_Board_of_Nara/login', icon: LoginIcon},
+    ];
 
-    return(
+    const [show, setShow] = useState(false);
+
+    const handleDraw = () => setShow(!show);
+
+    const [search, setSearch] = useState({
+        search_word: ''
+    });
+
+    const handleSearch = e => {
+        setSearch({
+            ...search,
+            [e.target.name]: e.target.value
+        });
+    };
+
+
+    return (
         <>
             <div className={styles.drawerMenu}>
                 <Drawer anchor="left" open={show}>
-                    <Box sx={{ height: '100vh'}} onClick={handleDraw}>
+                    <Box sx={{ height: '100vh' }} onClick={handleDraw}>
                         <List>
-                            {menu.map(obj => {
+                            {menu.map((obj) => {
                                 const Icon = obj.icon;
                                 return (
                                     <ListItem key={obj.title}>
-                                        <ListItemButton 
-                                            href={obj.href} 
-                                            onClick={obj.onClick ? (e) => { e.preventDefault(); obj.onClick(); } : undefined}
+                                        <ListItemButton
+                                            href={obj.href}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                if (obj.onClick) {
+                                                    obj.onClick(e); // This now handles the Create Page click inside the drawer
+                                                } else {
+                                                    router.push(obj.href);
+                                                }
+                                            }}
                                         >
                                             <ListItemIcon><Icon /></ListItemIcon>
                                             <ListItemText primary={obj.title} />
@@ -108,23 +115,21 @@ export default function TopHeader() {
 
             <div className={styles.overContainer}>
                 <div className={styles.createButton}>
-                    <Link href="/Tourist_Board_of_Nara/CreatePost">
-                        <Button
-                            variant="contained"
-                            color="grey"
-                            onClick={handleCreatePageClick}
-                            sx={{
-                                backgroundColor: '#B0B0B0', 
-                                color: '#000',
-                                opacity: 0.9,
-                                fontFamily: "'Klee One', sans-serif",
-                                '&:hover': {
-                                    backgroundColor: '#A0A0A0',
-                                },
-                            }}>
-                            ページ作成
-                        </Button>
-                    </Link>
+                    <Button
+                        variant="contained"
+                        color="grey"
+                        onClick={handleCreatePageClick}
+                        sx={{
+                            backgroundColor: '#B0B0B0', 
+                            color: '#000',
+                            opacity: 0.9,
+                            fontFamily: "'Klee One', sans-serif",
+                            '&:hover': {
+                                backgroundColor: '#A0A0A0',
+                            },
+                        }}>
+                        ページ作成
+                    </Button>
                 </div>
                 <div className={styles.appTitle}>
                     <h1>Tourist Board of Nara</h1>
@@ -193,5 +198,5 @@ export default function TopHeader() {
                 </DialogActions>
             </Dialog>
         </>
-    )
+    );
 }
