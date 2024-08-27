@@ -1,5 +1,5 @@
 import styles from '@/styles/topHeader_css.module.css';
-import { Button, TextField, InputAdornment, ListItemButton, ListItemIcon, ListItemText, ListItem, Drawer, Box, List } from '@mui/material';
+import { Button, TextField, InputAdornment, ListItemButton, ListItemIcon, ListItemText, ListItem, Drawer, Box, List, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 import { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
@@ -37,6 +37,7 @@ export default function TopHeader() {
     ];
 
     const [show, setShow] = useState(false);
+    const [openLoginPrompt, setOpenLoginPrompt] = useState(false);
 
     const handleDraw = () => setShow(!show);
 
@@ -54,6 +55,24 @@ export default function TopHeader() {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(`search_word: ${search.search_word}`);
+    };
+
+    const handleCreatePageClick = (e) => {
+        e.preventDefault();
+        if (!signedIn) {
+            setOpenLoginPrompt(true);
+        } else {
+            router.push('/Tourist_Board_of_Nara/CreatePost');
+        }
+    };
+
+    const handleCloseLoginPrompt = () => {
+        setOpenLoginPrompt(false);
+    };
+
+    const handleLoginRedirect = () => {
+        router.push('/Tourist_Board_of_Nara/login');
+        handleCloseLoginPrompt();
     };
 
     return(
@@ -93,6 +112,7 @@ export default function TopHeader() {
                         <Button
                             variant="contained"
                             color="grey"
+                            onClick={handleCreatePageClick}
                             sx={{
                                 backgroundColor: '#B0B0B0', 
                                 color: '#000',
@@ -100,7 +120,7 @@ export default function TopHeader() {
                                 fontFamily: "'Klee One', sans-serif",
                                 '&:hover': {
                                     backgroundColor: '#A0A0A0',
-                                }
+                                },
                             }}>
                             ページ作成
                         </Button>
@@ -158,6 +178,20 @@ export default function TopHeader() {
                     <ul className={styles.hover}>その他</ul>
                 </nav>     
             </div>
+
+            <Dialog
+                open={openLoginPrompt}
+                onClose={handleCloseLoginPrompt}
+            >
+                <DialogTitle>ログインが必要です</DialogTitle>
+                <DialogContent>
+                    ページを作成するにはログインが必要です。ログインページに移動しますか？
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleCloseLoginPrompt}>キャンセル</Button>
+                    <Button onClick={handleLoginRedirect} color="primary">ログイン</Button>
+                </DialogActions>
+            </Dialog>
         </>
     )
 }
