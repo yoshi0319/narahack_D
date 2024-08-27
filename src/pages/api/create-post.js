@@ -29,6 +29,7 @@ export default async function handler(req, res) {
         const category = fields.category[0];
         const explanation = fields.explanation[0];
         const place = fields.place[0];
+        const userId = fields.userId[0];
 
         //配列なら一番最初のものを、単体ならそのまま入れる
         const mainImage_post = files.mainImage_post ? (Array.isArray(files.mainImage_post) ? files.mainImage_post[0] : files.mainImage_post) : null;
@@ -59,10 +60,29 @@ export default async function handler(req, res) {
                     category: category,
                     explanation: explanation,
                     place: place,
+                    post_user: parseInt(userId),
 
                     ...mainImage_post && { mainImage: mainImageBuffer },
                     ...sub1Image_post && { sub1Image: sub1ImageBuffer },
                     ...sub2Image_post && { sub2Image: sub2ImageBuffer },
+                }
+            })
+    
+            const get = await prisma.post.findFirst({
+                where: { title: title }, // タイトルでフィルタリング
+                orderBy: { create_post_time: 'desc' }, // 最新の投稿を取得
+                select: { id: true } // idのみ取得
+            })
+            if (!get) {
+                return res.status(404).json({ error: '投稿が見つかりません' });
+            }
+
+            const update = await prisma.user.update({
+                where: { id: parseInt(userId) },
+                data: {
+                    posts: {
+                        push: get.id // posts配列に投稿のIDを追加
+                    }
                 }
             })
             console.log('終わったわよ');

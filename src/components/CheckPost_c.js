@@ -3,6 +3,8 @@ import styles from '@/styles/checkPost_css.module.css';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { Button } from '@mui/material';
 
+import Cookies from 'js-cookie';
+
 export default function CheckPost() {
     const [postTitle, setPostTitle] = useState('');
     const [postCategory, setPostCategory] = useState('');
@@ -27,18 +29,20 @@ export default function CheckPost() {
                 const imageBlob = await fetch(mainImage).then(r => r.blob());
                 console.log('Image Blob:', imageBlob);
             }
+
+            const userId = Cookies.get("userId");
+            console.log("userId:", userId);
             
             // formData.append('link_User_id', '1');
             formData.append('title', postTitle);
             formData.append('category', postCategory);
             formData.append('explanation', postExplanation);
             formData.append('place', postPlace);
+            formData.append('userId', userId);
     
             if (mainImage) formData.append('mainImage_post', await fetch(mainImage).then(r => r.blob()));
             if (subImage1) formData.append('sub1Image_post', await fetch(subImage1).then(r => r.blob()));
             if (subImage2) formData.append('sub2Image_post', await fetch(subImage2).then(r => r.blob()));
-
-            
     
             for (let [key, value] of formData.entries()) {
                 console.log(`${key}: ${value}`);

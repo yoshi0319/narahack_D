@@ -23,7 +23,7 @@ export default async function handler(req, res) {
 
     try {
         // データベースからコードを検索
-        const user = await prisma.user.findUnique({
+        const user = await prisma.user.findFirst({
             where: { code: code }
         });
 
@@ -31,7 +31,7 @@ export default async function handler(req, res) {
 
         if (user) {
             // コードが一致するユーザーが見つかった場合
-            return res.status(200).json({ message: 'User authenticated successfully' });
+            return res.status(200).json({ message: 'User authenticated successfully', userId: user.id });
         } else {
             // コードが一致するユーザーが見つからなかった場合
             return res.status(401).json({ error: 'Authentication failed' });

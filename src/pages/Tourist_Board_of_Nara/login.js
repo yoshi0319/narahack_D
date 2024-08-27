@@ -27,10 +27,14 @@ const Login_user = async (code, router) => {
 
       
       Cookies.set("signedIn", "true");
+      Cookies.set("userId", result.userId);
 
       const signedIn = Cookies.get("signedIn"); // クッキーからsignedInの値を取得
       console.log("Signed In Status:", signedIn); // 取得した値をコンソールに表示
-      router.replace("/");
+      const userId = Cookies.get("userId");
+      console.log("userId:", userId);
+      
+      router.replace("/Tourist_Board_of_Nara");
 
     } else {
       console.error('ログイン失敗したわよ。なんで失敗したか明日までに考えてきなさいよね!', result.error);
