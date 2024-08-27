@@ -20,18 +20,23 @@ export default function TopHeader() {
 
     useEffect(() => {
         const showLoginSuccess = Cookies.get("showLoginSuccess");
+        const showLogoutSuccess = Cookies.get("showLogoutSuccess");
+        
         if (showLoginSuccess === 'true') {
             setSnackbarMessage('ログインに成功しました');
             setOpenSnackbar(true);
             Cookies.remove("showLoginSuccess");
+        } else if (showLogoutSuccess === 'true') {
+            setSnackbarMessage('ログアウトしました');
+            setOpenSnackbar(true);
+            Cookies.remove("showLogoutSuccess");
         }
     }, []);
 
 
     const handleLogout = () => {
         Cookies.remove("signedIn");
-        setSnackbarMessage('ログアウトしました');
-        setOpenSnackbar(true);
+        Cookies.set("showLogoutSuccess", 'true');
         router.push('/Tourist_Board_of_Nara');
     };
 
