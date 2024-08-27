@@ -48,25 +48,25 @@
     const [openPopup, setOpenPopup] = useState(true);
 
     useEffect(() => {
-      // localStorageからデータを取得
-      setTitle(localStorage.getItem('postTitle'));
-      setCategory(localStorage.getItem('postCategory'));
-      setExplanation(localStorage.getItem('postExplanation'));
-      setPlace(localStorage.getItem('postPlace'));
-      setMainImage(localStorage.getItem('mainImage'));
-      setSubImage1(localStorage.getItem('subImage1'));
-      setSubImage2(localStorage.getItem('subImage2'));
+      // sessionStorageからデータを取得
+      setTitle(sessionStorage.getItem('postTitle'));
+      setCategory(sessionStorage.getItem('postCategory'));
+      setExplanation(sessionStorage.getItem('postExplanation'));
+      setPlace(sessionStorage.getItem('postPlace'));
+      setMainImage(sessionStorage.getItem('mainImage'));
+      setSubImage1(sessionStorage.getItem('subImage1'));
+      setSubImage2(sessionStorage.getItem('subImage2'));
     }, []);
     
     useEffect(() => {
-      // localStorageからデータを取得
-      const storedTitle = localStorage.getItem('postTitle');
-      const storedCategory = localStorage.getItem('postCategory');
-      const storedExplanation = localStorage.getItem('postExplanation');
-      const storedPlace = localStorage.getItem('postPlace');
-      const storedMainImage = localStorage.getItem('mainImage');
-      const storedSubImage1 = localStorage.getItem('subImage1');
-      const storedSubImage2 = localStorage.getItem('subImage2');
+      // sessionStorageからデータを取得
+      const storedTitle = sessionStorage.getItem('postTitle');
+      const storedCategory = sessionStorage.getItem('postCategory');
+      const storedExplanation = sessionStorage.getItem('postExplanation');
+      const storedPlace = sessionStorage.getItem('postPlace');
+      const storedMainImage = sessionStorage.getItem('mainImage');
+      const storedSubImage1 = sessionStorage.getItem('subImage1');
+      const storedSubImage2 = sessionStorage.getItem('subImage2');
     
       setTitle(storedTitle || '');
       setCategory(storedCategory || temples);
@@ -219,14 +219,14 @@
     if (!validateForm()) {
       return;
     } else {
-    // テキストデータと画像データをlocalStorageに保存
-    localStorage.setItem('postTitle', title); // title_nameではなく、titleをそのまま保存
-    localStorage.setItem('postCategory', category); // category_nameではなく、categoryをそのまま保存
-    localStorage.setItem('postExplanation', explanation); // explanation_nameではなく、explanationをそのまま保存
-    localStorage.setItem('postPlace', place); // place_nameではなく、placeをそのまま保存
-    localStorage.setItem('mainImage', mainImage);
-    localStorage.setItem('subImage1', subImage1);
-    localStorage.setItem('subImage2', subImage2);
+    // テキストデータと画像データをsessionStorageに保存
+    sessionStorage.setItem('postTitle', title); // title_nameではなく、titleをそのまま保存
+    sessionStorage.setItem('postCategory', category); // category_nameではなく、categoryをそのまま保存
+    sessionStorage.setItem('postExplanation', explanation); // explanation_nameではなく、explanationをそのまま保存
+    sessionStorage.setItem('postPlace', place); // place_nameではなく、placeをそのまま保存
+    sessionStorage.setItem('mainImage', mainImage);
+    sessionStorage.setItem('subImage1', subImage1);
+    sessionStorage.setItem('subImage2', subImage2);
 
     // ページ遷移
     router.push("/Tourist_Board_of_Nara/CreatePost/checkPost");

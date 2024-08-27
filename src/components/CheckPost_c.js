@@ -58,20 +58,22 @@ export default function CheckPost() {
     
             const result = await response.json();
             console.log(result);
+
+
         } catch (error) {
             console.error('Error:', error);
         }
     };
 
     useEffect(() => {
-        // localStorageからデータを取得
-        setPostTitle(localStorage.getItem('postTitle'));
-        setPostCategory(localStorage.getItem('postCategory'));
-        setPostExplanation(localStorage.getItem('postExplanation'));
-        setPostPlace(localStorage.getItem('postPlace'));
-        setMainImage(localStorage.getItem('mainImage'));
-        setSubImage1(localStorage.getItem('subImage1'));
-        setSubImage2(localStorage.getItem('subImage2'));
+        // sessionStorageからデータを取得
+        setPostTitle(sessionStorage.getItem('postTitle'));
+        setPostCategory(sessionStorage.getItem('postCategory'));
+        setPostExplanation(sessionStorage.getItem('postExplanation'));
+        setPostPlace(sessionStorage.getItem('postPlace'));
+        setMainImage(sessionStorage.getItem('mainImage'));
+        setSubImage1(sessionStorage.getItem('subImage1'));
+        setSubImage2(sessionStorage.getItem('subImage2'));
     }, []);
 
     useEffect(() => {
@@ -102,16 +104,6 @@ export default function CheckPost() {
     };
 
     const submitPost = () => {
-        // テキストデータと画像データをlocalStorageに保存
-        localStorage.setItem('postTitle', postTitle); // title_nameではなく、titleをそのまま保存
-        localStorage.setItem('postCategory', postCategory); // category_nameではなく、categoryをそのまま保存
-        localStorage.setItem('postExplanation', postExplanation); // explanation_nameではなく、explanationをそのまま保存
-        localStorage.setItem('postPlace', postPlace); // place_nameではなく、placeをそのまま保存
-        localStorage.setItem('mainImage', mainImage);
-        localStorage.setItem('subImage1', subImage1);
-        localStorage.setItem('subImage2', subImage2);
-    
-        // ページ遷移
         router.push("/Tourist_Board_of_Nara/CreatePost");
       };
 
