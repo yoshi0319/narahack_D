@@ -182,6 +182,12 @@
     font-family: 'Klee One', cursive;
     font-size: 1.3rem;
     padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+.popupbutton_cancel:hover {
+    background-color: #fff;
 }
 
 .popupbutton_next {
@@ -191,4 +197,10 @@
     font-family: 'Klee One', cursive;
     font-size: 1.3rem;
     padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
 }
+
+.popupbutton_next:hover {
+    background-color: #fff;
+}   

@@ -120,8 +120,8 @@ export default function TopHeader() {
         <Dialog open={openLoginPrompt} onClose={handleCloseLoginPrompt} sx={{ '& .MuiPaper-root': { borderRadius: '16px' } }}>
             <DialogContent className={styles.popuplist}>ページを作成するにはログインが必要です。<br/>ログインページに移動しますか？</DialogContent>
             <DialogActions className={styles.dialogActionsCentered}>
-                <Button className={styles.popupbutton_cancel} onClick={handleCloseLoginPrompt}>キャンセル</Button>
-                <Button className={styles.popupbutton_next} onClick={handleLoginRedirect} color="primary">ログイン</Button>
+                <button className={styles.popupbutton_cancel} onClick={handleCloseLoginPrompt}>キャンセル</button>
+                <button className={styles.popupbutton_next} onClick={handleLoginRedirect}>ログイン</button>
             </DialogActions>
         </Dialog>
         

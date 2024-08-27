@@ -5,7 +5,7 @@ const nextConfig = {
     return [
       {
         source: '/',
-        destination: '/Tourist_Board_of_Nara/',
+        destination: '/Tourist_Board_of_Nara/temples',
         permanent: true, // 永続的なリダイレクト（301リダイレクト）
       },
     ];
