@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from '@/styles/checkPost_css.module.css';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { Button } from '@mui/material';
+import Link from 'next/link';
 
 export default function CheckPost() {
     const [postTitle, setPostTitle] = useState('');
@@ -97,20 +98,22 @@ export default function CheckPost() {
                         </Button>
                     </div>
                     <div className={styles.createButton}>
-                        <Button
-                            variant="contained"
-                            color="grey"
-                            sx={{
-                                backgroundColor: '#9CD8AB',
-                                color: '#000',
-                                opacity: 0.9,
-                                fontFamily: "'Klee One', sans-serif",
-                                '&:hover': {
-                                    backgroundColor: '#A0A0A0',
-                                }
-                            }}>
-                            ページ作成
-                        </Button>
+                        <Link href="/Tourist_Board_of_Nara">
+                            <Button
+                                variant="contained"
+                                color="grey"
+                                sx={{
+                                    backgroundColor: '#9CD8AB',
+                                    color: '#000',
+                                    opacity: 0.9,
+                                    fontFamily: "'Klee One', sans-serif",
+                                    '&:hover': {
+                                        backgroundColor: '#A0A0A0',
+                                    }
+                                }}>
+                                ページ作成
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </div>
