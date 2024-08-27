@@ -8,6 +8,9 @@ import { useState } from 'react';
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 
+const now = new Date();
+const expires = new Date(now.getTime() + 2 * 60 * 60 * 1000); // 2時間をミリ秒に変換
+
 
 const Login_user = async (code, router) => {
   try{
@@ -23,17 +26,21 @@ const Login_user = async (code, router) => {
     const result = await response.json();
     if (response.ok) {
       console.log('ログイン成功したわよ:', result);
-      // 成功時の処理（リダイレクトなど）
 
-      
+      // サイトを閉じると失効
       Cookies.set("signedIn", "true");
       Cookies.set("userId", result.userId);
+      // クッキーを設定、２時間経つと失効
+      // Cookies.set("signedIn", "true", { expires });
+      // Cookies.set("userId", result.userId, { expires });
 
-      const signedIn = Cookies.get("signedIn"); // クッキーからsignedInの値を取得
-      console.log("Signed In Status:", signedIn); // 取得した値をコンソールに表示
+      //クッキーの情報を確認
+      const signedIn = Cookies.get("signedIn"); 
+      console.log("Signed In Status:", signedIn);
       const userId = Cookies.get("userId");
       console.log("userId:", userId);
       
+      //リダイレクト
       router.replace("/Tourist_Board_of_Nara");
 
     } else {
