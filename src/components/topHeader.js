@@ -12,9 +12,9 @@ import Link from 'next/link';
 export default function topHeader() {
 
     const menu = [
-        {title: 'ホーム', href: 'home', icon: HomeIcon},
-        {title: 'ページ制作', href: 'pegeCreate', icon: CreateIcon},
-        {title: 'ログイン', href: 'login', icon: LoginIcon},
+        {title: 'ホーム', href: '/Tourist_Board_of_Nara', icon: HomeIcon},
+        {title: 'ページ制作', href: '/Tourist_Board_of_Nara/CreatePost', icon: CreateIcon},
+        {title: 'ログイン', href: '/Tourist_Board_of_Nara/login', icon: LoginIcon},
         // ユーザー状態に応じてログアウトボタンに変化
         //{title: 'ログアウト', href: 'logout', icon: LogoutIcon},
     ];
@@ -98,7 +98,6 @@ export default function topHeader() {
                                 value={search.search_word}
                                 onChange={handleSearch}
                                 label="検索"
-                                
                                 rows={1}
                                 className={styles.searchField}
                                 InputProps={{

@@ -1,4 +1,3 @@
-// CheckPost.js
 import { useEffect, useState } from 'react';
 import styles from '@/styles/checkPost_css.module.css';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -24,6 +23,33 @@ export default function CheckPost() {
         setSubImage2(localStorage.getItem('subImage2'));
     }, []);
 
+    useEffect(() => {
+        // postCategoryが更新されたときにカテゴリ変換関数を呼び出し
+        conversionCategory(postCategory);
+    }, [postCategory]);
+
+    const conversionCategory = (category) => {
+        switch (category) {
+            case 'temples':
+                setPostCategory('寺院');
+                break;
+            case 'shrines':
+                setPostCategory('神社');
+                break;
+            case 'restaurants':
+                setPostCategory('飲食店');
+                break;
+            case 'souvenirs':
+                setPostCategory('お土産');
+                break;
+            case 'museums':
+                setPostCategory('資料館');
+                break;
+            case 'others':
+                setPostCategory('その他');
+        }
+    };
+
     return (
         <>
             <div className={styles.mainImage}>
@@ -46,7 +72,7 @@ export default function CheckPost() {
             <div className={styles.slideContainer}>
                 <div className={styles.imageWrapper}><img src={subImage1} alt="サブ画像１" /></div>
                 <div className={styles.imageWrapper}><img src={mainImage} alt="メイン画像" /></div>
-                <div className={styles.imageWrapper}><img src={subImage2} alt="サブ画像１" /></div>
+                <div className={styles.imageWrapper}><img src={subImage2} alt="サブ画像２" /></div>
             </div>
             <div>
                 <div className={styles.placeContainer}>
@@ -59,7 +85,7 @@ export default function CheckPost() {
                             variant="contained"
                             color="grey"
                             sx={{
-                                backgroundColor: '#B0B0B0', 
+                                backgroundColor: '#B0B0B0',
                                 color: '#000',
                                 opacity: 0.9,
                                 fontFamily: "'Klee One', sans-serif",
@@ -75,7 +101,7 @@ export default function CheckPost() {
                             variant="contained"
                             color="grey"
                             sx={{
-                                backgroundColor: '#9CD8AB', 
+                                backgroundColor: '#9CD8AB',
                                 color: '#000',
                                 opacity: 0.9,
                                 fontFamily: "'Klee One', sans-serif",
@@ -89,15 +115,5 @@ export default function CheckPost() {
                 </div>
             </div>
         </>
-        // <div>
-        //     <h2>確認ページ</h2>
-        //     <p>タイトル: {postTitle}</p>
-        //     <p>カテゴリー: {postCategory}</p>
-        //     <p>説明: {postExplanation}</p>
-        //     <p>住所: {postPlace}</p>
-        //     {mainImage && <img src={mainImage} alt="メイン画像" />}
-        //     {subImage1 && <img src={subImage1} alt="サブ画像1" />}
-        //     {subImage2 && <img src={subImage2} alt="サブ画像2" />}
-        // </div>
     );
 }
