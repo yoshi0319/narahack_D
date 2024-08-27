@@ -14,9 +14,9 @@ export default function Detail( post ) {
     console.log({ data });
     const { title, category, explanation, place, mainImage, sub1Image, sub2Image } = data;
 
-    const mainImageSrc = mainImage ? `data:image/jpeg;base64,${mainImage}` : '';
-    const sub1ImageSrc = sub1Image ? `data:image/jpeg;base64,${sub1Image}` : '';
-    const sub2ImageSrc = sub2Image ? `data:image/jpeg;base64,${sub2Image}` : '';
+    const mainImageSrc = mainImage;
+    const sub1ImageSrc = sub1Image;
+    const sub2ImageSrc = sub2Image;
 
     return (
         <>

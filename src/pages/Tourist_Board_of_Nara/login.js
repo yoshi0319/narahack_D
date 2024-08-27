@@ -41,7 +41,7 @@ const Login_user = async (code, router) => {
       console.log("userId:", userId);
       
       //リダイレクト
-      router.replace("/Tourist_Board_of_Nara");
+      router.replace("/Tourist_Board_of_Nara/temples");
 
     } else {
       console.error('ログイン失敗したわよ。なんで失敗したか明日までに考えてきなさいよね!', result.error);

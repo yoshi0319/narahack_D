@@ -13,8 +13,8 @@ export default function topHeader() {
 
     const menu = [
         {title: 'ホーム', href: '/Tourist_Board_of_Nara', icon: HomeIcon},
-        {title: 'ページ制作', href: '/Tourist_Board_of_Nara/CreatePost', icon: CreateIcon},
-        {title: 'ログイン', href: '/Tourist_Board_of_Nara/login', icon: LoginIcon},
+        {title: 'ページ制作', href: '/CreatePost', icon: CreateIcon},
+        {title: 'ログイン', href: '/login', icon: LoginIcon},
         // ユーザー状態に応じてログアウトボタンに変化
         //{title: 'ログアウト', href: 'logout', icon: LogoutIcon},
     ];

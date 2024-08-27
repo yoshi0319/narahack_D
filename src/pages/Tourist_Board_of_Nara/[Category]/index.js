@@ -1,21 +1,41 @@
 import PostCard from "@/components/PostCard_c";
 import TopHeader from "@/components/topHeader";
 
-import { getDetail } from "@/pages/api/getCategory_post";
+import { get_posts } from "@/pages/api/getCategory_post";
+
+const conversionCategory = (category) => {
+    switch (category) {
+        case 'temples':
+            return ('寺院');
+        case 'shrines':
+            return('神社');
+        case 'restaurants':
+            return ('飲食店');
+        case 'souvenirs':
+            return ('お土産');
+        case 'museums':
+            return ('資料館');
+        case 'others':
+            return ('その他');
+    }
+};
 
 export async function getServerSideProps(context) {
-    const { id } = context.query;
-    console.log({id});
+    const { Category } = context.query;
 
-    const response = await getDetail(id);
+    //データベースのカテゴリーに合うように日本語に変換
+    const category = conversionCategory(Category);
+    console.log(`カテゴリー: ${category}`);
+
+    const response = await get_posts(category);
 
     console.log('いけたわよ');
 
-    const post = response;
+    const posts = response;
 
     return {
         props: {
-            post,
+            posts,
         },
     };
 }
@@ -24,7 +44,7 @@ export default function Top (props) {
     return(
         <>
             <TopHeader />
-            <PostCard props={props.post}/>
+            <PostCard props={props.posts}/>
         </>
     );
 }
