@@ -44,13 +44,12 @@ export default function Detail() {
                     <p>住所：{address}</p>
                 </div>
             </div>
-                <div className={styles.parentContainer}>
-                    <Button href="/Tourist_Board_of_Nara" className={styles.backButton} >
-                        <ArrowBackIcon />
-                        Topへ戻る
-                    </Button>
-
-                </div>        
+            <div className={styles.parentContainer}>
+                <Button href="/Tourist_Board_of_Nara" className={styles.backButton} >
+                    <ArrowBackIcon />
+                    Topへ戻る
+                </Button>
+            </div>        
         </>
     );
 }

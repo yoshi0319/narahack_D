@@ -19,39 +19,6 @@
     },
   }));
 
-
-  // const postData_user = async (title, category, explanation, place) => { // ユーザーが入力したデータを受け取る
-  //   const postData = {
-  //     data: {
-  //       title,
-  //       category,
-  //       explanation,
-  //       place,
-  //     },
-  //   };
-  //     try {
-  //       const response = await fetch('/api/createPost', {
-  //         method: 'POST',
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //         },
-  //         body: JSON.stringify(postData),
-  //       });      
-        
-  //       console.log('Post data:', postData);
-
-  //       if (response.ok) {
-  //         const result = await response.json();
-  //         console.log('Post created successfully:', result);
-  //       } else {
-  //         const errorData = await response.json(); // エラーメッセージを取得
-  //         console.error('Failed to create post:', errorData.error); // エラーメッセージを出力
-  //       }      
-  //     } catch (error) {
-  //       console.error('Error submitting post:', error);
-  //     }
-  //   };
-
   export default function CreatePost() {
     const router = useRouter();
 
@@ -174,6 +141,23 @@
     //   };
     // };
 
+
+    const resetMainImage = () => {
+      setMainImage(null);
+      setImageSelectedMain(false);
+    };
+  
+    const resetSubImage1 = () => {
+      setSubImage1(null);
+      setImageSelectedSub1(false);
+    };
+  
+    const resetSubImage2 = () => {
+      setSubImage2(null);
+      setImageSelectedSub2(false);
+    };
+
+
   const submitPost = () => {
     if (!validateForm()) {
       return;
@@ -250,6 +234,7 @@
                           {errors.mainImage && <p className={styles.errorText}>{errors.mainImage}</p>}
                       </div>
                   ) : (
+                    <>
                       <div className={styles.imageDisplayContainer}>
                           <img
                               src={mainImage}
@@ -257,6 +242,10 @@
                               className={styles.selectedImage}
                           />
                       </div>
+                      <div className={styles.resetMainImage}>
+                      <Button onClick={resetMainImage} variant="outlined" color="error">画像を再選択</Button>
+                      </div>
+                    </>
                   )}
               </div>
               <div className={styles.titleFieldContainer}>
@@ -331,13 +320,16 @@
                               {errors.subImage1 && <p className={styles.errorText}>{errors.subImage1}</p>}
                           </div>
                       ) : (
-                          <div className={`${styles.imageDisplayContainer} ${styles.imageWrapper}`}>
-                              <img
-                                  src={subImage1}
-                                  alt="選択された画像"
-                                  className={styles.selectedImage}
-                              />
-                          </div>
+                          <>
+                            <div className={`${styles.imageDisplayContainer} ${styles.imageWrapper}`}>
+                                <img
+                                    src={subImage1}
+                                    alt="選択された画像"
+                                    className={styles.selectedImage}
+                                />
+                            </div>
+                            <Button onClick={resetSubImage1} variant="outlined" color="error" className={styles.resetButton}>画像を再選択</Button>
+                          </>
                       )}
                   </div>
                   <div>
@@ -355,6 +347,7 @@
                               {errors.mainImage && <p className={styles.errorText}>{errors.mainImage}</p>}
                           </div>
                       ) : (
+                        <>
                           <div className={`${styles.imageDisplayContainer} ${styles.imageWrapper}`}>
                               <img
                                   src={mainImage}
@@ -362,6 +355,8 @@
                                   className={styles.selectedImage}
                               />
                           </div>
+                          <Button onClick={resetMainImage} variant="outlined" color="error" className={styles.resetButton}>画像を再選択</Button>
+                        </>
                       )}
                   </div>
                   <div>
@@ -379,6 +374,7 @@
                               {errors.subImage2 && <p className={styles.errorText}>{errors.subImage2}</p>}
                           </div>
                       ) : (
+                        <>
                           <div className={`${styles.imageDisplayContainer} ${styles.imageWrapper}`}>
                               <img
                                   src={subImage2}
@@ -386,6 +382,8 @@
                                   className={styles.selectedImage}
                               />
                           </div>
+                          <Button onClick={resetSubImage2} variant="outlined" color="error" className={styles.resetButton}>画像を再選択</Button>
+                        </>
                       )}
                   </div>
               </div>
