@@ -260,17 +260,17 @@
               <div>
                   {!imageSelectedMain ? (
                       <div className={styles.default}>
-                          <div className={styles.inputImageContainer}>
-                              <p className={styles.labelText}>画像ファイルを選択してください</p>
-                              <input type="file"
-                                  accept="image/*"
-                                  id="mainImage"
-                                  name="mainImage"
-                                  onChange={onFileInputChange}
-                                  className="pl-4" />
-                          </div>
-                          {errors.mainImage && <p className={styles.errorText}>{errors.mainImage}</p>}
+                      <div className={styles.inputImageContainer}>
+                        <p className={styles.labelText}>画像ファイルを選択してください</p>
+                        <input type="file"
+                          accept="image/*"
+                          id="mainImage"
+                          name="mainImage"
+                          onChange={onFileInputChange}
+                          className="pl-4" />
+                        {errors.mainImage && <p className={styles.errorText}>{errors.mainImage}</p>}
                       </div>
+                    </div>
                   ) : (
                       <div className={styles.imageDisplayContainer}>
                           <img
@@ -341,17 +341,17 @@
                   <div>
                       {!imageSelectedSub1 ? (
                           <div className={styles.default}>
-                              <div className={styles.inputImageContainer}>
-                                  <p className={styles.labelText}>画像ファイルを選択してください</p>
-                                  <input type="file"
-                                      accept="image/*"
-                                      id="subImage1"
-                                      name="subImage1"
-                                      onChange={onFileInputChangeSub1}
-                                      className="pl-4" />
-                              </div>
-                              {errors.subImage1 && <p className={styles.errorText}>{errors.subImage1}</p>}
+                          <div className={styles.inputImageContainer}>
+                            <p className={styles.labelText}>画像ファイルを選択してください</p>
+                            <input type="file"
+                              accept="image/*"
+                              id="subImage1"
+                              name="subImage1"
+                              onChange={onFileInputChangeSub1}
+                              className="pl-4" />
+                            {errors.subImage1 && <p className={styles.errorText}>{errors.subImage1}</p>}
                           </div>
+                        </div>
                       ) : (
                           <div className={`${styles.imageDisplayContainer} ${styles.imageWrapper}`}>
                               <img
@@ -365,17 +365,17 @@
                   <div>
                       {!imageSelectedMain ? (
                           <div className={styles.default}>
-                              <div className={styles.inputImageContainer}>
-                                  <p className={styles.labelText}>画像ファイルを選択してください</p>
-                                  <input type="file"
-                                      accept="image/*"
-                                      id="mainImage2"
-                                      name="mainImage2"
-                                      onChange={onFileInputChange}
-                                      className="pl-4" />
-                              </div>
-                              {errors.mainImage && <p className={styles.errorText}>{errors.mainImage}</p>}
+                          <div className={styles.inputImageContainer}>
+                            <p className={styles.labelText}>画像ファイルを選択してください</p>
+                            <input type="file"
+                              accept="image/*"
+                              id="mainImage2"
+                              name="mainImage2"
+                              onChange={onFileInputChange}
+                              className="pl-4" />
+                            {errors.mainImage && <p className={styles.errorText}>{errors.mainImage}</p>}
                           </div>
+                        </div>
                       ) : (
                           <div className={`${styles.imageDisplayContainer} ${styles.imageWrapper}`}>
                               <img
@@ -389,17 +389,17 @@
                   <div>
                       {!imageSelectedSub2 ? (
                           <div className={styles.default}>
-                              <div className={styles.inputImageContainer}>
-                                  <p className={styles.labelText}>画像ファイルを選択してください</p>
-                                  <input type="file"
-                                      accept="image/*"
-                                      id="subImage2"
-                                      name="subImage2"
-                                      onChange={onFileInputChangeSub2}
-                                      className="pl-4" />
-                              </div>
-                              {errors.subImage2 && <p className={styles.errorText}>{errors.subImage2}</p>}
+                          <div className={styles.inputImageContainer}>
+                            <p className={styles.labelText}>画像ファイルを選択してください</p>
+                            <input type="file"
+                              accept="image/*"
+                              id="subImage2"
+                              name="subImage2"
+                              onChange={onFileInputChangeSub2}
+                              className="pl-4" />
+                            {errors.subImage2 && <p className={styles.errorText}>{errors.subImage2}</p>}
                           </div>
+                        </div>
                       ) : (
                           <div className={`${styles.imageDisplayContainer} ${styles.imageWrapper}`}>
                               <img
