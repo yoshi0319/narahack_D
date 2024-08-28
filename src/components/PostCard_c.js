@@ -3,38 +3,47 @@ import { Button } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { useRouter } from "next/router";
 
-// export default function PostCard(props) {
-    // console.log("みょーん");
-    // console.log(posts);
-    // console.log(first.title);
+import { 
+    createtimePost_sort, 
+    viewPost_sort, 
+    randomPost_sort, 
+    trendPost_sort 
+} from "@/components/sort-functions"; // ソート関数をインポート
 
-    // const [posts, setPosts] = useState(props.props)
-
-    // const sortCards = (type, posts) => {
-    //     switch (type) {
-    //         case '登録順':
-    //             posts = createtimePost_sort(posts);
-    //             break;
-    //         case '閲覧数順':
-    //             posts = viewPost_sort(posts);
-    //             break;
-    //         case 'ランダム':
-    //             posts = randamPost_sort(posts);
-    //             break;
-    //         case '注目順':
-    //             posts = trendPost_sort(posts);
-    //             break;
-    // }
-
-    // return(
 export default function PostCard({props, cate}) {
+    console.log(posts);
+    console.log("みょーん");
     const router = useRouter();
     const caten = cate;
     console.log(`Topページのカテゴリー:${caten}`);
     
     const [counter, setCounter] = useState(0);
+    const [posts, setPosts] = useState(posts || []);
+    const [select, setSelect] = useState("");
+    console.log(`テストです:${posts}`);
 
-    const content = props || []; // デフォルト値として空の配列を設定
+    // const content = posts || []; // デフォルト値として空の配列を設定
+
+    useEffect(() => {
+        if (props && Array.isArray(props)) {
+            let sortedPosts = [...props];
+            switch (select) {
+                case '登録順':
+                    sortedPosts = createtimePost_sort(sortedPosts);
+                    break;
+                case '閲覧数順':
+                    sortedPosts = viewPost_sort(sortedPosts);
+                    break;
+                case 'ランダム':
+                    sortedPosts = randomPost_sort(sortedPosts);
+                    break;
+                case '注目順':
+                    sortedPosts = trendPost_sort(sortedPosts);
+                    break;
+            }
+            setPosts(sortedPosts);
+        }
+    }, [select]);
 
     const test = (id, caten) => {
         router.push(`/Tourist_Board_of_Nara/${caten}/Detail/${id}/`);
