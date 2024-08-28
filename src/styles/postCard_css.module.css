@@ -1,10 +1,13 @@
 .container {
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     text-decoration: none;
     color: #000000;
     gap: 1rem;
+    margin-left: 15%;
+    margin-right: 15%;
 }
+
 
 .postCard {
     width: 40vh;
@@ -44,6 +47,7 @@
 }
 
 .postCard p {
+    font-size: 1rem;
     margin-top: 1.3rem;
     text-align: left;
     line-height: 1.5em;
@@ -53,3 +57,10 @@
     white-space: normal;
 }
 
+.row {
+    display: flex;
+}
+
+/* .column {
+    max-width: 30%;
+} */

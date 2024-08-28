@@ -29,7 +29,7 @@ import { useState, useEffect } from 'react';
 export default function PostCard(props) {
     const [counter, setCounter] = useState(0);
 
-    const content = props.props;
+    const content = props.props || []; // デフォルト値として空の配列を設定
 
     useEffect(() => {
         if (content.length > 0) {
@@ -37,21 +37,42 @@ export default function PostCard(props) {
         }
     }, [content]);
 
+    // アイテムを3つごとにグループ化する関数
+    const chunkArray = (array, size) => {
+        const result = [];
+        for (let i = 0; i < array.length; i += size) {
+            result.push(array.slice(i, i + size));
+        }
+        return result;
+    };
+
+    const groupedContent = chunkArray(content, 3);
+
     return (
         <>
+        <div className={styles.article}>
             <div className={styles.container}>
-                {content.map(item => (
-                    <Button key={item.id} href="/Tourist_Board_of_Nara/Detail">
-                        <div className={styles.postCard}>
-                            <img src={item.mainImage} alt="参考画像" />
-                            <h2>{item.title}</h2>
-                            <hr />
-                            <p>{item.explanation}</p>
+                {groupedContent.length > 0 ? (
+                    groupedContent.map((group, groupIndex) => (
+                        <div key={groupIndex} className={styles.row}>
+                            {group.map(item => (
+                                <Button key={item.id} href="/Tourist_Board_of_Nara/Detail" className={styles.column}>
+                                    <div className={styles.postCard}>
+                                        <img src={item.mainImage} alt="参考画像" />
+                                        <h2>{item.title}</h2>
+                                        <hr />
+                                        <p>{item.explanation}</p>
+                                    </div>
+                                </Button>
+                            ))}
                         </div>
-                    </Button>
-                ))}
+                    ))
+                ) : (
+                    <p>No content available</p> // コンテンツがない場合の表示
+                )}
             </div>
-            <p>Counter: {counter}</p>
+            {/* <p>Counter: {counter}</p> 合計要素数を数えるために置いてます */}
+            </div>
         </>
     );
 }
