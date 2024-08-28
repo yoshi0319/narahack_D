@@ -207,10 +207,14 @@ export default function TopHeader() {
                                 color="grey"
                                 onClick={handleCreatePageClick}
                                 sx={{
+                                    width: '10rem',  // ボタンの幅
+                                    height: '4rem',  // ボタンの高さ
                                     backgroundColor: '#B0B0B0',
                                     color: '#000',
                                     opacity: 0.9,
                                     fontFamily: "'Klee One', sans-serif",
+                                    fontSize: '1.3rem',  // フォントサイズを大きくする
+                                    padding: '10px 20px',  // 内側の余白を設定
                                     '&:hover': {
                                         backgroundColor: '#A0A0A0',
                                     }
