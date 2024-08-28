@@ -47,16 +47,16 @@
 
     const [openPopup, setOpenPopup] = useState(true);
 
-    useEffect(() => {
-      // localStorageからデータを取得
-      setTitle(localStorage.getItem('postTitle'));
-      setCategory(localStorage.getItem('postCategory'));
-      setExplanation(localStorage.getItem('postExplanation'));
-      setPlace(localStorage.getItem('postPlace'));
-      setMainImage(localStorage.getItem('mainImage'));
-      setSubImage1(localStorage.getItem('subImage1'));
-      setSubImage2(localStorage.getItem('subImage2'));
-    }, []);
+    // useEffect(() => {
+    //   // localStorageからデータを取得
+    //   setTitle(localStorage.getItem('postTitle'));
+    //   setCategory(localStorage.getItem('postCategory'));
+    //   setExplanation(localStorage.getItem('postExplanation'));
+    //   setPlace(localStorage.getItem('postPlace'));
+    //   setMainImage(localStorage.getItem('mainImage'));
+    //   setSubImage1(localStorage.getItem('subImage1'));
+    //   setSubImage2(localStorage.getItem('subImage2'));
+    // }, []);
     
     useEffect(() => {
       // localStorageからデータを取得

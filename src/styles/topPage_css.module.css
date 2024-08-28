@@ -1,0 +1,13 @@
+/* styles.css または .module.css ファイルでの設定 */
+
+.topHeader {
+    position: relative; /* または absolute/fixed */
+    z-index: 1000; /* 他の要素よりも高い値を設定 */
+    padding-bottom: 250px;
+}
+
+.postCard {
+    position: relative; /* または absolute/fixed */
+    z-index: 500; /* TopHeader よりも低い値を設定 */
+
+}

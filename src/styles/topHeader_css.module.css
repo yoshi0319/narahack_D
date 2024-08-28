@@ -6,6 +6,7 @@
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     align-items: center;
+    background-color: #FFF9F5;
 }
 
 .createButton {
@@ -39,6 +40,7 @@
 
 .underContainer {
     background-color: #D2FADC;
+    width: 100vw;
 }
 
 .navMenu {
@@ -47,8 +49,8 @@
     justify-content: space-between;
     padding-left: 12rem;
     padding-right: 12rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
     font-family: 'Klee One', sans-serif;
     opacity: 0.6;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
@@ -86,4 +88,17 @@
 .backButton:hover {
     background-color: #d5d5d5;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+.header {
+    width: 100%;
+    position: fixed;
+}
+
+
+.navbar.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: all 10s;
 }

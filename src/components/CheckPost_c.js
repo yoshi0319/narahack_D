@@ -53,14 +53,14 @@ export default function CheckPost() {
     };
 
     const submitPost = () => {
-        // テキストデータと画像データをlocalStorageに保存
-        localStorage.setItem('postTitle', postTitle); // title_nameではなく、titleをそのまま保存
-        localStorage.setItem('postCategory', postCategory); // category_nameではなく、categoryをそのまま保存
-        localStorage.setItem('postExplanation', postExplanation); // explanation_nameではなく、explanationをそのまま保存
-        localStorage.setItem('postPlace', postPlace); // place_nameではなく、placeをそのまま保存
-        localStorage.setItem('mainImage', mainImage);
-        localStorage.setItem('subImage1', subImage1);
-        localStorage.setItem('subImage2', subImage2);
+        // // テキストデータと画像データをlocalStorageに保存
+        // localStorage.setItem('postTitle', postTitle); // title_nameではなく、titleをそのまま保存
+        // localStorage.setItem('postCategory', postCategory); // category_nameではなく、categoryをそのまま保存
+        // localStorage.setItem('postExplanation', postExplanation); // explanation_nameではなく、explanationをそのまま保存
+        // localStorage.setItem('postPlace', postPlace); // place_nameではなく、placeをそのまま保存
+        // localStorage.setItem('mainImage', mainImage);
+        // localStorage.setItem('subImage1', subImage1);
+        // localStorage.setItem('subImage2', subImage2);
     
         // ページ遷移
         router.push("/Tourist_Board_of_Nara/CreatePost");
@@ -99,6 +99,7 @@ export default function CheckPost() {
                     <div className={styles.backButton}>
                         <Button
                             onClick={submitPost}
+                            // href = "/Tourist_Board_of_Nara/CreatePost"
                             variant="contained"
                             color="grey"
                             sx={{
