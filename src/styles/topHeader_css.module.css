@@ -203,4 +203,10 @@
 
 .popupbutton_next:hover {
     background-color: #fff;
-}   
+}
+
+.dummy_button{
+    border: none;
+    background-color: #fff;
+    color: #fff;
+}
