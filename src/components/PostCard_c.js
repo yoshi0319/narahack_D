@@ -2,7 +2,7 @@ import styles from '@/styles/postCard_css.module.css';
 import { Button } from '@mui/material';
 import Link from 'next/link';
 
-export default function PostCard() {
+export default function PostCard(props) {
     return(
         <>
             <div className={styles.container}>
