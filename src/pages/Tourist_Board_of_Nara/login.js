@@ -67,13 +67,12 @@ const Login = () => {
     if (code.trim() === "") {
       setError(true);
     } else {
-      console.log(code, "でログインしました");
-      Cookies.set("signedIn", "true");
-      Cookies.set("showLoginSuccess", "true"); // Add this line
-      router.replace("/Tourist_Board_of_Nara");
+      Login_user(code, router);
+      // console.log(code, "でログインしました");
+      // Cookies.set("signedIn", "true");
+      // Cookies.set("showLoginSuccess", "true"); // Add this line
+      // router.replace("/Tourist_Board_of_Nara");
     }
-
-    Login_user(code, router);
   };
 
   return (
