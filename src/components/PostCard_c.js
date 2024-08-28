@@ -12,7 +12,7 @@ import {
 
 export default function PostCard({ props, cate }) {
     const router = useRouter();
-    const { Category } = router.query; // カテゴリーをURLから取得
+    const { Category } = router.query;
 
     const categoryMapping = {
         temples: '寺社',

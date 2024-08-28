@@ -33,7 +33,6 @@ export default function TopHeader() {
         }
     }, []);
     
-    
     const handleLogout = () => {
         Cookies.remove("signedIn");
         Cookies.remove("userId");
@@ -48,7 +47,6 @@ export default function TopHeader() {
         setOpenSnackbar(false);
     };
 
-    // Check the signed-in status from the cookies
     const signedIn = Cookies.get("signedIn") === 'true'; 
     console.log("Signed In Status:", signedIn);
 
@@ -72,17 +70,15 @@ export default function TopHeader() {
         handleCloseLoginPrompt();
     };
 
-    // Define the menu items based on the sign-in status
     const menu = [
         {title: 'ホーム', href: '/Tourist_Board_of_Nara', icon: HomeIcon},
-        {title: 'ページ制作', href: '/Tourist_Board_of_Nara/CreatePost', icon: CreateIcon, onClick: handleCreatePageClick}, // Updated this line
+        {title: 'ページ制作', href: '/Tourist_Board_of_Nara/CreatePost', icon: CreateIcon, onClick: handleCreatePageClick},
         signedIn
             ? {title: 'ログアウト', href: '#', icon: LogoutIcon, onClick: handleLogout}
             : {title: 'ログイン', href: '/Tourist_Board_of_Nara/login', icon: LoginIcon},
     ];
 
     const [show, setShow] = useState(false);
-
     const handleDraw = () => setShow(!show);
 
     const [search, setSearch] = useState({
@@ -101,6 +97,11 @@ export default function TopHeader() {
         console.log(`search_word: ${search.search_word}`);
     };
 
+    const navigateToCategory = (category) => {
+        // Example navigation, replace with your actual category URLs
+        router.push(`/Tourist_Board_of_Nara/${category}`);
+    };
+
     useEffect(() => {
         const menuList = document.querySelector(`.${styles.menuList}`);
         const navbar = document.querySelector(`.${styles.navbar}`);
@@ -110,27 +111,24 @@ export default function TopHeader() {
             return;
         }
     
-        let lastScrollTop = 0; // 最後のスクロール位置を保持する変数
+        let lastScrollTop = 0;
     
         const handleScroll = () => {
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     
             if (scrollTop > lastScrollTop) {
-                // スクロールダウン（下にスクロール）
                 navbar.classList.add(styles.sticky);
-                navbar.style.transform = 'translateY(-6%)'; // メニューを非表示に
+                navbar.style.transform = 'translateY(-6%)';
             } else {
-                // スクロールアップ（上にスクロール）
                 navbar.classList.remove(styles.sticky);
-                navbar.style.transform = 'translateY(0)'; // メニューを表示
+                navbar.style.transform = 'translateY(0)';
             }
     
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // 負の値を避けるための条件
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
         };
     
         window.addEventListener("scroll", handleScroll);
     
-        // クリーンアップ関数でイベントリスナーを削除
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
@@ -166,7 +164,7 @@ export default function TopHeader() {
             <div className={styles.all}>
             <div className={styles.header}>
                 <div className={styles.drawerMenu}>
-                <Drawer acchor="left" open={show}>
+                <Drawer anchor="left" open={show}>
                     <Box sx={{ height: '100vh'}} onClick={handleDraw}>
                         <List>
                             {menu.map(obj => {
@@ -257,22 +255,22 @@ export default function TopHeader() {
                 </div>
 
                 <div className={styles.navbar}>
-                    <div className={styles.underContainer}>
-                        <nav className={`${styles.navMenu} ${styles.menuList}`}>
-                            <ul className={styles.hover}>寺院</ul>
-                            <ul>|</ul>
-                            <ul className={styles.hover}>神社</ul>
-                            <ul>|</ul>
-                            <ul className={styles.hover}>飲食店</ul>
-                            <ul>|</ul>
-                            <ul className={styles.hover}>お土産</ul>
-                            <ul>|</ul>
-                            <ul className={styles.hover}>資料館</ul>
-                            <ul>|</ul>
-                            <ul className={styles.hover}>その他</ul>
-                        </nav>
-                    </div>
+                <div className={styles.underContainer}>
+                    <nav className={`${styles.navMenu} ${styles.menuList}`}>
+                        <ul className={styles.hover} onClick={() => navigateToCategory('temples')}>寺院</ul>
+                        <ul>|</ul>
+                        <ul className={styles.hover} onClick={() => navigateToCategory('shrines')}>神社</ul>
+                        <ul>|</ul>
+                        <ul className={styles.hover} onClick={() => navigateToCategory('restaurants')}>飲食店</ul>
+                        <ul>|</ul>
+                        <ul className={styles.hover} onClick={() => navigateToCategory('souvenirs')}>お土産</ul>
+                        <ul>|</ul>
+                        <ul className={styles.hover} onClick={() => navigateToCategory('museums')}>資料館</ul>
+                        <ul>|</ul>
+                        <ul className={styles.hover} onClick={() => navigateToCategory('others')}>その他</ul>
+                    </nav>
                 </div>
+            </div>
             </div>
             </div>
         </>
