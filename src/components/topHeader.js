@@ -198,10 +198,15 @@ export default function TopHeader() {
                                 color="grey"
                                 onClick={handleCreatePageClick}
                                 sx={{
+                                    width: '12rem', 
+                                    height: '4rem',  
                                     backgroundColor: '#B0B0B0',
                                     color: '#000',
                                     opacity: 0.9,
                                     fontFamily: "'Klee One', sans-serif",
+                                    fontSize: '1.5rem',  
+                                    padding: '10px 20px',  
+                                    fontWeight: 'bold',
                                     '&:hover': {
                                         backgroundColor: '#A0A0A0',
                                     }
