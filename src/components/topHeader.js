@@ -99,7 +99,10 @@ export default function TopHeader() {
 
     const navigateToCategory = (category) => {
         // カテゴリをクエリパラメータとしてトップページに遷移
-        router.push(`/Tourist_Board_of_Nara?category=${category}`);
+        // router.push(`/Tourist_Board_of_Nara?category=${category}`);
+        router.replace(`/Tourist_Board_of_Nara/${category}`).then(() => {
+            window.location.reload();
+        });
     };
     
 

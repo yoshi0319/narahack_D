@@ -5,16 +5,10 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    // クエリパラメータからカテゴリを取得
-    const { category } = router.query;
-
-    // デフォルトカテゴリを設定
-    const defaultCategory = 'temples'; 
-    const categoryToRedirect = category || defaultCategory;
-
-    // カテゴリページへリダイレクト
-    router.replace(`/Tourist_Board_of_Nara/${categoryToRedirect}`);
-  }, [router.query]);
+    // ダイナミックパラメータを決定
+    const category = 'temples'; // ここでカテゴリを動的に決定します
+    router.replace(`/Tourist_Board_of_Nara/${category}`);
+  }, [router]);
 
   return null; // このページ自体にはコンテンツはありません
 }
