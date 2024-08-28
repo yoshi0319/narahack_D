@@ -2,28 +2,33 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export async function getDetail(id) {
-    console.log(id);
-    const id_id = 1;
-    const post = await prisma.post.findUnique({
-        where: { id: parseInt(id_id, 10) },
+export async function get_posts(Category) {
+    const posts = await prisma.post.findMany({
+        where: { category: Category },
         select: {
+            id: true,
             title: true,
-            category: true,
             explanation: true,
-            place: true,
             mainImage: true,
-            sub1Image: true,
-            sub2Image: true,
+            create_post_time: true,
+        },
+        orderBy: {
+            create_post_time: 'desc',
         },
     });
-    if (post) {
-        // Buffer を Base64 形式に変換
-        post.mainImage = post.mainImage ? Buffer.from(post.mainImage).toString('base64') : null;
-        post.sub1Image = post.sub1Image ? Buffer.from(post.sub1Image).toString('base64') : null;
-        post.sub2Image = post.sub2Image ? Buffer.from(post.sub2Image).toString('base64') : null;
-    }
+
+    const category_posts = posts.map(post => {
+        return {
+            ...post,
+            create_post_time: post.create_post_time ? post.create_post_time.toISOString() : null,
+            mainImage: post.mainImage ? `data:image/jpeg;base64,${Buffer.from(post.mainImage).toString('base64')}` : null,
+            sub1Image: post.sub1Image ? `data:image/jpeg;base64,${Buffer.from(post.sub1Image).toString('base64')}` : null,
+            sub2Image: post.sub2Image ? `data:image/jpeg;base64,${Buffer.from(post.sub2Image).toString('base64')}` : null,
+        };
+    });
+
+    // console.log('Posts:', category_posts);
     
     console.log('やったわよ');
-    return post;
+    return category_posts;
 }

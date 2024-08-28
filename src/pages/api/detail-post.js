@@ -19,9 +19,9 @@ export async function getDetail(id) {
 
     if (post) {
         // Buffer を Base64 形式に変換
-        post.mainImage = post.mainImage ? Buffer.from(post.mainImage).toString('base64') : null;
-        post.sub1Image = post.sub1Image ? Buffer.from(post.sub1Image).toString('base64') : null;
-        post.sub2Image = post.sub2Image ? Buffer.from(post.sub2Image).toString('base64') : null;
+        post.mainImage = post.mainImage ? `data:image/jpeg;base64,${post.mainImage.toString('base64')}` : null;
+        post.sub1Image = post.sub1Image ? `data:image/jpeg;base64,${post.sub1Image.toString('base64')}` : null;
+        post.sub2Image = post.sub2Image ? `data:image/jpeg;base64,${post.sub2Image.toString('base64')}` : null;
     }
     
     console.log('やったわよ');

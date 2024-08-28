@@ -29,6 +29,7 @@ const Login_user = async (code, router) => {
       // サイトを閉じると失効
       Cookies.set("signedIn", "true");
       Cookies.set("userId", result.userId);
+      Cookies.set("showLoginSuccess", "true"); // Add this line
       // クッキーを設定、２時間経つと失効
       // Cookies.set("signedIn", "true", { expires });
       // Cookies.set("userId", result.userId, { expires });
@@ -68,10 +69,6 @@ const Login = () => {
       setError(true);
     } else {
       Login_user(code, router);
-      // console.log(code, "でログインしました");
-      // Cookies.set("signedIn", "true");
-      // Cookies.set("showLoginSuccess", "true"); // Add this line
-      // router.replace("/Tourist_Board_of_Nara");
     }
   };
 
