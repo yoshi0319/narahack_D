@@ -13,10 +13,11 @@ import MuiAlert from '@mui/material/Alert';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 
-export default function TopHeader() {
+export default function TopHeader({ onSearch }) {
     const router = useRouter();
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [search, setSearch] = useState('');
 
     useEffect(() => {
         const showLoginSuccess = Cookies.get("showLoginSuccess");
@@ -85,20 +86,13 @@ export default function TopHeader() {
 
     const handleDraw = () => setShow(!show);
 
-    const [search, setSearch] = useState({
-        search_word: ''
-    });
-
     const handleSearch = e => {
-        setSearch({
-            ...search,
-            [e.target.name]: e.target.value
-        });
+        setSearch(e.target.value);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(`search_word: ${search.search_word}`);
+        onSearch(search); // 親コンポーネントに検索語を渡す
     };
 
     useEffect(() => {

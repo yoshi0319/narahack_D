@@ -1,3 +1,9 @@
+// 登録順にソートする関数
+export const createtime_sort = (sortPosts) => {
+    const sortedPosts = [...sortPosts].sort((a, b) =>  a.id - b.id);
+    return sortedPosts;
+}
+
 // 閲覧数順にソートする関数
 export const viewPost_sort = (sortPosts) => {
     const sortedPosts = [...sortPosts].sort((a, b) => b.viewcount - a.viewcount);

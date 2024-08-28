@@ -5,25 +5,37 @@ import { useRouter } from "next/router";
 import {FormControl} from "@mui/material";
 
 import {
+    createtime_sort,
     viewPost_sort, 
     randomPost_sort, 
     trendPost_sort 
 } from "@/components/sort-functions"; // ソート関数をインポート
 
 
-export default function PostCard({props, cate}) {
+export default function PostCard({searchprops, props, cate}) {
     const router = useRouter();
     const caten = cate;
     console.log(`Topページのカテゴリー:${caten}`);
+
+    console.log('--------------------------');
+    const filertpost = searchprops || [];
+    console.log(`厳選したやつだよFiltered Posts:${filertpost}`);
+    console.log('All Props:', props);
+    console.log('Category:', cate);
+    console.log('-------------');
 
     const createtime = 'createtime';
     const view = 'view';
     const random = 'random';
     const trend = 'trend';
 
-    const [posts, setPosts] = useState(props || []);
+    useEffect(() => {
+        setPosts(searchprops || props || []);
+    }, [searchprops, props]);
+
+    const [posts, setPosts] = useState(searchprops || props || []);
     const [order, setOrder] = useState({
-        order_name: 'createtime'
+        order_name: 'random'
     });
     const handleOrder = e => {
         setOrder({
@@ -44,12 +56,12 @@ export default function PostCard({props, cate}) {
 
     useEffect(() => {
         console.log('orderが変わりました。');
-        if (props && Array.isArray(props)) {
-            let sortedPosts = [...props];
+        if (posts && Array.isArray(posts)) {
+            let sortedPosts = [...posts];
             switch (order.order_name) {
                 case 'createtime':
                     console.log('登録順');
-                    sortedPosts = props;
+                    sortedPosts = createtime_sort(sortedPosts);
                     break;
                 case 'view':
                     console.log('閲覧数順');

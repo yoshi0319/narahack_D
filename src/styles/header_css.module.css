@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     background-color: #D2FADC;
-    height: 5rem;
+    height: 6.4rem;
     align-items: center;
     opacity: 0.8;
 }
@@ -16,7 +16,8 @@
 .backButton {
     display: flex;
     font-family: 'Klee One', sans-serif;
-    margin-bottom: 2rem;
+    align-items: center;
+    padding-bottom: 50%;
 }
 
 .appTitle {

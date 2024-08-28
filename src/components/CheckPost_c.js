@@ -160,6 +160,10 @@ export default function CheckPost() {
                                 color: '#000',
                                 opacity: 0.9,
                                 fontFamily: "'Klee One', sans-serif",
+                                padding: '10px 6px',
+                                fontSize: '1.5rem',
+                                width: '10rem',
+                                height: '3rem',
                                 '&:hover': {
                                     backgroundColor: '#A0A0A0',
                                 }
@@ -177,7 +181,10 @@ export default function CheckPost() {
                                 color: '#000',
                                 opacity: 0.9,
                                 fontFamily: "'Klee One', sans-serif",
-                                padding: '6px 35px',
+                                padding: '10px 6px',
+                                fontSize: '1.5rem',
+                                width: '10rem',
+                                height: '3rem',
                                 '&:hover': {
                                     backgroundColor: '#A0A0A0',
                                 }
