@@ -81,7 +81,10 @@ const Login = () => {
         <TextField 
           onChange={handleChange} 
           type='text' 
-          value={code} 
+          value={code}
+          sx={{
+            marginBottom: '30px',
+          }}
           id="outlined-basic" 
           label="コードを入力してください" 
           variant="outlined" 
