@@ -1,6 +1,6 @@
 import styles from '@/styles/topHeader_css.module.css';
 import { Button, TextField, InputAdornment, ListItemButton, ListItemIcon, ListItemText, ListItem, Drawer, Box, List, Dialog, DialogContent, DialogActions } from '@mui/material';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import CreateIcon from '@mui/icons-material/Create';
@@ -98,9 +98,10 @@ export default function TopHeader() {
     };
 
     const navigateToCategory = (category) => {
-        // Example navigation, replace with your actual category URLs
-        router.push(`/Tourist_Board_of_Nara/${category}`);
+        // カテゴリをクエリパラメータとしてトップページに遷移
+        router.push(`/Tourist_Board_of_Nara?category=${category}`);
     };
+    
 
     useEffect(() => {
         const menuList = document.querySelector(`.${styles.menuList}`);
