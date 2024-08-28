@@ -1,10 +1,8 @@
+/* General styles for larger screens */
 .overContainer {
     display: flex;
     justify-content: space-between;
-    padding-left: 5rem;
-    padding-right: 5rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding: 0.5rem 5rem;
     align-items: center;
 }
 
@@ -16,6 +14,8 @@
 
 .searchFieldContainer {
     display: flex;
+    justify-content: center;
+    align-items: center;
 } 
 
 .searchField {
@@ -45,10 +45,7 @@
     display: flex;
     font-size: 2rem;
     justify-content: space-between;
-    padding-left: 12rem;
-    padding-right: 12rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding: 1rem 12rem;
     font-family: 'Klee One', sans-serif;
     opacity: 0.6;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
@@ -61,7 +58,6 @@
 .hover:hover {
     color: #007bff;
 }
-
 
 .parentContainer {
     display: flex;
@@ -87,3 +83,124 @@
     background-color: #d5d5d5;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.5);
 }
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+    .overContainer {
+        padding: 0.5rem 2rem;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .searchField {
+        width: 20rem;
+    }
+
+    .navMenu {
+        padding: 1rem 4rem;
+        font-size: 1.5rem;
+    }
+
+    .appTitle h1 {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .overContainer {
+        padding: 0.5rem 1rem;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .createButton {
+        margin-bottom: 1rem;
+    }
+
+    .searchFieldContainer {
+        margin-bottom: 1rem;
+    }
+
+    .searchField {
+        width: 15rem;
+    }
+
+    .appTitle h1 {
+        font-size: 24px;
+    }
+
+    .navMenu {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+    }
+
+    .navMenu ul {
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .overContainer {
+        padding: 0.5rem;
+    }
+
+    .searchField {
+        width: 100%;
+    }
+
+    .appTitle h1 {
+        font-size: 20px;
+    }
+
+    .navMenu {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+}
+
+.popuplist {
+    font-family: "Klee One" , cursive;
+    font-size: 1.5rem;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+  }
+
+  /* Center the dialog action buttons */
+.dialogActionsCentered {
+    display: flex;
+    justify-content: center; /* Centers the buttons horizontally */
+    gap: 20px; /* Adds some space between the buttons */
+    padding-bottom: 20px; /* Adds space at the bottom of the dialog */
+}
+
+.popupbutton_cancel {
+    background-color: #E2DBDB;
+    color: #000;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'Klee One', cursive;
+    font-size: 1.3rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+.popupbutton_cancel:hover {
+    background-color: #fff;
+}
+
+.popupbutton_next {
+    background-color: #9CD8AB;
+    color: #000;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'Klee One', cursive;
+    font-size: 1.3rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+.popupbutton_next:hover {
+    background-color: #fff;
+}   

@@ -15,11 +15,11 @@ CREATE TABLE "Post" (
     "category" TEXT NOT NULL,
     "explanation" TEXT NOT NULL,
     "place" TEXT NOT NULL,
+    "post_user" INTEGER NOT NULL,
     "mainImage" BYTEA,
     "sub1Image" BYTEA,
     "sub2Image" BYTEA,
     "create_post_time" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "post_User" INTEGER NOT NULL,
 
     CONSTRAINT "Post_pkey" PRIMARY KEY ("id")
 );

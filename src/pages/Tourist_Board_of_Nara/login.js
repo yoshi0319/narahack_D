@@ -4,7 +4,6 @@ import Login_header from '../../components/Login_header';
 import Footer from '../../components/Footer';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
-
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 
@@ -65,10 +64,13 @@ const Login = () => {
 
   const handleLoginClick = (e) => {
     e.preventDefault()
-    if (code.trim() === "") {  // 入力が空欄の場合
-      setError(true);  // エラーを表示
+    if (code.trim() === "") {
+      setError(true);
     } else {
-      
+      console.log(code, "でログインしました");
+      Cookies.set("signedIn", "true");
+      Cookies.set("showLoginSuccess", "true"); // Add this line
+      router.replace("/Tourist_Board_of_Nara");
     }
 
     Login_user(code, router);
