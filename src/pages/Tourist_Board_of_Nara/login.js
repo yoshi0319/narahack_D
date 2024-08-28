@@ -34,6 +34,8 @@ const Login_user = async (code, router, setError, setErrorMessage) => {
       console.log("Signed In Status:", signedIn);
       const userId = Cookies.get("userId");
       console.log("userId:", userId);
+
+      console.log(code);
       
       //リダイレクト
       router.replace("/Tourist_Board_of_Nara/temples");
@@ -71,8 +73,6 @@ const Login = () => {
     } else {
       Login_user(code, router, setError, setErrorMessage);
     }
-
-    Login_user(code, router);
   };
 
   return (

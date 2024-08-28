@@ -20,6 +20,8 @@ CREATE TABLE "Post" (
     "sub1Image" BYTEA,
     "sub2Image" BYTEA,
     "create_post_time" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "viewcount" INTEGER NOT NULL DEFAULT 1,
+    "y_viewcount" INTEGER NOT NULL DEFAULT 1,
 
     CONSTRAINT "Post_pkey" PRIMARY KEY ("id")
 );
