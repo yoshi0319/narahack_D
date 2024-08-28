@@ -494,6 +494,11 @@
                           backgroundColor: '#9CD8AB',
                           color: '#000',
                           opacity: 0.9,
+                          fontFamily: "'Klee One', sans-serif",
+                          padding: '12px 24px',
+                          fontSize: '1.5rem',
+                          width: '10rem',
+                          height: '4rem',
                           '&:hover': {
                               backgroundColor: '#86C499',
                           }
