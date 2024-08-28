@@ -3,6 +3,8 @@ import { Button } from '@mui/material';
 import Link from 'next/link';
 
 export default function PostCard(props) {
+    console.log(props);
+    console.log("みょーん");
     return(
         <>
             <div className={styles.container}>

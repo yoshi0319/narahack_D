@@ -21,6 +21,7 @@
     background-color: #FFFFFF;
     border-radius: 12px;
     color: #000000;
+    overflow: hidden;
 }
 
 .postCard hr {
