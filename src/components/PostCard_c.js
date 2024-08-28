@@ -38,13 +38,29 @@ export default function PostCard({ props, cate }) {
         order_name: 'createtime'
     });
     
+    useEffect(() => {
+        const queryOrder = router.query.order; // URLのパラメータ 'order' を取得
+        if (queryOrder) {
+            setOrder({
+                order_name: queryOrder
+            });
+        }
+    }, [router.query.order]);
+
     const handleOrder = e => {
-        setOrder({
-            ...order,
-            [e.target.name]: e.target.value
-        });
-        console.log(`${order}ほんにゃ〜`);
-    };
+    const newOrder = e.target.value;
+    setOrder({
+        ...order,
+        order_name: newOrder
+    });
+    
+    // URLパラメータを更新する
+    router.push({
+        pathname: router.pathname,
+        query: { ...router.query, order: newOrder }
+    }, undefined, { shallow: true });
+};
+
     
     const show = () => {
         console.log(order);
