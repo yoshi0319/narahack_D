@@ -16,7 +16,6 @@ export default function TopHeader() {
     const router = useRouter();
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
-    const [search, setSearch] = useState('');
     const [show, setShow] = useState(false);
 
     useEffect(() => {
@@ -81,10 +80,6 @@ export default function TopHeader() {
 
     const handleDraw = () => setShow(!show);
 
-    const handleSearch = e => {
-        setSearch(e.target.value);
-    };
-
     const navigateToCategory = (category) => {
         router.replace(`/Tourist_Board_of_Nara/${category}`).then(() => {
             window.location.reload();
@@ -105,6 +100,41 @@ export default function TopHeader() {
         document.addEventListener('mousedown', handleOutsideClick);
         return () => document.removeEventListener('mousedown', handleOutsideClick);
     }, [handleOutsideClick]);
+
+    useEffect(() => {
+        const menuList = document.querySelector(`.${styles.menuList}`);
+        const navbar = document.querySelector(`.${styles.navbar}`);
+        
+        if (!menuList || !navbar) {
+            console.error("MenuList または Navbar 要素が見つかりませんでした");
+            return;
+        }
+    
+        let lastScrollTop = 0; // 最後のスクロール位置を保持する変数
+    
+        const handleScroll = () => {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+            if (scrollTop > lastScrollTop) {
+                // スクロールダウン（下にスクロール）
+                navbar.classList.add(styles.sticky);
+                navbar.style.transform = 'translateY(-6%)'; // メニューを非表示に
+            } else {
+                // スクロールアップ（上にスクロール）
+                navbar.classList.remove(styles.sticky);
+                navbar.style.transform = 'translateY(0)'; // メニューを表示
+            }
+    
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // 負の値を避けるための条件
+        };
+    
+        window.addEventListener("scroll", handleScroll);
+    
+        // クリーンアップ関数でイベントリスナーを削除
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
     return (
         <>
