@@ -19,6 +19,8 @@
     width: 100%;
     background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(156,216,171,1) 54%, rgba(156,216,171,1) 100%);
     margin-top: 2rem;
+    position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
 }
 
 .Footer p {
