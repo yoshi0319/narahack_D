@@ -259,7 +259,8 @@
       return (
           <>
           <StyledDialog open={openPopup} onClose={() => setOpenPopup(false)}>
-            <DialogTitle className={styles.popuplist}>ホームページ作成上の注意事項
+            <DialogTitle className={styles.popuplist}>
+              <h2>ホームページ作成上の注意</h2>
               <IconButton
                 aria-label="close"
                 onClick={() => setOpenPopup(false)}

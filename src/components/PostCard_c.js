@@ -119,7 +119,6 @@ export default function PostCard({props, cate}) {
                     <p>No content available</p> // コンテンツがない場合の表示
                 )}
             </div>
-            <h1>この文章は削除しておいてください。</h1>
             {/* <p>Counter: {counter}</p> 合計要素数を数えるために置いてます */}
             </div>
         </>
