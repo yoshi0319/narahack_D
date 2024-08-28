@@ -27,7 +27,7 @@ export async function get_posts(Category) {
         };
     });
 
-    console.log('Posts:', category_posts);
+    // console.log('Posts:', category_posts);
     
     console.log('やったわよ');
     return category_posts;

@@ -140,6 +140,7 @@ export default function CheckPost() {
                     <div className={styles.backButton}>
                         <Button
                             onClick={submitPost}
+                            // href = "/Tourist_Board_of_Nara/CreatePost"
                             variant="contained"
                             color="grey"
                             sx={{

@@ -53,11 +53,6 @@ export default function TopHeader() {
 
     const [openLoginPrompt, setOpenLoginPrompt] = useState(false);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(`search_word: ${search.search_word}`);
-    };
-
     const handleCreatePageClick = (e) => {
         e.preventDefault();
         if (!signedIn) {
@@ -100,9 +95,49 @@ export default function TopHeader() {
         });
     };
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(`search_word: ${search.search_word}`);
+    };
+
+    useEffect(() => {
+        const menuList = document.querySelector(`.${styles.menuList}`);
+        const navbar = document.querySelector(`.${styles.navbar}`);
+        
+        if (!menuList || !navbar) {
+            console.error("MenuList または Navbar 要素が見つかりませんでした");
+            return;
+        }
+    
+        let lastScrollTop = 0; // 最後のスクロール位置を保持する変数
+    
+        const handleScroll = () => {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+            if (scrollTop > lastScrollTop) {
+                // スクロールダウン（下にスクロール）
+                navbar.classList.add(styles.sticky);
+                navbar.style.transform = 'translateY(-6%)'; // メニューを非表示に
+            } else {
+                // スクロールアップ（上にスクロール）
+                navbar.classList.remove(styles.sticky);
+                navbar.style.transform = 'translateY(0)'; // メニューを表示
+            }
+    
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // 負の値を避けるための条件
+        };
+    
+        window.addEventListener("scroll", handleScroll);
+    
+        // クリーンアップ関数でイベントリスナーを削除
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
     return (
         <>
-        <Snackbar
+            <Snackbar
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                 open={openSnackbar}
                 autoHideDuration={3000}
@@ -117,123 +152,128 @@ export default function TopHeader() {
                 </MuiAlert>
             </Snackbar>
 
-        <Dialog open={openLoginPrompt} onClose={handleCloseLoginPrompt} sx={{ '& .MuiPaper-root': { borderRadius: '16px' } }}>
-            <DialogContent className={styles.popuplist}>ページを作成するにはログインが必要です。<br/>ログインページに移動しますか？</DialogContent>
-            <DialogActions className={styles.dialogActionsCentered}>
-                <button className={styles.dummy_button}>テスト</button>
-                <button className={styles.popupbutton_cancel} onClick={handleCloseLoginPrompt}>キャンセル</button>
-                <button className={styles.dummy_button}>テスト</button>
-                <button className={styles.popupbutton_next} onClick={handleLoginRedirect}>ログイン</button>
-                <button className={styles.dummy_button}>テスト</button>
-            </DialogActions>
-        </Dialog>
-        
-        <div className={styles.drawerMenu}>
-            <Drawer anchor="left" open={show} onClose={handleDraw}>
-                <Box sx={{ height: '100vh' }} onClick={handleDraw}>
-                    <List>
-                        {menu.map((obj) => {
-                            const Icon = obj.icon;
-                            return (
-                                <ListItem key={obj.title}>
-                                    <ListItemButton
-                                        href={obj.href}
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            if (obj.onClick) {
-                                                obj.onClick(e); // This now handles the Create Page click inside the drawer
-                                            } else {
-                                                router.push(obj.href);
-                                            }
-                                        }}
-                                    >
-                                        <ListItemIcon><Icon /></ListItemIcon>
-                                        <ListItemText primary={obj.title} />
-                                    </ListItemButton>
-                                </ListItem>
-                            );
-                        })}
-                        <div className={styles.parentContainer}>
-                            <Button className={styles.backButton}>
-                                <ArrowBackIcon />
-                                <a className={styles.backButtonLink}>戻る</a>
+            <Dialog open={openLoginPrompt} onClose={handleCloseLoginPrompt} sx={{ '& .MuiPaper-root': { borderRadius: '16px' } }}>
+                <DialogContent className={styles.popuplist}>ページを作成するにはログインが必要です。<br/>ログインページに移動しますか？</DialogContent>
+                <DialogActions className={styles.dialogActionsCentered}>
+                    <button className={styles.dummy_button}>テスト</button>
+                    <button className={styles.popupbutton_cancel} onClick={handleCloseLoginPrompt}>キャンセル</button>
+                    <button className={styles.dummy_button}>テスト</button>
+                    <button className={styles.popupbutton_next} onClick={handleLoginRedirect}>ログイン</button>
+                    <button className={styles.dummy_button}>テスト</button>
+                </DialogActions>
+            </Dialog>  
+            <div className={styles.all}>
+            <div className={styles.header}>
+                <div className={styles.drawerMenu}>
+                <Drawer acchor="left" open={show}>
+                    <Box sx={{ height: '100vh'}} onClick={handleDraw}>
+                        <List>
+                            {menu.map(obj => {
+                                const Icon = obj.icon;
+                                return (
+                                    <ListItem key={obj.title}>
+                                        <ListItemButton href={obj.href}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                if (obj.onClick) {
+                                                    obj.onClick(e); // This now handles the Create Page click inside the drawer
+                                                } else {
+                                                    router.push(obj.href);
+                                                }
+                                            }}
+                                        >
+                                            <ListItemIcon><Icon /></ListItemIcon>
+                                            <ListItemText primary={obj.title} />
+                                        </ListItemButton>
+                                    </ListItem>
+                                );
+                            })}
+                            <div className={styles.parentContainer}>
+                                <Button className={styles.backButton}>
+                                    <ArrowBackIcon />
+                                    <a className={styles.backButtonLink}>戻る</a>
+                                </Button>
+                            </div>
+                        </List>
+                    </Box>
+                </Drawer>
+                </div>
+                <div className={styles.topHeaderContainer}>
+                    <div className={styles.overContainer}>
+                        <div className={styles.createButton}>
+                            <Button
+                                variant="contained"
+                                color="grey"
+                                onClick={handleCreatePageClick}
+                                sx={{
+                                    backgroundColor: '#B0B0B0',
+                                    color: '#000',
+                                    opacity: 0.9,
+                                    fontFamily: "'Klee One', sans-serif",
+                                    '&:hover': {
+                                        backgroundColor: '#A0A0A0',
+                                    }
+                                }}>
+                                ページ作成
                             </Button>
                         </div>
-                    </List>
-                </Box>
-            </Drawer>
-        </div>
+                        <div className={styles.appTitle}>
+                            <h1>Tourist Board of Nara</h1>
+                        </div>
+                        <div className={styles.searchFieldContainer}>
+                            <div>
+                                <form onSubmit={handleSubmit}>
+                                    <TextField
+                                        id="search"
+                                        name="search_word"
+                                        value={search.search_word}
+                                        onChange={handleSearch}
+                                        rows={1}
+                                        placeholder="検索"
+                                        className={styles.searchField}
+                                        InputProps={{
+                                            startAdornment: (
+                                                <InputAdornment position="start">
+                                                    <SearchIcon />
+                                                </InputAdornment>
+                                            ),
+                                        }}
+                                    />
+                                </form>
+                            </div>
+                        </div>
+                        <div className={styles.menuContainer}>
+                            <div className={styles.menu}>
+                                <p>メニュー</p>
+                            </div>
+                            <div>
+                                <Button onClick={handleDraw}>
+                                    <MenuIcon style={{ fontSize: 50, color: 'rgba(0, 0, 0, 0.5)' }} />
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        <div className={styles.overContainer}>
-            <div className={styles.createButton}>
-                <Button
-                    variant="contained"
-                    color="grey"
-                    onClick={handleCreatePageClick}
-                    sx={{
-                        backgroundColor: '#B0B0B0', 
-                        color: '#000',
-                        opacity: 0.9,
-                        fontFamily: "'Klee One', sans-serif",
-                        '&:hover': {
-                            backgroundColor: '#A0A0A0',
-                        },
-                    }}>
-                    ページ作成
-                </Button>
-            </div>
-            <div className={styles.appTitle}>
-                <h1>Tourist Board of Nara</h1>
-            </div>
-            <div className={styles.searchFieldContainer}>
-                <div>
-                    <form onSubmit={handleSubmit}>
-                        <TextField
-                            id="search"
-                            name="search_word"
-                            value={search.search_word}
-                            onChange={handleSearch}
-                            label="検索"
-                            rows={1}
-                            className={styles.searchField}
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <SearchIcon />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                    </form>
+                <div className={styles.navbar}>
+                    <div className={styles.underContainer}>
+                        <nav className={`${styles.navMenu} ${styles.menuList}`}>
+                            <ul className={styles.hover}>寺院</ul>
+                            <ul>|</ul>
+                            <ul className={styles.hover}>神社</ul>
+                            <ul>|</ul>
+                            <ul className={styles.hover}>飲食店</ul>
+                            <ul>|</ul>
+                            <ul className={styles.hover}>お土産</ul>
+                            <ul>|</ul>
+                            <ul className={styles.hover}>資料館</ul>
+                            <ul>|</ul>
+                            <ul className={styles.hover}>その他</ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
-            <div className={styles.menuContainer}>
-                <div className={styles.menu}>
-                    <p>メニュー</p>
-                </div>
-                <div>
-                    <Button onClick={handleDraw}>
-                        <MenuIcon style={{ fontSize: 50, color: 'rgba(0, 0, 0, 0.5)' }}/>
-                    </Button>
-                </div>
             </div>
-        </div>
-
-        <div className={styles.underContainer}>
-            <nav className={styles.navMenu}>
-                <ul className={styles.hover}>寺院</ul>
-                <ul>|</ul>
-                <ul className={styles.hover}>神社</ul>
-                <ul>|</ul>
-                <ul className={styles.hover}>飲食店</ul>
-                <ul>|</ul>
-                <ul className={styles.hover}>お土産</ul>
-                <ul>|</ul>
-                <ul className={styles.hover}>資料館</ul>
-                <ul>|</ul>
-                <ul className={styles.hover}>その他</ul>
-            </nav>     
-        </div>
         </>
     );
 }

@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
-// import PostCard from "@/components/PostCard_c";z
 import { get_posts } from "@/pages/api/getCategory_post";
+import Footer from "@/components/Footer";
+import styles from "@/styles/topPage_css.module.css";
 
 const TopHeader = dynamic(() => import('@/components/topHeader'),{ssr:false});
 const PostCard = dynamic(() => import('@/components/PostCard_c'));
@@ -45,8 +46,13 @@ export async function getServerSideProps(context) {
 export default function Top (props) {
     return(
         <>
-            <TopHeader />
-            <PostCard props={props.posts}/>
+            <div className={styles.topHeader}>
+                <TopHeader />
+            </div>
+            <div className={styles.postCard}>
+                <PostCard props={props.posts}/>
+            </div>
+            <Footer />
         </>
     );
 }
