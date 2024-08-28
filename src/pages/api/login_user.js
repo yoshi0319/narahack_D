@@ -23,7 +23,7 @@ export default async function handler(req, res) {
 
     try {
         // データベースからコードを検索
-        const user = await prisma.user.findFirst({
+        const user = await prisma.user.findUnique({
             where: { code: code }
         });
 
