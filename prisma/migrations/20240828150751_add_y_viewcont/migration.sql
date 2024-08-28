@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Post" ADD COLUMN     "viewcount" INTEGER NOT NULL DEFAULT 0,
+ADD COLUMN     "y_viewcount" INTEGER NOT NULL DEFAULT 0;
