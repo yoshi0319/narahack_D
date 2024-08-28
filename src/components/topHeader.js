@@ -32,10 +32,11 @@ export default function TopHeader() {
             Cookies.remove("showLogoutSuccess");
         }
     }, []);
-
-
+    
+    
     const handleLogout = () => {
         Cookies.remove("signedIn");
+        Cookies.remove("userId");
         Cookies.set("showLogoutSuccess", 'true');
         router.push('/Tourist_Board_of_Nara');
     };

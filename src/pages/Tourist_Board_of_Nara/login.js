@@ -29,6 +29,7 @@ const Login_user = async (code, router) => {
       // サイトを閉じると失効
       Cookies.set("signedIn", "true");
       Cookies.set("userId", result.userId);
+      Cookies.set("showLoginSuccess", "true"); // Add this line
       // クッキーを設定、２時間経つと失効
       // Cookies.set("signedIn", "true", { expires });
       // Cookies.set("userId", result.userId, { expires });
@@ -40,7 +41,7 @@ const Login_user = async (code, router) => {
       console.log("userId:", userId);
       
       //リダイレクト
-      router.replace("/Tourist_Board_of_Nara/temples");
+      router.replace("/Tourist_Board_of_Nara");
 
     } else {
       console.error('ログイン失敗したわよ。なんで失敗したか明日までに考えてきなさいよね!', result.error);
@@ -67,13 +68,9 @@ const Login = () => {
     if (code.trim() === "") {
       setError(true);
     } else {
-      console.log(code, "でログインしました");
-      Cookies.set("signedIn", "true");
-      Cookies.set("showLoginSuccess", "true"); // Add this line
-      router.replace("/Tourist_Board_of_Nara");
+      Login_user(code, router);
     }
 
-    Login_user(code, router);
   };
 
   return (
