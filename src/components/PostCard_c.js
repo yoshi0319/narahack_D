@@ -35,7 +35,7 @@ export default function PostCard({ props, cate }) {
 
     const [posts, setPosts] = useState(props || []);
     const [order, setOrder] = useState({
-        order_name: 'random'
+        order_name: 'createtime'
     });
     
     const handleOrder = e => {
