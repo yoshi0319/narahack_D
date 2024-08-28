@@ -295,12 +295,12 @@
             </ul>
           </DialogContent>
         </StyledDialog>
+              {/* <br></br>
               <br></br>
-              <br></br>
-              <br></br>
+              <br></br> */}
               <div>
                   {!imageSelectedMain ? (
-                      <div className={styles.default}>
+                      <div className={styles.top_default}>
                       <div className={styles.inputImageContainer}>
                         <p className={styles.labelText}>画像ファイルを選択してください</p>
                         <input type="file"
