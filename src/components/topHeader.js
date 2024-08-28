@@ -1,8 +1,7 @@
 import styles from '@/styles/topHeader_css.module.css';
-import { Button, TextField, InputAdornment, ListItemButton, ListItemIcon, ListItemText, ListItem, Drawer, Box, List, Dialog, DialogContent, DialogActions } from '@mui/material';
-import { useState, useEffect, use } from 'react';
+import { Button, ListItemButton, ListItemIcon, ListItemText, ListItem, Drawer, Box, List, Dialog, DialogContent, DialogActions } from '@mui/material';
+import { useState, useEffect, useCallback } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
 import CreateIcon from '@mui/icons-material/Create';
 import HomeIcon from '@mui/icons-material/Home';
 import LoginIcon from '@mui/icons-material/Login';
@@ -18,6 +17,7 @@ export default function TopHeader() {
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [search, setSearch] = useState('');
+    const [show, setShow] = useState(false);
 
     useEffect(() => {
         const showLoginSuccess = Cookies.get("showLoginSuccess");
@@ -79,7 +79,6 @@ export default function TopHeader() {
             : {title: 'ログイン', href: '/Tourist_Board_of_Nara/login', icon: LoginIcon},
     ];
 
-    const [show, setShow] = useState(false);
     const handleDraw = () => setShow(!show);
 
     const handleSearch = e => {
@@ -87,45 +86,25 @@ export default function TopHeader() {
     };
 
     const navigateToCategory = (category) => {
-        // カテゴリをクエリパラメータとしてトップページに遷移
-        // router.push(`/Tourist_Board_of_Nara?category=${category}`);
         router.replace(`/Tourist_Board_of_Nara/${category}`).then(() => {
             window.location.reload();
         });
     };
-    
+
+    const handleCloseDrawer = () => {
+        setShow(false);
+    };
+
+    const handleOutsideClick = useCallback((e) => {
+        if (show && !document.querySelector(`.${styles.drawerMenu}`).contains(e.target)) {
+            handleCloseDrawer();
+        }
+    }, [show]);
 
     useEffect(() => {
-        const menuList = document.querySelector(`.${styles.menuList}`);
-        const navbar = document.querySelector(`.${styles.navbar}`);
-        
-        if (!menuList || !navbar) {
-            console.error("MenuList または Navbar 要素が見つかりませんでした");
-            return;
-        }
-    
-        let lastScrollTop = 0;
-    
-        const handleScroll = () => {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-            if (scrollTop > lastScrollTop) {
-                navbar.classList.add(styles.sticky);
-                navbar.style.transform = 'translateY(-6%)';
-            } else {
-                navbar.classList.remove(styles.sticky);
-                navbar.style.transform = 'translateY(0)';
-            }
-    
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-        };
-    
-        window.addEventListener("scroll", handleScroll);
-    
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, []);
+        document.addEventListener('mousedown', handleOutsideClick);
+        return () => document.removeEventListener('mousedown', handleOutsideClick);
+    }, [handleOutsideClick]);
 
     return (
         <>
@@ -157,8 +136,8 @@ export default function TopHeader() {
             <div className={styles.all}>
             <div className={styles.header}>
                 <div className={styles.drawerMenu}>
-                <Drawer anchor="left" open={show}>
-                    <Box sx={{ height: '100vh'}} onClick={handleDraw}>
+                <Drawer anchor="left" open={show} onClose={handleCloseDrawer}>
+                    <Box sx={{ height: '100vh' }}>
                         <List>
                             {menu.map(obj => {
                                 const Icon = obj.icon;
@@ -172,6 +151,7 @@ export default function TopHeader() {
                                                 } else {
                                                     router.push(obj.href);
                                                 }
+                                                handleCloseDrawer(); // Close the drawer after navigating
                                             }}
                                         >
                                             <ListItemIcon><Icon /></ListItemIcon>
