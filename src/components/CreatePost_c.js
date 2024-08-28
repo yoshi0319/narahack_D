@@ -48,25 +48,25 @@
     const [openPopup, setOpenPopup] = useState(true);
 
     // useEffect(() => {
-    //   // localStorageからデータを取得
-    //   setTitle(localStorage.getItem('postTitle'));
-    //   setCategory(localStorage.getItem('postCategory'));
-    //   setExplanation(localStorage.getItem('postExplanation'));
-    //   setPlace(localStorage.getItem('postPlace'));
-    //   setMainImage(localStorage.getItem('mainImage'));
-    //   setSubImage1(localStorage.getItem('subImage1'));
-    //   setSubImage2(localStorage.getItem('subImage2'));
+    //   // sessionStorageからデータを取得
+    //   setTitle(sessionStorage.getItem('postTitle'));
+    //   setCategory(sessionStorage.getItem('postCategory'));
+    //   setExplanation(sessionStorage.getItem('postExplanation'));
+    //   setPlace(sessionStorage.getItem('postPlace'));
+    //   setMainImage(sessionStorage.getItem('mainImage'));
+    //   setSubImage1(sessionStorage.getItem('subImage1'));
+    //   setSubImage2(sessionStorage.getItem('subImage2'));
     // }, []);
     
     useEffect(() => {
-      // localStorageからデータを取得
-      const storedTitle = localStorage.getItem('postTitle');
-      const storedCategory = localStorage.getItem('postCategory');
-      const storedExplanation = localStorage.getItem('postExplanation');
-      const storedPlace = localStorage.getItem('postPlace');
-      const storedMainImage = localStorage.getItem('mainImage');
-      const storedSubImage1 = localStorage.getItem('subImage1');
-      const storedSubImage2 = localStorage.getItem('subImage2');
+      // sessionStorageからデータを取得
+      const storedTitle = sessionStorage.getItem('postTitle');
+      const storedCategory = sessionStorage.getItem('postCategory');
+      const storedExplanation = sessionStorage.getItem('postExplanation');
+      const storedPlace = sessionStorage.getItem('postPlace');
+      const storedMainImage = sessionStorage.getItem('mainImage');
+      const storedSubImage1 = sessionStorage.getItem('subImage1');
+      const storedSubImage2 = sessionStorage.getItem('subImage2');
     
       setTitle(storedTitle || '');
       setCategory(storedCategory || temples);
@@ -148,43 +148,65 @@
       return !hasErrors;
     };
 
-    const handleTitle = e => setTitle(e.target.value);
-    const handleCategory = e => setCategory(e.target.value);
-    const handleExplanation = e => setExplanation(e.target.value);
-    const handlePlace = e => setPlace(e.target.value);
-
+    const handleTitle = e => {
+      setTitle(e.target.value);
+      if (errors.title) setErrors(prevErrors => ({ ...prevErrors, title: '' }));
+    };
+    
+    const handleCategory = e => {
+      setCategory(e.target.value);
+      if (errors.category) setErrors(prevErrors => ({ ...prevErrors, category: '' }));
+    };
+    
+    const handleExplanation = e => {
+      setExplanation(e.target.value);
+      if (errors.explanation) setErrors(prevErrors => ({ ...prevErrors, explanation: '' }));
+    };
+    
+    const handlePlace = e => {
+      setPlace(e.target.value);
+      if (errors.place) setErrors(prevErrors => ({ ...prevErrors, place: '' }));
+    };
+    
     const onFileInputChange = e => {
       if (!e.target.files || e.target.files.length === 0) {
         setMainImage(null);
         setImageSelectedMain(false);
+        setErrors(prevErrors => ({ ...prevErrors, mainImage: 'メイン画像は必須です' }));
         return;
       }
       const fileObject = e.target.files[0];
       setMainImage(URL.createObjectURL(fileObject));
       setImageSelectedMain(true);
+      if (errors.mainImage) setErrors(prevErrors => ({ ...prevErrors, mainImage: '' }));
     };
-
+    
     const onFileInputChangeSub1 = e => {
       if (!e.target.files || e.target.files.length === 0) {
         setSubImage1(null);
         setImageSelectedSub1(false);
+        setErrors(prevErrors => ({ ...prevErrors, subImage1: 'サブ画像1は必須です' }));
         return;
       }
       const fileObject = e.target.files[0];
       setSubImage1(URL.createObjectURL(fileObject));
       setImageSelectedSub1(true);
+      if (errors.subImage1) setErrors(prevErrors => ({ ...prevErrors, subImage1: '' }));
     };
-
+    
     const onFileInputChangeSub2 = e => {
       if (!e.target.files || e.target.files.length === 0) {
         setSubImage2(null);
         setImageSelectedSub2(false);
+        setErrors(prevErrors => ({ ...prevErrors, subImage2: 'サブ画像2は必須です' }));
         return;
       }
       const fileObject = e.target.files[0];
       setSubImage2(URL.createObjectURL(fileObject));
       setImageSelectedSub2(true);
+      if (errors.subImage2) setErrors(prevErrors => ({ ...prevErrors, subImage2: '' }));
     };
+    
 
     // const submitPost = (e) => {      // この関数は、フォームの送信ボタンがクリックされたときに呼び出される
     //   e.preventDefault();
@@ -219,17 +241,17 @@
     if (!validateForm()) {
       return;
     } else {
-    // テキストデータと画像データをlocalStorageに保存
-    localStorage.setItem('postTitle', title); // title_nameではなく、titleをそのまま保存
-    localStorage.setItem('postCategory', category); // category_nameではなく、categoryをそのまま保存
-    localStorage.setItem('postExplanation', explanation); // explanation_nameではなく、explanationをそのまま保存
-    localStorage.setItem('postPlace', place); // place_nameではなく、placeをそのまま保存
-    localStorage.setItem('mainImage', mainImage);
-    localStorage.setItem('subImage1', subImage1);
-    localStorage.setItem('subImage2', subImage2);
+      // テキストデータと画像データをsessionStorageに保存
+      sessionStorage.setItem('postTitle', title); // title_nameではなく、titleをそのまま保存
+      sessionStorage.setItem('postCategory', category); // category_nameではなく、categoryをそのまま保存
+      sessionStorage.setItem('postExplanation', explanation); // explanation_nameではなく、explanationをそのまま保存
+      sessionStorage.setItem('postPlace', place); // place_nameではなく、placeをそのまま保存
+      sessionStorage.setItem('mainImage', mainImage);
+      sessionStorage.setItem('subImage1', subImage1);
+      sessionStorage.setItem('subImage2', subImage2);
 
-    // ページ遷移
-    router.push("/Tourist_Board_of_Nara/CreatePost/checkPost");
+      // ページ遷移
+      router.push("/Tourist_Board_of_Nara/CreatePost/checkPost");
     }
   };
 
@@ -237,7 +259,7 @@
       return (
           <>
           <StyledDialog open={openPopup} onClose={() => setOpenPopup(false)}>
-            <DialogTitle>ホームページ作成上の注意事項
+            <DialogTitle className={styles.popuplist}>ホームページ作成上の注意事項
               <IconButton
                 aria-label="close"
                 onClick={() => setOpenPopup(false)}
@@ -279,17 +301,17 @@
               <div>
                   {!imageSelectedMain ? (
                       <div className={styles.default}>
-                          <div className={styles.inputImageContainer}>
-                              <p className={styles.labelText}>画像ファイルを選択してください</p>
-                              <input type="file"
-                                  accept="image/*"
-                                  id="mainImage"
-                                  name="mainImage"
-                                  onChange={onFileInputChange}
-                                  className="pl-4" />
-                          </div>
-                          {errors.mainImage && <p className={styles.errorText}>{errors.mainImage}</p>}
+                      <div className={styles.inputImageContainer}>
+                        <p className={styles.labelText}>画像ファイルを選択してください</p>
+                        <input type="file"
+                          accept="image/*"
+                          id="mainImage"
+                          name="mainImage"
+                          onChange={onFileInputChange}
+                          className="pl-4" />
+                        {errors.mainImage && <p className={styles.errorText}>{errors.mainImage}</p>}
                       </div>
+                    </div>
                   ) : (
                     <>
                       <div className={styles.imageDisplayContainer}>
@@ -365,17 +387,17 @@
                   <div>
                       {!imageSelectedSub1 ? (
                           <div className={styles.default}>
-                              <div className={styles.inputImageContainer}>
-                                  <p className={styles.labelText}>画像ファイルを選択してください</p>
-                                  <input type="file"
-                                      accept="image/*"
-                                      id="subImage1"
-                                      name="subImage1"
-                                      onChange={onFileInputChangeSub1}
-                                      className="pl-4" />
-                              </div>
-                              {errors.subImage1 && <p className={styles.errorText}>{errors.subImage1}</p>}
+                          <div className={styles.inputImageContainer}>
+                            <p className={styles.labelText}>画像ファイルを選択してください</p>
+                            <input type="file"
+                              accept="image/*"
+                              id="subImage1"
+                              name="subImage1"
+                              onChange={onFileInputChangeSub1}
+                              className="pl-4" />
+                            {errors.subImage1 && <p className={styles.errorText}>{errors.subImage1}</p>}
                           </div>
+                        </div>
                       ) : (
                           <>
                             <div className={`${styles.imageDisplayContainer} ${styles.imageWrapper}`}>
@@ -392,17 +414,17 @@
                   <div>
                       {!imageSelectedMain ? (
                           <div className={styles.default}>
-                              <div className={styles.inputImageContainer}>
-                                  <p className={styles.labelText}>画像ファイルを選択してください</p>
-                                  <input type="file"
-                                      accept="image/*"
-                                      id="mainImage2"
-                                      name="mainImage2"
-                                      onChange={onFileInputChange}
-                                      className="pl-4" />
-                              </div>
-                              {errors.mainImage && <p className={styles.errorText}>{errors.mainImage}</p>}
+                          <div className={styles.inputImageContainer}>
+                            <p className={styles.labelText}>画像ファイルを選択してください</p>
+                            <input type="file"
+                              accept="image/*"
+                              id="mainImage2"
+                              name="mainImage2"
+                              onChange={onFileInputChange}
+                              className="pl-4" />
+                            {errors.mainImage && <p className={styles.errorText}>{errors.mainImage}</p>}
                           </div>
+                        </div>
                       ) : (
                         <>
                           <div className={`${styles.imageDisplayContainer} ${styles.imageWrapper}`}>
@@ -419,17 +441,17 @@
                   <div>
                       {!imageSelectedSub2 ? (
                           <div className={styles.default}>
-                              <div className={styles.inputImageContainer}>
-                                  <p className={styles.labelText}>画像ファイルを選択してください</p>
-                                  <input type="file"
-                                      accept="image/*"
-                                      id="subImage2"
-                                      name="subImage2"
-                                      onChange={onFileInputChangeSub2}
-                                      className="pl-4" />
-                              </div>
-                              {errors.subImage2 && <p className={styles.errorText}>{errors.subImage2}</p>}
+                          <div className={styles.inputImageContainer}>
+                            <p className={styles.labelText}>画像ファイルを選択してください</p>
+                            <input type="file"
+                              accept="image/*"
+                              id="subImage2"
+                              name="subImage2"
+                              onChange={onFileInputChangeSub2}
+                              className="pl-4" />
+                            {errors.subImage2 && <p className={styles.errorText}>{errors.subImage2}</p>}
                           </div>
+                        </div>
                       ) : (
                         <>
                           <div className={`${styles.imageDisplayContainer} ${styles.imageWrapper}`}>

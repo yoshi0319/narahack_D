@@ -13,10 +13,22 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Posts {
+model User {
+  id Int @default(autoincrement()) @id
+  code String @unique
+  create_user_time DateTime @default(now())
+  posts Int[]
+}
+
+model Post {
   id Int @default(autoincrement()) @id
   title String
   category String
   explanation String
   place String
+  post_user Int
+  mainImage Bytes?
+  sub1Image Bytes?
+  sub2Image Bytes?
+  create_post_time DateTime @default(now())
 }

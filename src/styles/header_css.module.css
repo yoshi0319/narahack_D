@@ -7,6 +7,12 @@
     opacity: 0.8;
 }
 
+.menu p {
+    font-size: 0.8rem;
+    text-align: center;
+    font-family: 'Klee One', sans-serif;
+}
+
 .backButton {
     display: flex;
     font-family: 'Klee One', sans-serif;
