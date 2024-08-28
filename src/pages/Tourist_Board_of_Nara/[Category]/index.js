@@ -25,6 +25,7 @@ const conversionCategory = (category) => {
 
 export async function getServerSideProps(context) {
     const { Category } = context.query;
+    console.log(`英語カテゴリー:${Category}`);
 
     //データベースのカテゴリーに合うように日本語に変換
     const category = conversionCategory(Category);

@@ -1,8 +1,8 @@
 import styles from '@/styles/postCard_css.module.css';
 import { Button } from '@mui/material';
-import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
-export default function PostCard(props) {
+// export default function PostCard(props) {
     // console.log("みょーん");
     // console.log(posts);
     // console.log(first.title);
@@ -25,124 +25,33 @@ export default function PostCard(props) {
     //             break;
     // }
 
-    return(
+    // return(
+export default function PostCard(props) {
+    const [counter, setCounter] = useState(0);
+
+    const content = props.props;
+
+    useEffect(() => {
+        if (content.length > 0) {
+            setCounter(content.length);
+        }
+    }, [content]);
+
+    return (
         <>
             <div className={styles.container}>
-                <Button href="/Tourist_Board_of_Nara/Detail">
-                    <div className={styles.postCard}>
-                        <img src = "/tokuyuji.jpg" alt = "参考画像" />
-                        <h2>タイトル</h2>
-                        <hr></hr>
-                        <p>説明説ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
-                            ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
-                            ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
-                            あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
-                            ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
-                            ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
-                            あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
-                            あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
-                            ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
-                            ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
-                            ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
-                            ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
-                        </p>
-                    </div>
-                </Button>
-                <Button href="/Tourist_Board_of_Nara/Detail">
-                    <div className={styles.postCard}>
-                        <img src = "/tokuyuji.jpg" alt = "参考画像" />
-                        <h2>タイトル</h2>
-                        <hr></hr>
-                        <p>説明説ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</p>
-                    </div>
-                </Button>
-                <Button href="/Tourist_Board_of_Nara/Detail">
-                    <div className={styles.postCard}>
-                        <img src = "/tokuyuji.jpg" alt = "参考画像" />
-                        <h2>タイトル</h2>
-                        <hr></hr>
-                        <p>説明説ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</p>
-                    </div>
-                </Button>
+                {content.map(item => (
+                    <Button key={item.id} href="/Tourist_Board_of_Nara/Detail">
+                        <div className={styles.postCard}>
+                            <img src={item.mainImage} alt="参考画像" />
+                            <h2>{item.title}</h2>
+                            <hr />
+                            <p>{item.explanation}</p>
+                        </div>
+                    </Button>
+                ))}
             </div>
-            <div className={styles.container}>
-                <Button href="/Tourist_Board_of_Nara/Detail">
-                    <div className={styles.postCard}>
-                        <img src = "/tokuyuji.jpg" alt = "参考画像" />
-                        <h2>タイトル</h2>
-                        <hr></hr>
-                        <p>説明説ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</p>
-                    </div>
-                </Button>
-                <Button href="/Tourist_Board_of_Nara/Detail">
-                    <div className={styles.postCard}>
-                        <img src = "/tokuyuji.jpg" alt = "参考画像" />
-                        <h2>タイトル</h2>
-                        <hr></hr>
-                        <p>説明説ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</p>
-                    </div>
-                </Button>
-                <Button href="/Tourist_Board_of_Nara/Detail">
-                    <div className={styles.postCard}>
-                        <img src = "/tokuyuji.jpg" alt = "参考画像" />
-                        <h2>タイトル</h2>
-                        <hr></hr>
-                        <p>説明説ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</p>
-                    </div>
-                </Button>
-            </div>
-            <div className={styles.container}>
-                <Button href="/Tourist_Board_of_Nara/Detail">
-                    <div className={styles.postCard}>
-                        <img src = "/tokuyuji.jpg" alt = "参考画像" />
-                        <h2>タイトル</h2>
-                        <hr></hr>
-                        <p>説明説ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</p>
-                    </div>
-                </Button>
-                <Button href="/Tourist_Board_of_Nara/Detail">
-                    <div className={styles.postCard}>
-                        <img src = "/tokuyuji.jpg" alt = "参考画像" />
-                        <h2>タイトル</h2>
-                        <hr></hr>
-                        <p>説明説ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</p>
-                    </div>
-                </Button>
-                <Button href="/Tourist_Board_of_Nara/Detail">
-                    <div className={styles.postCard}>
-                        <img src = "/tokuyuji.jpg" alt = "参考画像" />
-                        <h2>タイトル</h2>
-                        <hr></hr>
-                        <p>説明説ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</p>
-                    </div>
-                </Button>
-            </div>
-            <div className={styles.container}>
-                <Button href="/Tourist_Board_of_Nara/Detail">
-                    <div className={styles.postCard}>
-                        <img src = "/tokuyuji.jpg" alt = "参考画像" />
-                        <h2>タイトル</h2>
-                        <hr></hr>
-                        <p>説明説ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</p>
-                    </div>
-                </Button>
-                <Button href="/Tourist_Board_of_Nara/Detail">
-                    <div className={styles.postCard}>
-                        <img src = "/tokuyuji.jpg" alt = "参考画像" />
-                        <h2>タイトル</h2>
-                        <hr></hr>
-                        <p>説明説ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</p>
-                    </div>
-                </Button>
-                <Button href="/Tourist_Board_of_Nara/Detail">
-                    <div className={styles.postCard}>
-                        <img src = "/tokuyuji.jpg" alt = "参考画像" />
-                        <h2>タイトル</h2>
-                        <hr></hr>
-                        <p>説明説ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</p>
-                    </div>
-                </Button>
-            </div>
+            <p>Counter: {counter}</p>
         </>
     );
 }
