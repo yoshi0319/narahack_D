@@ -23,8 +23,20 @@ export async function getDetail(id) {
         post.sub1Image = post.sub1Image ? `data:image/jpeg;base64,${post.sub1Image.toString('base64')}` : null;
         post.sub2Image = post.sub2Image ? `data:image/jpeg;base64,${post.sub2Image.toString('base64')}` : null;
     }
+
+    console.log('データ取得できたわよ');
+
+    await prisma.post.update({
+        where: { id: parseInt(id, 10) },
+        data: {
+            viewcount: {
+                increment: 1,
+            },
+        },
+    });
     
-    console.log('やったわよ');
+    console.log('閲覧数１増やせたわよ');
+
     return post;
 }
 
@@ -44,9 +56,9 @@ export default async function handler(req, res) {
       console.log(post.category);
       console.log(post.explanation);
       console.log(post.place);
-      console.log(post.mainImage);
-      console.log(post.sub1Image);
-      console.log(post.sub2Image);
+    //   console.log(post.mainImage);
+    //   console.log(post.sub1Image);
+    //   console.log(post.sub2Image);
 
       if (!post) {
         return res

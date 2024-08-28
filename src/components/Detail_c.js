@@ -3,10 +3,12 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Button from '@mui/material/Button';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Link from 'next/link';
+import { useRouter } from "next/router";
 
 
 
 export default function Detail( post ) {
+    const router = useRouter();
 
     //ここ
     console.log('どう？');
@@ -49,7 +51,7 @@ export default function Detail( post ) {
                 </div>
             </div>
             <div className={styles.parentContainer}>
-                <Button href="/Tourist_Board_of_Nara" className={styles.backButton} >
+                <Button type='button' className={styles.backButton} onClick={() => router.back()}>
                     <ArrowBackIcon />
                     Topへ戻る
                 </Button>

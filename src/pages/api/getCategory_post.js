@@ -11,6 +11,8 @@ export async function get_posts(Category) {
             explanation: true,
             mainImage: true,
             create_post_time: true,
+            viewcount: true,
+            y_viewcount: true,
         },
         orderBy: {
             create_post_time: 'desc',
@@ -29,6 +31,6 @@ export async function get_posts(Category) {
 
     // console.log('Posts:', category_posts);
     
-    console.log('やったわよ');
+    console.log('getCategory_post.jsです');
     return category_posts;
 }

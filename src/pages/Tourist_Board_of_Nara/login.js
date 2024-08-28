@@ -34,9 +34,9 @@ const Login_user = async (code, router, setError, setErrorMessage) => {
       console.log("Signed In Status:", signedIn);
       const userId = Cookies.get("userId");
       console.log("userId:", userId);
-
-      // リダイレクト
-      router.replace("/Tourist_Board_of_Nara");
+      
+      //リダイレクト
+      router.replace("/Tourist_Board_of_Nara/temples");
 
     } else {
       console.error('ログイン失敗:', result.error);
@@ -69,8 +69,13 @@ const Login = () => {
       setError(true);
       setErrorMessage("コードを入力してください。");  // エラーメッセージを設定
     } else {
-      Login_user(code, router, setError, setErrorMessage);
+      console.log(code, "でログインしました");
+      Cookies.set("signedIn", "true");
+      Cookies.set("showLoginSuccess", "true"); // Add this line
+      router.replace("/Tourist_Board_of_Nara");
     }
+
+    Login_user(code, router);
   };
 
   return (

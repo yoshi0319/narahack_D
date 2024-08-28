@@ -25,6 +25,7 @@ const conversionCategory = (category) => {
 
 export async function getServerSideProps(context) {
     const { Category } = context.query;
+    console.log(`英語カテゴリー:${Category}`);
 
     //データベースのカテゴリーに合うように日本語に変換
     const category = conversionCategory(Category);
@@ -39,6 +40,7 @@ export async function getServerSideProps(context) {
     return {
         props: {
             posts,
+            Category,
         },
     };
 }
@@ -50,7 +52,7 @@ export default function Top (props) {
                 <TopHeader />
             </div>
             <div className={styles.postCard}>
-                <PostCard props={props.posts}/>
+                <PostCard props={props.posts} cate={props.Category}/>
             </div>
             <Footer />
         </>
