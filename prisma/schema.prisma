@@ -31,6 +31,6 @@ model Post {
   sub1Image Bytes?
   sub2Image Bytes?
   create_post_time DateTime @default(now())
-  viewcount Int @default(0)
-  y_viewcount Int @default(0)
+  viewcount Int @default(1)
+  y_viewcount Int @default(1)
 }

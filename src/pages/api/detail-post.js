@@ -23,8 +23,20 @@ export async function getDetail(id) {
         post.sub1Image = post.sub1Image ? `data:image/jpeg;base64,${post.sub1Image.toString('base64')}` : null;
         post.sub2Image = post.sub2Image ? `data:image/jpeg;base64,${post.sub2Image.toString('base64')}` : null;
     }
+
+    console.log('データ取得できたわよ');
+
+    await prisma.post.update({
+        where: { id: parseInt(id, 10) },
+        data: {
+            viewcount: {
+                increment: 1,
+            },
+        },
+    });
     
-    console.log('やったわよ');
+    console.log('閲覧数１増やせたわよ');
+
     return post;
 }
 

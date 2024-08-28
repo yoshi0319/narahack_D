@@ -1,60 +1,81 @@
 import styles from '@/styles/postCard_css.module.css';
-import { Button } from '@mui/material';
+import { Button, InputLabel, MenuItem, Select } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { useRouter } from "next/router";
+import {FormControl} from "@mui/material";
 
-// import { 
-//     createtimePost_sort, 
-//     viewPost_sort, 
-//     randomPost_sort, 
-//     trendPost_sort 
-// } from "@/components/sort-functions"; // ソート関数をインポート
+import {
+    viewPost_sort, 
+    randomPost_sort, 
+    trendPost_sort 
+} from "@/components/sort-functions"; // ソート関数をインポート
 
 
 export default function PostCard({props, cate}) {
     const router = useRouter();
     const caten = cate;
     console.log(`Topページのカテゴリー:${caten}`);
-    
-    const [counter, setCounter] = useState(0);
+
+    const createtime = 'createtime';
+    const view = 'view';
+    const random = 'random';
+    const trend = 'trend';
+
     const [posts, setPosts] = useState(props || []);
-    console.log(`テストです:${posts}`);
+    const [order, setOrder] = useState({
+        order_name: 'createtime'
+    });
+    const handleOrder = e => {
+        setOrder({
+            ...order,
+            [e.target.name]: e.target.value
+        });
+        console.log(`${order}ほんにゃ〜`);
+    };
+    const show = () => {
+        console.log(order);
+    };
 
-    const content = posts || []; // デフォルト値として空の配列を設定
+    const [counter, setCounter] = useState(0);
+    // console.log(`テストです:${posts}`);
+    posts.forEach(post => {
+        console.log(`ID: ${post.id}, ViewCount: ${post.viewcount}`);
+    });
 
-    
-
-    // useEffect(() => {
-    //     if (props && Array.isArray(props)) {
-    //         let sortedPosts = [...props];
-    //         switch (select) {
-    //             case '登録順':
-    //                 sortedPosts = createtimePost_sort(sortedPosts);
-    //                 break;
-    //             case '閲覧数順':
-    //                 sortedPosts = viewPost_sort(sortedPosts);
-    //                 break;
-    //             case 'ランダム':
-    //                 sortedPosts = randomPost_sort(sortedPosts);
-    //                 break;
-    //             case '注目順':
-    //                 sortedPosts = trendPost_sort(sortedPosts);
-    //                 break;
-    //         }
-    //         setPosts(sortedPosts);
-    //     }
-    // }, [select]);
+    useEffect(() => {
+        console.log('orderが変わりました。');
+        if (props && Array.isArray(props)) {
+            let sortedPosts = [...props];
+            switch (order.order_name) {
+                case 'createtime':
+                    console.log('登録順');
+                    sortedPosts = props;
+                    break;
+                case 'view':
+                    console.log('閲覧数順');
+                    sortedPosts = viewPost_sort(sortedPosts);
+                    break;
+                case 'random':
+                    console.log('ランダム');
+                    sortedPosts = randomPost_sort(sortedPosts);
+                    break;
+                case 'trend':
+                    console.log('トレンド');
+                    sortedPosts = trendPost_sort(sortedPosts);
+                    break;
+            }
+            setPosts(sortedPosts);
+        }
+    }, [order]);
 
     const test = (id, caten) => {
         router.push(`/Tourist_Board_of_Nara/${caten}/Detail/${id}/`);
     }
-
     useEffect(() => {
-        if (content.length > 0) {
-            setCounter(content.length);
+        if (posts.length > 0) {
+            setCounter(posts.length);
         }
-    }, [content]);
-
+    }, [posts]);
     // アイテムを3つごとにグループ化する関数
     const chunkArray = (array, size) => {
         const result = [];
@@ -63,11 +84,35 @@ export default function PostCard({props, cate}) {
         }
         return result;
     };
-
-    const groupedContent = chunkArray(content, 3);
+    const groupedContent = chunkArray(posts, 3);
 
     return (
         <>
+        <div className={styles.orderSelectContainer}>
+            <div className={styles.topCategory}>
+                <h2>・カテゴリー</h2>
+            </div>
+            <div>
+                <FormControl
+                    className={styles.orderButton}
+                    sx={{ m: 1, minWidth: 150, width: 150 }}>
+                    <InputLabel id="order">表示順</InputLabel>
+                    <Select
+                        id="order_name"
+                        name="order_name"
+                        value={order.order_name}
+                        label="カテゴリー"
+                        onChange={handleOrder}
+                        onClick={show}>
+                            <MenuItem value={createtime}>登録順</MenuItem>
+                            <MenuItem value={view}>閲覧数順</MenuItem>
+                            <MenuItem value={random}>ランダム</MenuItem>
+                            <MenuItem value={trend}>注目順</MenuItem>
+                        </Select>
+                    </FormControl>
+            </div>
+        </div>
+
         <div className={styles.article}>
             <div className={styles.container}>
                 {groupedContent.length > 0 ? (

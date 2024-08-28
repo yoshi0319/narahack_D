@@ -61,6 +61,18 @@
     display: flex;
 }
 
+.orderSelectContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 15px;
+}
+
+.topCategory {
+    font-family: 'Klee One', sans-serif;
+    font-size: 1.5rem;
+}
 /* .column {
     max-width: 30%;
 } */
