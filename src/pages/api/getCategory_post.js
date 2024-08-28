@@ -29,6 +29,6 @@ export async function get_posts(Category) {
 
     // console.log('Posts:', category_posts);
     
-    console.log('やったわよ');
+    console.log('getCategory_post.jsです');
     return category_posts;
 }

@@ -40,6 +40,7 @@ export async function getServerSideProps(context) {
     return {
         props: {
             posts,
+            Category,
         },
     };
 }
@@ -51,7 +52,7 @@ export default function Top (props) {
                 <TopHeader />
             </div>
             <div className={styles.postCard}>
-                <PostCard props={props.posts}/>
+                <PostCard props={props.posts} cate={props.Category}/>
             </div>
             <Footer />
         </>

@@ -1,6 +1,7 @@
 import styles from '@/styles/postCard_css.module.css';
 import { Button } from '@mui/material';
 import { useState, useEffect } from 'react';
+import { useRouter } from "next/router";
 
 // export default function PostCard(props) {
     // console.log("みょーん");
@@ -26,10 +27,18 @@ import { useState, useEffect } from 'react';
     // }
 
     // return(
-export default function PostCard(props) {
+export default function PostCard({props, cate}) {
+    const router = useRouter();
+    const caten = cate;
+    console.log(`Topページのカテゴリー:${caten}`);
+    
     const [counter, setCounter] = useState(0);
 
-    const content = props.props || []; // デフォルト値として空の配列を設定
+    const content = props || []; // デフォルト値として空の配列を設定
+
+    const test = (id, caten) => {
+        router.push(`/Tourist_Board_of_Nara/${caten}/Detail/${id}/`);
+    }
 
     useEffect(() => {
         if (content.length > 0) {
@@ -56,7 +65,7 @@ export default function PostCard(props) {
                     groupedContent.map((group, groupIndex) => (
                         <div key={groupIndex} className={styles.row}>
                             {group.map(item => (
-                                <Button key={item.id} href="/Tourist_Board_of_Nara/Detail" className={styles.column}>
+                                <Button key={item.id} type="button" className={styles.column} onClick={() => test(item.id, caten)}>
                                     <div className={styles.postCard}>
                                         <img src={item.mainImage} alt="参考画像" />
                                         <h2>{item.title}</h2>

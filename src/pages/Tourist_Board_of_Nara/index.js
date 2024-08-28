@@ -7,7 +7,7 @@ export default function Home() {
   useEffect(() => {
     // ダイナミックパラメータを決定
     const category = 'temples'; // ここでカテゴリを動的に決定します
-    router.push(`/Tourist_Board_of_Nara/${category}`);
+    router.replace(`/Tourist_Board_of_Nara/${category}`);
   }, [router]);
 
   return null; // このページ自体にはコンテンツはありません

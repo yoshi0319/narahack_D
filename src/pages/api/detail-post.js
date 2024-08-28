@@ -44,9 +44,9 @@ export default async function handler(req, res) {
       console.log(post.category);
       console.log(post.explanation);
       console.log(post.place);
-      console.log(post.mainImage);
-      console.log(post.sub1Image);
-      console.log(post.sub2Image);
+    //   console.log(post.mainImage);
+    //   console.log(post.sub1Image);
+    //   console.log(post.sub2Image);
 
       if (!post) {
         return res
