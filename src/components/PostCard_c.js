@@ -26,12 +26,13 @@ export default function PostCard(props) {
 
     return (
         <>
+        <div className={styles.article}>
             <div className={styles.container}>
                 {groupedContent.length > 0 ? (
                     groupedContent.map((group, groupIndex) => (
                         <div key={groupIndex} className={styles.row}>
                             {group.map(item => (
-                                <Button key={item.id} href="/Tourist_Board_of_Nara/Detail">
+                                <Button key={item.id} href="/Tourist_Board_of_Nara/Detail" className={styles.column}>
                                     <div className={styles.postCard}>
                                         <img src={item.mainImage} alt="参考画像" />
                                         <h2>{item.title}</h2>
@@ -46,7 +47,8 @@ export default function PostCard(props) {
                     <p>No content available</p> // コンテンツがない場合の表示
                 )}
             </div>
-            <p>Counter: {counter}</p>
+            {/* <p>Counter: {counter}</p> 合計要素数を数えるために置いてます */}
+            </div>
         </>
     );
 }
