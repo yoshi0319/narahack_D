@@ -10,11 +10,40 @@ import { router } from 'next/router';
 export default function CheckPost() {
     const [postTitle, setPostTitle] = useState('');
     const [postCategory, setPostCategory] = useState('');
+    const [postCategory_Eng, setPostCategory_Eng] = useState('');
     const [postExplanation, setPostExplanation] = useState('');
     const [postPlace, setPostPlace] = useState('');
     const [mainImage, setMainImage] = useState(null);
     const [subImage1, setSubImage1] = useState(null);
     const [subImage2, setSubImage2] = useState(null);
+
+    const conversionCategory = (category) => {
+        switch (category) {
+            case 'temples':
+                setPostCategory('寺院');
+                setPostCategory_Eng('temples');
+                break;
+            case 'shrines':
+                setPostCategory('神社');
+                setPostCategory_Eng('shrines');
+                break;
+            case 'restaurants':
+                setPostCategory('飲食店');
+                setPostCategory_Eng('restaurants');
+                break;
+            case 'souvenirs':
+                setPostCategory('お土産');
+                setPostCategory_Eng('souvenirs');
+                break;
+            case 'museums':
+                setPostCategory('資料館');
+                setPostCategory_Eng('museums');
+                break;
+            case 'others':
+                setPostCategory('その他');
+                setPostCategory_Eng('others');
+        }
+    };
 
     const Ok_create = async () => {
         try {
@@ -58,6 +87,7 @@ export default function CheckPost() {
     
             const result = await response.json();
             console.log(result);
+            router.push(`/Tourist_Board_of_Nara/${postCategory_Eng}`);
 
 
         } catch (error) {
@@ -80,28 +110,6 @@ export default function CheckPost() {
         // postCategoryが更新されたときにカテゴリ変換関数を呼び出し
         conversionCategory(postCategory);
     }, [postCategory]);
-
-    const conversionCategory = (category) => {
-        switch (category) {
-            case 'temples':
-                setPostCategory('寺院');
-                break;
-            case 'shrines':
-                setPostCategory('神社');
-                break;
-            case 'restaurants':
-                setPostCategory('飲食店');
-                break;
-            case 'souvenirs':
-                setPostCategory('お土産');
-                break;
-            case 'museums':
-                setPostCategory('資料館');
-                break;
-            case 'others':
-                setPostCategory('その他');
-        }
-    };
 
     const submitPost = () => {
         router.push("/Tourist_Board_of_Nara/CreatePost");
