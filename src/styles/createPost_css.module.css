@@ -27,7 +27,7 @@ width: 60rem;
 .explanationContainer {
 display: flex;
 justify-content: center;
-margin-top: 3rem;
+margin-top: 5rem;
 margin-bottom: 20px;
 
 }
@@ -90,6 +90,7 @@ color: #333;
   align-items: center;
   gap: 20px;
   margin-bottom: 3rem;
+  margin-top: 5rem;
 }
 
 .imageWrapper {
@@ -118,13 +119,15 @@ color: #333;
   height: 100%; 
   opacity: 0.9;
   font-family: 'Klee One', sans-serif;
-  margin-top: 4rem;
+  margin-top: 5rem;
 }
 
 .placeContainer {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+  margin-top: 5rem;
+
 }
 
 .placeField {

@@ -5,7 +5,11 @@
 }
 
 body {
-  background-color: #FFF9F5;
+  background-color: #FFF9F5; /* 背景色の設定（画像が読み込まれない場合のフォールバック） */
+  background-image: url('/background.gif'); /* 背景画像の設定 */
+  background-size: cover; /* 画像を要素のサイズに合わせて拡大・縮小 */
+  background-position: center; /* 画像を中央に配置 */
+  background-repeat: no-repeat; /* 画像の繰り返しを防止 */
 }
-/* グローバルなCSSやレイアウト用のCSSファイルに追加 */
 
+/* グローバルなCSSやレイアウト用のCSSファイルに追加 */
