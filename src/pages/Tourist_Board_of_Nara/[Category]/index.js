@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import { get_posts } from "@/pages/api/getCategory_post";
 import Footer from "@/components/Footer";
 import styles from "@/styles/topPage_css.module.css";
+// import orderSelector from "@/components/orderSelector_c";
 
 const TopHeader = dynamic(() => import('@/components/topHeader'),{ssr:false});
 const PostCard = dynamic(() => import('@/components/PostCard_c'));
@@ -51,6 +52,7 @@ export default function Top (props) {
             <div className={styles.topHeader}>
                 <TopHeader />
             </div>
+                <orderSelector />
             <div className={styles.postCard}>
                 <PostCard props={props.posts} cate={props.Category}/>
             </div>
