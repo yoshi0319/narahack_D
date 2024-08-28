@@ -3,8 +3,28 @@ import { Button } from '@mui/material';
 import Link from 'next/link';
 
 export default function PostCard(props) {
-    console.log(props);
-    console.log("みょーん");
+    // console.log("みょーん");
+    // console.log(posts);
+    // console.log(first.title);
+
+    // const [posts, setPosts] = useState(props.props)
+
+    // const sortCards = (type, posts) => {
+    //     switch (type) {
+    //         case '登録順':
+    //             posts = createtimePost_sort(posts);
+    //             break;
+    //         case '閲覧数順':
+    //             posts = viewPost_sort(posts);
+    //             break;
+    //         case 'ランダム':
+    //             posts = randamPost_sort(posts);
+    //             break;
+    //         case '注目順':
+    //             posts = trendPost_sort(posts);
+    //             break;
+    // }
+
     return(
         <>
             <div className={styles.container}>
