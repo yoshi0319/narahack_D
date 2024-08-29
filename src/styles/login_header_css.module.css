@@ -1,0 +1,41 @@
+.headerContainer {
+    display: flex;
+    justify-content: center; /* タイトルを中央に配置 */
+    background-color: #D2FADC;
+    height: 5rem;
+    width: 100%;
+    align-items: center;
+    opacity: 0.8;
+    position: relative; /* 戻るボタンを絶対位置で配置するため */
+}
+
+.backButton {
+    position: absolute; /* 絶対位置で配置 */
+    left: 0; /* 左端に配置 */
+    margin-left: 1rem; /* 左余白を追加してボタンを少し内側に */
+    display: flex;
+    align-items: center;
+    font-family: 'Klee One', sans-serif;
+    font-size: large;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    white-space: nowrap; /* テキストを一列に並べる */
+    writing-mode: horizontal-tb; /* 文字を横方向に表示 */
+}
+
+.backButtonLink {
+    color: #000;
+    text-decoration: none;
+}
+
+.backButtonLink:hover {
+    color: #333;
+}
+
+.appTitle {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #000;
+    margin: 0 auto; /* 自動マージンで中央に配置されるようにする */
+}
