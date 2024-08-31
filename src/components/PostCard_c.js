@@ -47,19 +47,20 @@ export default function PostCard({ props, cate }) {
         }
     }, [router.query.order]);
 
+    //
     const handleOrder = e => {
-    const newOrder = e.target.value;
-    setOrder({
-        ...order,
-        order_name: newOrder
-    });
+        const newOrder = e.target.value;
+        setOrder({
+            ...order,
+            order_name: newOrder
+        });
     
     // URLパラメータを更新する
-    router.push({
-        pathname: router.pathname,
-        query: { ...router.query, order: newOrder }
-    }, undefined, { shallow: true });
-};
+        router.push({
+            pathname: router.pathname,
+            query: { ...router.query, order: newOrder }
+        }, undefined, { shallow: true });
+    };
 
     
     const show = () => {
