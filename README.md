@@ -1,6 +1,11 @@
 Nara Hack, teamD-山岳部の作品, 
 tourist board of Nara
 
+Deployment
+[narahack-d.vercel.app](narahack-d.vercel.app)
+
+多分動かない。修正の必要あり
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
